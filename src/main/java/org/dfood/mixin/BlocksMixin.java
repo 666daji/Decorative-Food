@@ -49,6 +49,8 @@ public class BlocksMixin {
 
         // 其他
         register("pumpkin_pie", foodBlocks.PUMPKIN_PIE);
+        register("chorus_fruit", foodBlocks.CHORUS_FRUIT);
+        register("egg", foodBlocks.EGG);
     }
 
     @Unique

@@ -6,7 +6,7 @@ import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
 import net.minecraft.item.BlockItem;
 import org.dfood.block.foodBlocks;
-import org.dfood.item.ModStewItem;
+import org.dfood.item.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,6 +48,8 @@ public class foodToBlocks {
 
         // 其他
         foodMap.put("pumpkin_pie", getItem(foodBlocks.PUMPKIN_PIE, FoodComponents.PUMPKIN_PIE));
+        foodMap.put("chorus_fruit", new ModChorusFruitItem(foodBlocks.CHORUS_FRUIT,new Item.Settings().food(FoodComponents.CHORUS_FRUIT)));
+        foodMap.put("egg", new ModEggItem(foodBlocks.EGG, new Item.Settings()));
     }
 
     public static BlockItem getItem(Block foodBlock, FoodComponent foodComponent) {

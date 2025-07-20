@@ -80,4 +80,10 @@ public class foodBlocks {
     public static final Block PUMPKIN_PIE = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.TERRACOTTA_ORANGE).strength(0.2F, 0.2F).nonOpaque(),
             1);
+    public static final Block CHORUS_FRUIT = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.PURPLE).strength(0.2F, 0.2F).nonOpaque(),
+            5);
+    public static final Block EGG = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.WHITE).strength(0.2F, 0.2F).nonOpaque(),
+            5);
 }
