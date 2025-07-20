@@ -30,6 +30,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * 所有食物方块的父类，定义了食物方块的基本行为
+ */
 public class foodBlock extends Block {
     public static final DirectionProperty FACING = Properties.FACING;
     public static final IntProperty NUMBER_OF_FOOD = IntProperty.of("number_of_food", 0, 12);
@@ -131,6 +134,9 @@ public class foodBlock extends Block {
         return !world.getBlockState(downPos).isIn(ModTags.FOOD_PLACE);
     }
 
+    /**
+     *硬编码掉落物
+     */
     @Override
     public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
         int foodCount = state.get(NUMBER_OF_FOOD);

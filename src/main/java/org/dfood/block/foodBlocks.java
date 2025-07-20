@@ -2,6 +2,9 @@ package org.dfood.block;
 
 import net.minecraft.block.*;
 
+/**
+ * 关于原版的食物方块定义
+ */
 public class foodBlocks {
     // 零食
     public static final Block COOKIE = new foodBlock(AbstractBlock.Settings.create()

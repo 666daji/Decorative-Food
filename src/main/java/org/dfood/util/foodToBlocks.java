@@ -11,6 +11,9 @@ import org.dfood.item.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 一个映射类，使开发者可以高度自定义新的Item实例
+ */
 public class foodToBlocks {
     public static final Map<String, Item> foodMap = new HashMap<>();
 
