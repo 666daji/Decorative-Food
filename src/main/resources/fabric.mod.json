@@ -1,0 +1,44 @@
+{
+	"schemaVersion": 1,
+	"id": "dfood",
+	"version": "${version}",
+	"name": "Decorative Food",
+	"description": "",
+	"authors": [
+		"666daji",
+		"LiShen"
+	],
+	"contact": {
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/dfood/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"org.dfood.ThreedFood"
+		],
+		"client": [
+			"org.dfood.ThreedfoodClient"
+		],
+		"fabric-datagen": [
+			"org.dfood.ThreedfoodDataGenerator"
+		]
+	},
+	"mixins": [
+		"3dfood.mixins.json",
+		{
+			"config": "3dfood.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

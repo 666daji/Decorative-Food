@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north,number_of_food=1": { "model": "minecraft:block/porkchop", "y": 180 },
+    "facing=north,number_of_food=2": { "model": "minecraft:block/porkchop_2", "y": 180 },
+    "facing=north,number_of_food=3": { "model": "minecraft:block/porkchop_3", "y": 180 },
+
+    "facing=south,number_of_food=1": { "model": "minecraft:block/porkchop" },
+    "facing=south,number_of_food=2": { "model": "minecraft:block/porkchop_2" },
+    "facing=south,number_of_food=3": { "model": "minecraft:block/porkchop_3" },
+
+    "facing=east,number_of_food=1": { "model": "minecraft:block/porkchop", "y": 270 },
+    "facing=east,number_of_food=2": { "model": "minecraft:block/porkchop_2", "y": 270 },
+    "facing=east,number_of_food=3": { "model": "minecraft:block/porkchop_3", "y": 270 },
+
+    "facing=west,number_of_food=1": { "model": "minecraft:block/porkchop", "y": 90 },
+    "facing=west,number_of_food=2": { "model": "minecraft:block/porkchop_2", "y": 90 },
+    "facing=west,number_of_food=3": { "model": "minecraft:block/porkchop_3", "y": 90 }
+  }
+}

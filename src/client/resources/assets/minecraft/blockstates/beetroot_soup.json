@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "minecraft:block/beetroot_soup",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "minecraft:block/beetroot_soup"
+    },
+    "facing=east": {
+      "model": "minecraft:block/beetroot_soup",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "minecraft:block/beetroot_soup",
+      "y": 90
+    }
+  }
+}

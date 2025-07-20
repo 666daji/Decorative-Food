@@ -1,0 +1,47 @@
+{
+  "variants": {
+    "facing=north,number_of_food=1": { "model": "minecraft:block/cookie", "y": 180 },
+    "facing=north,number_of_food=2": { "model": "minecraft:block/cookie_2", "y": 180 },
+    "facing=north,number_of_food=3": { "model": "minecraft:block/cookie_3", "y": 180 },
+    "facing=north,number_of_food=4": { "model": "minecraft:block/cookie_4", "y": 180 },
+    "facing=north,number_of_food=5": { "model": "minecraft:block/cookie_5", "y": 180 },
+    "facing=north,number_of_food=6": { "model": "minecraft:block/cookie_6", "y": 180 },
+    "facing=north,number_of_food=7": { "model": "minecraft:block/cookie_7", "y": 180 },
+    "facing=north,number_of_food=8": { "model": "minecraft:block/cookie_8", "y": 180 },
+    "facing=north,number_of_food=9": { "model": "minecraft:block/cookie_9", "y": 180 },
+    "facing=north,number_of_food=10": { "model": "minecraft:block/cookie_10", "y": 180 },
+
+    "facing=south,number_of_food=1": { "model": "minecraft:block/cookie" },
+    "facing=south,number_of_food=2": { "model": "minecraft:block/cookie_2" },
+    "facing=south,number_of_food=3": { "model": "minecraft:block/cookie_3" },
+    "facing=south,number_of_food=4": { "model": "minecraft:block/cookie_4" },
+    "facing=south,number_of_food=5": { "model": "minecraft:block/cookie_5" },
+    "facing=south,number_of_food=6": { "model": "minecraft:block/cookie_6" },
+    "facing=south,number_of_food=7": { "model": "minecraft:block/cookie_7" },
+    "facing=south,number_of_food=8": { "model": "minecraft:block/cookie_8" },
+    "facing=south,number_of_food=9": { "model": "minecraft:block/cookie_9" },
+    "facing=south,number_of_food=10": { "model": "minecraft:block/cookie_10" },
+
+    "facing=east,number_of_food=1": { "model": "minecraft:block/cookie", "y": 270 },
+    "facing=east,number_of_food=2": { "model": "minecraft:block/cookie_2", "y": 270 },
+    "facing=east,number_of_food=3": { "model": "minecraft:block/cookie_3", "y": 270 },
+    "facing=east,number_of_food=4": { "model": "minecraft:block/cookie_4", "y": 270 },
+    "facing=east,number_of_food=5": { "model": "minecraft:block/cookie_5", "y": 270 },
+    "facing=east,number_of_food=6": { "model": "minecraft:block/cookie_6", "y": 270 },
+    "facing=east,number_of_food=7": { "model": "minecraft:block/cookie_7", "y": 270 },
+    "facing=east,number_of_food=8": { "model": "minecraft:block/cookie_8", "y": 270 },
+    "facing=east,number_of_food=9": { "model": "minecraft:block/cookie_9", "y": 270 },
+    "facing=east,number_of_food=10": { "model": "minecraft:block/cookie_10", "y": 270 },
+
+    "facing=west,number_of_food=1": { "model": "minecraft:block/cookie", "y": 90 },
+    "facing=west,number_of_food=2": { "model": "minecraft:block/cookie_2", "y": 90 },
+    "facing=west,number_of_food=3": { "model": "minecraft:block/cookie_3", "y": 90 },
+    "facing=west,number_of_food=4": { "model": "minecraft:block/cookie_4", "y": 90 },
+    "facing=west,number_of_food=5": { "model": "minecraft:block/cookie_5", "y": 90 },
+    "facing=west,number_of_food=6": { "model": "minecraft:block/cookie_6", "y": 90 },
+    "facing=west,number_of_food=7": { "model": "minecraft:block/cookie_7", "y": 90 },
+    "facing=west,number_of_food=8": { "model": "minecraft:block/cookie_8", "y": 90 },
+    "facing=west,number_of_food=9": { "model": "minecraft:block/cookie_9", "y": 90 },
+    "facing=west,number_of_food=10": { "model": "minecraft:block/cookie_10", "y": 90 }
+  }
+}

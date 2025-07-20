@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north,number_of_food=1": { "model": "minecraft:block/mutton", "y": 180 },
+    "facing=north,number_of_food=2": { "model": "minecraft:block/mutton_2", "y": 180 },
+    "facing=north,number_of_food=3": { "model": "minecraft:block/mutton_3", "y": 180 },
+
+    "facing=south,number_of_food=1": { "model": "minecraft:block/mutton" },
+    "facing=south,number_of_food=2": { "model": "minecraft:block/mutton_2" },
+    "facing=south,number_of_food=3": { "model": "minecraft:block/mutton_3" },
+
+    "facing=east,number_of_food=1": { "model": "minecraft:block/mutton", "y": 270 },
+    "facing=east,number_of_food=2": { "model": "minecraft:block/mutton_2", "y": 270 },
+    "facing=east,number_of_food=3": { "model": "minecraft:block/mutton_3", "y": 270 },
+
+    "facing=west,number_of_food=1": { "model": "minecraft:block/mutton", "y": 90 },
+    "facing=west,number_of_food=2": { "model": "minecraft:block/mutton_2", "y": 90 },
+    "facing=west,number_of_food=3": { "model": "minecraft:block/mutton_3", "y": 90 }
+  }
+}

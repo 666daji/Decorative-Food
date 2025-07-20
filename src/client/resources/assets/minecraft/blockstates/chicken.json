@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "minecraft:block/chicken",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "minecraft:block/chicken"
+    },
+    "facing=east": {
+      "model": "minecraft:block/chicken",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "minecraft:block/chicken",
+      "y": 90
+    }
+  }
+}

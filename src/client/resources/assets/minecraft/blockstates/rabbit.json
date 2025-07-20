@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "minecraft:block/rabbit",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "minecraft:block/rabbit"
+    },
+    "facing=east": {
+      "model": "minecraft:block/rabbit",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "minecraft:block/rabbit",
+      "y": 90
+    }
+  }
+}

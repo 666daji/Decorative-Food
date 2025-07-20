@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "minecraft:block/mushroom_stew",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "minecraft:block/mushroom_stew"
+    },
+    "facing=east": {
+      "model": "minecraft:block/mushroom_stew",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "minecraft:block/mushroom_stew",
+      "y": 90
+    }
+  }
+}

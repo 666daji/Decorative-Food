@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north,number_of_food=1": { "model": "minecraft:block/beetroot", "y": 180 },
+    "facing=north,number_of_food=2": { "model": "minecraft:block/beetroot_2", "y": 180 },
+    "facing=north,number_of_food=3": { "model": "minecraft:block/beetroot_3", "y": 180 },
+    "facing=north,number_of_food=4": { "model": "minecraft:block/beetroot_4", "y": 180 },
+    "facing=north,number_of_food=5": { "model": "minecraft:block/beetroot_5", "y": 180 },
+
+    "facing=south,number_of_food=1": { "model": "minecraft:block/beetroot" },
+    "facing=south,number_of_food=2": { "model": "minecraft:block/beetroot_2" },
+    "facing=south,number_of_food=3": { "model": "minecraft:block/beetroot_3" },
+    "facing=south,number_of_food=4": { "model": "minecraft:block/beetroot_4" },
+    "facing=south,number_of_food=5": { "model": "minecraft:block/beetroot_5" },
+
+    "facing=east,number_of_food=1": { "model": "minecraft:block/beetroot", "y": 270 },
+    "facing=east,number_of_food=2": { "model": "minecraft:block/beetroot_2", "y": 270 },
+    "facing=east,number_of_food=3": { "model": "minecraft:block/beetroot_3", "y": 270 },
+    "facing=east,number_of_food=4": { "model": "minecraft:block/beetroot_4", "y": 270 },
+    "facing=east,number_of_food=5": { "model": "minecraft:block/beetroot_5", "y": 270 },
+
+    "facing=west,number_of_food=1": { "model": "minecraft:block/beetroot", "y": 90 },
+    "facing=west,number_of_food=2": { "model": "minecraft:block/beetroot_2", "y": 90 },
+    "facing=west,number_of_food=3": { "model": "minecraft:block/beetroot_3", "y": 90 },
+    "facing=west,number_of_food=4": { "model": "minecraft:block/beetroot_4", "y": 90 },
+    "facing=west,number_of_food=5": { "model": "minecraft:block/beetroot_5", "y": 90 }
+  }
+}

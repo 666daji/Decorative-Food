@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "minecraft:block/cooked_chicken",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "minecraft:block/cooked_chicken"
+    },
+    "facing=east": {
+      "model": "minecraft:block/cooked_chicken",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "minecraft:block/cooked_chicken",
+      "y": 90
+    }
+  }
+}

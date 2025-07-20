@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "minecraft:block/pufferfish",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "minecraft:block/pufferfish"
+    },
+    "facing=east": {
+      "model": "minecraft:block/pufferfish",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "minecraft:block/pufferfish",
+      "y": 90
+    }
+  }
+}
