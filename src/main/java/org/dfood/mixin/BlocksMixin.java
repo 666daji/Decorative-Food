@@ -19,9 +19,16 @@ public class BlocksMixin {
         // 零食类
         register("cookie", foodBlocks.COOKIE);
         register("apple", foodBlocks.APPLE);
+        register("melon_slice", foodBlocks.MELON_SLICE);
         register("bread", foodBlocks.BREAD);
+
+        // 蔬菜类
         register("beetroot", foodBlocks.BEETROOT);
+        register("potato", foodBlocks.POTATO);
         register("baked_potato", foodBlocks.BAKED_POTATO);
+        register("carrot", foodBlocks.CARROT);
+        register("sweet_berries", foodBlocks.SWEET_BERRIES);
+        register("glow_berries", foodBlocks.GLOW_BERRIES);
 
         // 生熟肉类
         register("chicken", foodBlocks.CHICKEN);

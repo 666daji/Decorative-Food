@@ -26,5 +26,8 @@ public class RenderLayerMixin {
         BLOCKS.put(foodBlocks.SALMON, RenderLayer.getCutout());
         BLOCKS.put(foodBlocks.COOKED_SALMON, RenderLayer.getCutout());
         BLOCKS.put(foodBlocks.CHORUS_FRUIT, RenderLayer.getCutout());
+        BLOCKS.put(foodBlocks.SWEET_BERRIES, RenderLayer.getCutout());
+        BLOCKS.put(foodBlocks.GLOW_BERRIES, RenderLayer.getCutout());
+        BLOCKS.put(foodBlocks.CARROT, RenderLayer.getCutout());
     }
 }

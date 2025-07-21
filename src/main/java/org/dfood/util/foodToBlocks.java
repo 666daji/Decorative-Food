@@ -1,18 +1,18 @@
 package org.dfood.util;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.FoodComponents;
-import net.minecraft.item.Item;
-import net.minecraft.item.BlockItem;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.*;
 import org.dfood.block.foodBlocks;
 import org.dfood.item.*;
+import org.dfood.mixin.foodToBlockMixin;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 一个映射类，使开发者可以高度自定义新的Item实例
+ * @see foodToBlockMixin
  */
 public class foodToBlocks {
     public static final Map<String, Item> foodMap = new HashMap<>();
@@ -21,9 +21,16 @@ public class foodToBlocks {
         // 零食类
         foodMap.put("cookie", getItem(foodBlocks.COOKIE, FoodComponents.COOKIE));
         foodMap.put("apple", getItem(foodBlocks.APPLE, FoodComponents.APPLE));
+        foodMap.put("melon_slice", getItem(foodBlocks.MELON_SLICE, FoodComponents.MELON_SLICE));
         foodMap.put("bread", getItem(foodBlocks.BREAD, FoodComponents.BREAD));
+
+        // 蔬菜类
         foodMap.put("beetroot", getItem(foodBlocks.BEETROOT, FoodComponents.BEETROOT));
+        foodMap.put("potato", getItem(foodBlocks.POTATO, FoodComponents.POTATO));
         foodMap.put("baked_potato", getItem(foodBlocks.BAKED_POTATO, FoodComponents.BAKED_POTATO));
+        foodMap.put("carrot", getItem(foodBlocks.CARROT, FoodComponents.CARROT));
+        foodMap.put("sweet_berries", getItem(foodBlocks.SWEET_BERRIES, FoodComponents.SWEET_BERRIES));
+        foodMap.put("glow_berries", getItem(foodBlocks.GLOW_BERRIES, FoodComponents.GLOW_BERRIES));
 
         // 生熟肉类
         foodMap.put("chicken", getItem(foodBlocks.CHICKEN, FoodComponents.CHICKEN));
@@ -53,6 +60,9 @@ public class foodToBlocks {
         foodMap.put("pumpkin_pie", getItem(foodBlocks.PUMPKIN_PIE, FoodComponents.PUMPKIN_PIE));
         foodMap.put("chorus_fruit", new ModChorusFruitItem(foodBlocks.CHORUS_FRUIT,new Item.Settings().food(FoodComponents.CHORUS_FRUIT)));
         foodMap.put("egg", new ModEggItem(foodBlocks.EGG, new Item.Settings()));
+
+        // 种子类
+        foodMap.put("poisonous_potato", new AliasedBlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POISONOUS_POTATO)));
     }
 
     public static BlockItem getItem(Block foodBlock, FoodComponent foodComponent) {

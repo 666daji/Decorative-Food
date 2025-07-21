@@ -1,0 +1,56 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "minecraft:block/potato",
+		"particle": "minecraft:item/potato"
+	},
+	"elements": [
+		{
+			"from": [2.41732, 0, 1.67612],
+			"to": [7.41732, 4, 7.67612],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [5.2, 2, 4.9]},
+			"faces": {
+				"north": {"uv": [6, 8, 11, 12], "texture": "#0"},
+				"east": {"uv": [6, 4, 12, 8], "texture": "#0"},
+				"south": {"uv": [0, 10, 5, 14], "texture": "#0"},
+				"west": {"uv": [6, 0, 12, 4], "texture": "#0"},
+				"up": {"uv": [6, 5, 0, 0], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [6, 5, 0, 10], "rotation": 90, "texture": "#0"}
+			}
+		},
+		{
+			"from": [5.42388, 0, 8.11732],
+			"to": [11.42388, 4, 13.11732],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8.2, 2, 10.9]},
+			"faces": {
+				"north": {"uv": [6, 0, 12, 4], "texture": "#0"},
+				"east": {"uv": [6, 8, 11, 12], "texture": "#0"},
+				"south": {"uv": [6, 4, 12, 8], "texture": "#0"},
+				"west": {"uv": [0, 10, 5, 14], "texture": "#0"},
+				"up": {"uv": [6, 5, 0, 0], "texture": "#0"},
+				"down": {"uv": [6, 5, 0, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [8.42388, 0, 4.11732],
+			"to": [14.42388, 4, 9.11732],
+			"rotation": {"angle": -22.5, "axis": "z", "origin": [11.2, 2, 6.9]},
+			"faces": {
+				"north": {"uv": [6, 0, 12, 4], "texture": "#0"},
+				"east": {"uv": [6, 8, 11, 12], "texture": "#0"},
+				"south": {"uv": [6, 4, 12, 8], "texture": "#0"},
+				"west": {"uv": [0, 10, 5, 14], "texture": "#0"},
+				"up": {"uv": [6, 5, 0, 0], "texture": "#0"},
+				"down": {"uv": [6, 5, 0, 10], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0, 1, 2]
+		}
+	]
+}

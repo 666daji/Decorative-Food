@@ -13,15 +13,31 @@ public class foodBlocks {
     public static final Block APPLE = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.RED).strength(0.2F, 0.2F).nonOpaque(),
             5);
+    public static final Block MELON_SLICE = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.LIME).strength(0.2F, 0.2F).nonOpaque(),
+            5);
     public static final Block BREAD = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.TERRACOTTA_YELLOW).strength(0.2F, 0.2F).nonOpaque(),
             5);
+    // 蔬菜类
     public static final Block BEETROOT = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.RED).strength(0.2F, 0.2F).nonOpaque(),
+            5);
+    public static final Block POTATO = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.GOLD).strength(0.2F, 0.2F).nonOpaque(),
             5);
     public static final Block BAKED_POTATO = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.GOLD).strength(0.2F, 0.2F).nonOpaque(),
             5);
+    public static final Block CARROT = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.YELLOW).strength(0.2F, 0.2F).nonOpaque(),
+            5);
+    public static final Block SWEET_BERRIES = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.RED).strength(0.2F, 0.2F).nonOpaque(),
+            5);
+    public static final Block GLOW_BERRIES = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.YELLOW).strength(0.2F, 0.2F).nonOpaque(),
+            12);
     // 生熟肉类
     public static final Block CHICKEN = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.LIGHT_GRAY).strength(0.2F, 0.2F).nonOpaque(),
