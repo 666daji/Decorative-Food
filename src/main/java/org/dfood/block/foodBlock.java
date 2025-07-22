@@ -9,6 +9,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.registry.Registries;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
@@ -73,18 +74,27 @@ public class foodBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.isClient) {
-            return ActionResult.SUCCESS; // 客户端只返回成功
-        }
-
         ItemStack handStack = player.getStackInHand(hand);
         int currentCount = state.get(NUMBER_OF_FOOD);
+        if (world.isClient) {
+            if (handStack.getItem() == this.asItem()) {
+                if (currentCount < MAX_FOOD) {
+                    world.playSound(player, pos, this.soundGroup.getPlaceSound(), SoundCategory.BLOCKS,1,world.getRandom().nextFloat() * 0.1F + 0.9F);
+                }
+            }
+            else if (currentCount > 0) {
+                world.playSound(player, pos, this.soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, world.getRandom().nextFloat() * 0.1F + 0.9F);
+            }
+            return ActionResult.SUCCESS; // 客户端返回成功并播放声音
+        }
+
 
         // 手持相同物品 - 尝试添加
         if (handStack.getItem() == this.asItem()) {
             if (currentCount < MAX_FOOD) {
                 // 更新方块状态
                 BlockState newState = state.with(NUMBER_OF_FOOD, currentCount + 1);
+                world.playSound(player, pos, this.soundGroup.getPlaceSound(), SoundCategory.BLOCKS,1,world.getRandom().nextFloat() * 0.1F + 0.9F);
                 world.setBlockState(pos, newState, Block.NOTIFY_ALL);
 
                 // 消耗物品（非创造模式）
@@ -101,6 +111,7 @@ public class foodBlock extends Block {
             // 更新方块状态
             int newCount = currentCount - 1;
             BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
+            world.playSound(player, pos, this.soundGroup.getBreakSound(), SoundCategory.BLOCKS, 1, world.getRandom().nextFloat() * 0.1F + 0.9F);
 
             if (newCount > 0) {
                 world.setBlockState(pos, newState, Block.NOTIFY_ALL);
