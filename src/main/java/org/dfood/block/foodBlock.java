@@ -24,6 +24,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import org.dfood.shape.FoodShapeHandle;
 import org.dfood.tag.ModTags;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,7 +37,7 @@ import java.util.List;
 public class foodBlock extends Block {
     public static final DirectionProperty FACING = Properties.FACING;
     public static final IntProperty NUMBER_OF_FOOD = IntProperty.of("number_of_food", 0, 12);
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 8.0, 16.0);
+    private static final FoodShapeHandle foodShapeHandle = new FoodShapeHandle();
 
     public final int MAX_FOOD;
 
@@ -55,7 +56,7 @@ public class foodBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return SHAPE;
+        return foodShapeHandle.getShape(state);
     }
 
     @Override
