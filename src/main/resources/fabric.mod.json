@@ -3,15 +3,15 @@
 	"id": "dfood",
 	"version": "${version}",
 	"name": "Decorative Food",
-	"description": "",
+	"description": "为我的世界的食物添加了装饰模型，增加了食物的可玩性和美观性。",
 	"authors": [
-		"666daji",
-		"LiShen"
+		"Tenacious",
+		"Wonder"
 	],
 	"contact": {
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/666daji/Decorative-Food"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT License",
 	"icon": "assets/dfood/icon.png",
 	"environment": "*",
 	"entrypoints": {
