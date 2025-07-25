@@ -16,11 +16,11 @@ public class ModSoundGroups {
     public static final BlockSoundGroup FISH = new BlockSoundGroup(
             1.0f,
             1.0f,
-            SoundEvents.ENTITY_FISH_SWIM,
+            SoundEvents.ENTITY_COD_FLOP,
             SoundEvents.ENTITY_PUFFER_FISH_FLOP,
-            SoundEvents.ENTITY_FISH_SWIM,
-            SoundEvents.ENTITY_FISH_SWIM,
-            SoundEvents.ENTITY_FISH_SWIM
+            SoundEvents.ENTITY_COD_FLOP,
+            SoundEvents.ENTITY_COD_FLOP,
+            SoundEvents.ENTITY_COD_FLOP
     );
     public static final BlockSoundGroup BREAD = new BlockSoundGroup(
             1.0f,

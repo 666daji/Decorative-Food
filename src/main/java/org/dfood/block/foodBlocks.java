@@ -49,7 +49,8 @@ public class foodBlocks {
             5);
     public static final Block GLOW_BERRIES = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.YELLOW).strength(0.2F, 0.2F).nonOpaque()
-            .sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY),
+            .sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY)
+            .luminance(state -> state.get(foodBlock.NUMBER_OF_FOOD) + 3),
             12);
     // 生熟肉类
     public static final Block CHICKEN = new foodBlock(AbstractBlock.Settings.create()
