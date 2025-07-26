@@ -2,6 +2,8 @@ package org.dfood.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.component.type.FoodComponent;
+import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.*;
 import org.dfood.block.foodBlocks;
 import org.dfood.item.*;

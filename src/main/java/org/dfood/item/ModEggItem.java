@@ -2,18 +2,20 @@ package org.dfood.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.thrown.EggEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 
-public class ModEggItem extends BlockItem {
-    public ModEggItem(Block block, Settings settings) {
+public class ModEggItem extends BlockItem implements ProjectileItem {
+    public ModEggItem(Block block, Item.Settings settings) {
         super(block, settings);
     }
 
@@ -36,5 +38,12 @@ public class ModEggItem extends BlockItem {
         }
 
         return TypedActionResult.success(itemStack, world.isClient());
+    }
+
+    @Override
+    public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
+        EggEntity eggEntity = new EggEntity(world, pos.getX(), pos.getY(), pos.getZ());
+        eggEntity.setItem(stack);
+        return eggEntity;
     }
 }

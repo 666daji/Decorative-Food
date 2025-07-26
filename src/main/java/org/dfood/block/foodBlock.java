@@ -73,7 +73,8 @@ public class foodBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        Hand hand = player.getActiveHand();
         ItemStack handStack = player.getStackInHand(hand);
         int currentCount = state.get(NUMBER_OF_FOOD);
         if (world.isClient) {
