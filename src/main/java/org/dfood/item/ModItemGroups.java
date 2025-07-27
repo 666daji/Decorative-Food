@@ -11,7 +11,7 @@ import org.dfood.ThreedFood;
 
 public class ModItemGroups {
     public static void registerItemGroups() {
-        Registry.register(Registries.ITEM_GROUP,new Identifier(ThreedFood.MOD_ID,"dfoodseed"),
+        Registry.register(Registries.ITEM_GROUP,Identifier.of(ThreedFood.MOD_ID,"dfoodseed"),
                 ItemGroup.create(ItemGroup.Row.TOP,-1)
                 .displayName(Text.translatable("itemGroup.dfoodseed"))
                 .icon(() -> new ItemStack(Seeds.CARROT_SEED))

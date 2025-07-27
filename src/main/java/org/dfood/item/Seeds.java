@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.dfood.ThreedFood;
 
 public class Seeds {
     public static final Item SWEET_BERRIES_SEED = register("sweet_berries_seed", new AliasedBlockItem(Blocks.SWEET_BERRY_BUSH, new Item.Settings()));
@@ -13,7 +14,7 @@ public class Seeds {
     public static final Item CARROT_SEED = register("carrot_seed", new AliasedBlockItem(Blocks.CARROTS, new Item.Settings()));
 
     private static Item register(String id, Item item) {
-        return Registry.register(Registries.ITEM, new Identifier("dfood", id), item);
+        return Registry.register(Registries.ITEM, Identifier.of(ThreedFood.MOD_ID, id), item);
     }
 
     public static void registerItems() {

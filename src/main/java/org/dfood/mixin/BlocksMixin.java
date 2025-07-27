@@ -62,6 +62,6 @@ public class BlocksMixin {
 
     @Unique
     private static Block register(String id, Block block) {
-        return Registry.register(Registries.BLOCK, new Identifier(id), block);
+        return Registry.register(Registries.BLOCK, Identifier.of(id), block);
     }
 }

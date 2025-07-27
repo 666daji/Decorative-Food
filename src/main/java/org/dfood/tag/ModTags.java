@@ -11,6 +11,6 @@ public class ModTags {
     public static final TagKey<Block> FOOD_BLOCK = of("food_block");
 
     private static TagKey<Block> of(String id) {
-        return TagKey.of(RegistryKeys.BLOCK, new Identifier(ThreedFood.MOD_ID, id));
+        return TagKey.of(RegistryKeys.BLOCK, Identifier.of(ThreedFood.MOD_ID, id));
     }
 }
