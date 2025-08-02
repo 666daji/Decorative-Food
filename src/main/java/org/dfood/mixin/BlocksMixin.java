@@ -4,6 +4,7 @@ import net.minecraft.block.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import org.dfood.block.foodBlockManage;
 import org.dfood.block.foodBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -61,7 +62,8 @@ public class BlocksMixin {
     }
 
     @Unique
-    private static Block register(String id, Block block) {
-        return Registry.register(Registries.BLOCK, Identifier.of(id), block);
+    private static void register(String id, foodBlockManage blockManage) {
+        Block block = blockManage.createBlock(id);
+        Registry.register(Registries.BLOCK, Identifier.ofVanilla(id), block);
     }
 }

@@ -15,7 +15,7 @@ public class ChorusFruitBlock extends foodBlock{
     @Override
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (random.nextInt(100) == 0) {
-            world.playSound(
+            world.playSoundClient(
                     pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, random.nextFloat() * 0.4F + 0.8F, false
             );
         }

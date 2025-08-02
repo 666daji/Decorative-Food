@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "group": "dfoodseed",
   "ingredients": [
-    {
-      "item": "minecraft:carrot"
-    }
+    "minecraft:carrot"
   ],
   "result": {
     "id": "dfood:carrot_seed",

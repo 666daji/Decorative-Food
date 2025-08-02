@@ -1,10 +1,18 @@
 package org.dfood.util;
 
+import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.component.type.ConsumableComponent;
+import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.*;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.Identifier;
+import org.dfood.block.foodBlock;
+import org.dfood.block.foodBlockManage;
 import org.dfood.block.foodBlocks;
 import org.dfood.item.*;
 import org.dfood.mixin.foodToBlockMixin;
@@ -21,48 +29,62 @@ public class foodToBlocks {
 
     static {
         // 零食类
-        foodMap.put("cookie", getItem(foodBlocks.COOKIE, ModFoodComponents.COOKIE));
-        foodMap.put("apple", getItem(foodBlocks.APPLE, ModFoodComponents.APPLE));
-        foodMap.put("melon_slice", getItem(foodBlocks.MELON_SLICE, ModFoodComponents.MELON_SLICE));
-        foodMap.put("bread", getItem(foodBlocks.BREAD, ModFoodComponents.BREAD));
+        put("cookie", foodBlocks.COOKIE, FoodComponents.COOKIE);
+        put("apple", foodBlocks.APPLE, FoodComponents.APPLE);
+        put("melon_slice", foodBlocks.MELON_SLICE, FoodComponents.MELON_SLICE);
+        put("bread", foodBlocks.BREAD, FoodComponents.BREAD);
 
         // 蔬菜类
-        foodMap.put("beetroot", getItem(foodBlocks.BEETROOT, ModFoodComponents.BEETROOT));
-        foodMap.put("potato", getItem(foodBlocks.POTATO, ModFoodComponents.POTATO));
-        foodMap.put("baked_potato", getItem(foodBlocks.BAKED_POTATO, ModFoodComponents.BAKED_POTATO));
-        foodMap.put("carrot", getItem(foodBlocks.CARROT, ModFoodComponents.CARROT));
-        foodMap.put("sweet_berries", getItem(foodBlocks.SWEET_BERRIES, ModFoodComponents.SWEET_BERRIES));
-        foodMap.put("glow_berries", getItem(foodBlocks.GLOW_BERRIES, ModFoodComponents.GLOW_BERRIES));
+        put("beetroot", foodBlocks.BEETROOT, FoodComponents.BEETROOT);
+        put("potato", foodBlocks.POTATO, FoodComponents.POTATO);
+        put("baked_potato", foodBlocks.BAKED_POTATO, FoodComponents.BAKED_POTATO);
+        put("carrot", foodBlocks.CARROT, FoodComponents.CARROT);
+        put("sweet_berries", foodBlocks.SWEET_BERRIES, FoodComponents.SWEET_BERRIES);
+        put("glow_berries", foodBlocks.GLOW_BERRIES, FoodComponents.GLOW_BERRIES);
 
         // 生熟肉类
-        foodMap.put("chicken", getItem(foodBlocks.CHICKEN, ModFoodComponents.CHICKEN));
-        foodMap.put("cooked_chicken", getItem(foodBlocks.COOKED_CHICKEN, ModFoodComponents.COOKED_CHICKEN));
-        foodMap.put("beef", getItem(foodBlocks.BEEF, ModFoodComponents.BEEF));
-        foodMap.put("cooked_beef", getItem(foodBlocks.COOKED_BEEF, ModFoodComponents.COOKED_BEEF));
-        foodMap.put("mutton", getItem(foodBlocks.MUTTON, ModFoodComponents.MUTTON));
-        foodMap.put("cooked_mutton", getItem(foodBlocks.COOKED_MUTTON, ModFoodComponents.COOKED_MUTTON));
-        foodMap.put("porkchop", getItem(foodBlocks.PORKCHOP, ModFoodComponents.PORKCHOP));
-        foodMap.put("cooked_porkchop", getItem(foodBlocks.COOKED_PORKCHOP, ModFoodComponents.COOKED_PORKCHOP));
-        foodMap.put("rabbit", getItem(foodBlocks.RABBIT, ModFoodComponents.RABBIT));
-        foodMap.put("cooked_rabbit", getItem(foodBlocks.COOKED_RABBIT, ModFoodComponents.COOKED_RABBIT));
+        put("chicken", foodBlocks.CHICKEN, new Item.Settings().food(FoodComponents.CHICKEN, ConsumableComponents.RAW_CHICKEN));
+        put("cooked_chicken", foodBlocks.COOKED_CHICKEN, FoodComponents.COOKED_CHICKEN);
+        put("beef", foodBlocks.BEEF, FoodComponents.BEEF);
+        put("cooked_beef", foodBlocks.COOKED_BEEF, FoodComponents.COOKED_BEEF);
+        put("mutton", foodBlocks.MUTTON, FoodComponents.MUTTON);
+        put("cooked_mutton", foodBlocks.COOKED_MUTTON, FoodComponents.COOKED_MUTTON);
+        put("porkchop", foodBlocks.PORKCHOP, FoodComponents.PORKCHOP);
+        put("cooked_porkchop", foodBlocks.COOKED_PORKCHOP, FoodComponents.COOKED_PORKCHOP);
+        put("rabbit", foodBlocks.RABBIT, FoodComponents.RABBIT);
+        put("cooked_rabbit", foodBlocks.COOKED_RABBIT, FoodComponents.COOKED_RABBIT);
 
         // 鱼类
-        foodMap.put("cod", getItem(foodBlocks.COD, ModFoodComponents.COD));
-        foodMap.put("cooked_cod", getItem(foodBlocks.COOKED_COD, ModFoodComponents.COOKED_COD));
-        foodMap.put("salmon", getItem(foodBlocks.SALMON, ModFoodComponents.SALMON));
-        foodMap.put("cooked_salmon", getItem(foodBlocks.COOKED_SALMON, ModFoodComponents.COOKED_SALMON));
-        foodMap.put("pufferfish", getItem(foodBlocks.PUFFERFISH, ModFoodComponents.PUFFERFISH));
+        put("cod", foodBlocks.COD, FoodComponents.COD);
+        put("cooked_cod", foodBlocks.COOKED_COD, FoodComponents.COOKED_COD);
+        put("salmon", foodBlocks.SALMON, FoodComponents.SALMON);
+        put("cooked_salmon", foodBlocks.COOKED_SALMON, FoodComponents.COOKED_SALMON);
+        put("pufferfish", foodBlocks.PUFFERFISH, new Item.Settings().food(FoodComponents.PUFFERFISH, ConsumableComponents.PUFFERFISH).useCooldown(1.0F));
 
         // 其他
-        foodMap.put("pumpkin_pie", getItem(foodBlocks.PUMPKIN_PIE, ModFoodComponents.PUMPKIN_PIE));
-        foodMap.put("chorus_fruit", new ModChorusFruitItem(foodBlocks.CHORUS_FRUIT,new Item.Settings().food(ModFoodComponents.CHORUS_FRUIT)));
-        foodMap.put("egg", new ModEggItem(foodBlocks.EGG, new Item.Settings()));
+        put("pumpkin_pie", foodBlocks.PUMPKIN_PIE, FoodComponents.PUMPKIN_PIE);
+        put("chorus_fruit", foodBlocks.CHORUS_FRUIT, new Item.Settings().food(FoodComponents.CHORUS_FRUIT, ConsumableComponents.CHORUS_FRUIT).useCooldown(1.0F));
+        put("egg", foodBlocks.EGG, new Item.Settings());
 
         // 种子类
-        foodMap.put("poisonous_potato", new AliasedBlockItem(Blocks.POTATOES, new Item.Settings().food(ModFoodComponents.POISONOUS_POTATO)));
+        foodMap.put("poisonous_potato", new BlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POISONOUS_POTATO).useItemPrefixedTranslationKey().registryKey(keyOf("poisonous_potato"))));//
     }
 
-    public static BlockItem getItem(Block foodBlock, FoodComponent foodComponent) {
-        return new BlockItem(foodBlock, new Item.Settings().food(foodComponent));
+    public static void put(String id, foodBlockManage block, Item.Settings settings) {
+        Item item;
+        if (id.equals("egg")){
+            item = new ModEggItem(block.getBlock(), settings.useItemPrefixedTranslationKey().registryKey(keyOf(id)));
+        }else {
+            item = new BlockItem(block.getBlock(), settings.useItemPrefixedTranslationKey().registryKey(keyOf(id)));
+        }
+        foodMap.put(id, item);
+    }
+
+    public static void put(String id, foodBlockManage block, FoodComponent foodComponent) {
+        put(id, block, new Item.Settings().food(foodComponent).useItemPrefixedTranslationKey());
+    }
+
+    private static RegistryKey<Item> keyOf(String id) {
+        return RegistryKey.of(RegistryKeys.ITEM, Identifier.ofVanilla(id));
     }
 }

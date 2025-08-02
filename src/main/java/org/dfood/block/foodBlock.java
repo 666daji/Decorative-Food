@@ -7,24 +7,23 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.context.LootContextParameterSet;
-import net.minecraft.registry.Registries;
+import net.minecraft.loot.context.LootWorldContext;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.dfood.shape.FoodShapeHandle;
 import org.dfood.tag.ModTags;
 import org.jetbrains.annotations.Nullable;
@@ -36,7 +35,7 @@ import java.util.List;
  * 所有食物方块的父类，定义了食物方块的基本行为
  */
 public class foodBlock extends Block {
-    public static final DirectionProperty FACING = Properties.FACING;
+    public static final EnumProperty<Direction> FACING = Properties.FACING;
     public static final IntProperty NUMBER_OF_FOOD = IntProperty.of("number_of_food", 0, 12);
     private static final FoodShapeHandle foodShapeHandle = new FoodShapeHandle();
 
@@ -48,11 +47,6 @@ public class foodBlock extends Block {
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(FACING, net.minecraft.util.math.Direction.NORTH)
                 .with(NUMBER_OF_FOOD, 0));
-    }
-
-    @Override
-    public String getTranslationKey() {
-        return Util.createTranslationKey("item", Registries.BLOCK.getId(this));
     }
 
     @Override
@@ -134,11 +128,11 @@ public class foodBlock extends Block {
 
     @Override
     public BlockState getStateForNeighborUpdate(
-            BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos
+            BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random
     ) {
         return !state.canPlaceAt(world, pos)
                 ? Blocks.AIR.getDefaultState()
-                : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+                : super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
     }
 
     @Override
@@ -151,7 +145,7 @@ public class foodBlock extends Block {
      *硬编码掉落物
      */
     @Override
-    public List<ItemStack> getDroppedStacks(BlockState state, LootContextParameterSet.Builder builder) {
+    protected List<ItemStack> getDroppedStacks(BlockState state, LootWorldContext.Builder builder) {
         int foodCount = state.get(NUMBER_OF_FOOD);
 
         // 当数量为0时，不返回任何物品
@@ -162,6 +156,7 @@ public class foodBlock extends Block {
         // 创建包含正确数量的物品堆栈
         return Collections.singletonList(new ItemStack(this.asItem(), foodCount));
     }
+
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

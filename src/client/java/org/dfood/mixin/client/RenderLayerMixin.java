@@ -1,7 +1,7 @@
 package org.dfood.mixin.client;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.BlockRenderLayer;
 import net.minecraft.client.render.RenderLayers;
 import org.dfood.block.foodBlocks;
 import org.spongepowered.asm.mixin.Final;
@@ -15,19 +15,19 @@ import java.util.Map;
 
 @Mixin(RenderLayers.class)
 public class RenderLayerMixin {
-    @Shadow @Final private static Map<Block, RenderLayer> BLOCKS;
+    @Shadow @Final private static Map<Block, BlockRenderLayer> BLOCKS;
 
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void init(CallbackInfo ci) {
-        BLOCKS.put(foodBlocks.APPLE, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.BEETROOT, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.COD, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.COOKED_COD, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.SALMON, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.COOKED_SALMON, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.CHORUS_FRUIT, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.SWEET_BERRIES, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.GLOW_BERRIES, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.CARROT, RenderLayer.getCutout());
+        BLOCKS.put(foodBlocks.APPLE.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.BEETROOT.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.COD.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.COOKED_COD.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.SALMON.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.COOKED_SALMON.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.CHORUS_FRUIT.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.SWEET_BERRIES.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.GLOW_BERRIES.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.CARROT.getBlock(), BlockRenderLayer.CUTOUT);
     }
 }

@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "group": "dfoodseed",
   "ingredients": [
-    {
-      "item": "minecraft:sweet_berries"
-    }
+    "minecraft:sweet_berries"
   ],
   "result": {
     "id": "dfood:sweet_berries_seed",
