@@ -5,8 +5,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundCategory;
@@ -31,16 +33,23 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 所有食物方块的父类，定义了食物方块的基本行为
  */
 public class foodBlock extends Block {
+    @Nullable private CROPS CROP;
     public static final DirectionProperty FACING = Properties.FACING;
     public static final IntProperty NUMBER_OF_FOOD = IntProperty.of("number_of_food", 0, 12);
     private static final FoodShapeHandle foodShapeHandle = new FoodShapeHandle();
 
     public final int MAX_FOOD;
+
+    public enum CROPS{
+        POTATO,
+        CARROT;
+    }
 
     public foodBlock(Settings settings, int max_food) {
         super(settings);
@@ -48,6 +57,11 @@ public class foodBlock extends Block {
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(FACING, net.minecraft.util.math.Direction.NORTH)
                 .with(NUMBER_OF_FOOD, 0));
+    }
+
+    public foodBlock(Settings settings, int max_food, CROPS crop) {
+        this(settings, max_food);
+        this.CROP = crop;
     }
 
     @Override
@@ -160,6 +174,16 @@ public class foodBlock extends Block {
 
         // 创建包含正确数量的物品堆栈
         return Collections.singletonList(new ItemStack(this.asItem(), foodCount));
+    }
+
+    @Override
+    public Item asItem() {
+        if (this.CROP == CROPS.POTATO) {
+            return Items.POTATO;
+        } else if (this.CROP == CROPS.CARROT) {
+            return Items.CARROT;
+        }
+        return super.asItem();
     }
 
     @Override

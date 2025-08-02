@@ -26,9 +26,9 @@ public class foodToBlocks {
 
         // 蔬菜类
         foodMap.put("beetroot", getItem(foodBlocks.BEETROOT, FoodComponents.BEETROOT));
-        foodMap.put("potato", getItem(foodBlocks.POTATO, FoodComponents.POTATO));
+        foodMap.put("potato", new DoubleBlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POTATO), foodBlocks.POTATO));
         foodMap.put("baked_potato", getItem(foodBlocks.BAKED_POTATO, FoodComponents.BAKED_POTATO));
-        foodMap.put("carrot", getItem(foodBlocks.CARROT, FoodComponents.CARROT));
+        foodMap.put("carrot", new DoubleBlockItem(Blocks.CARROTS, new Item.Settings().food(FoodComponents.CARROT), foodBlocks.CARROT));
         foodMap.put("sweet_berries", getItem(foodBlocks.SWEET_BERRIES, FoodComponents.SWEET_BERRIES));
         foodMap.put("glow_berries", getItem(foodBlocks.GLOW_BERRIES, FoodComponents.GLOW_BERRIES));
 
@@ -60,9 +60,6 @@ public class foodToBlocks {
         foodMap.put("pumpkin_pie", getItem(foodBlocks.PUMPKIN_PIE, FoodComponents.PUMPKIN_PIE));
         foodMap.put("chorus_fruit", new ModChorusFruitItem(foodBlocks.CHORUS_FRUIT,new Item.Settings().food(FoodComponents.CHORUS_FRUIT)));
         foodMap.put("egg", new ModEggItem(foodBlocks.EGG, new Item.Settings()));
-
-        // 种子类
-        foodMap.put("poisonous_potato", new AliasedBlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POISONOUS_POTATO)));
     }
 
     public static BlockItem getItem(Block foodBlock, FoodComponent foodComponent) {

@@ -27,6 +27,9 @@
     "minecraft:egg",
     "minecraft:chorus_fruit",
     "minecraft:sweet_berries",
-    "minecraft:glow_berries"
+    "minecraft:glow_berries",
+    "minecraft:melon_slice",
+    "minecraft:carrot",
+    "minecraft:potato"
   ]
 }
