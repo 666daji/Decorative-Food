@@ -67,7 +67,7 @@ public class foodToBlocks {
         put("egg", foodBlocks.EGG, new Item.Settings());
 
         // 种子类
-        foodMap.put("poisonous_potato", new BlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POISONOUS_POTATO).useItemPrefixedTranslationKey().registryKey(keyOf("poisonous_potato"))));//
+        foodMap.put("poisonous_potato", new BlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POISONOUS_POTATO).useItemPrefixedTranslationKey().registryKey(keyOf("poisonous_potato"))));
     }
 
     public static void put(String id, foodBlockManage block, Item.Settings settings) {
