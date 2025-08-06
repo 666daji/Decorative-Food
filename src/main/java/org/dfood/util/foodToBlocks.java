@@ -36,9 +36,9 @@ public class foodToBlocks {
 
         // 蔬菜类
         put("beetroot", foodBlocks.BEETROOT, FoodComponents.BEETROOT);
-        put("potato", foodBlocks.POTATO, FoodComponents.POTATO);
+        foodMap.put("potato", new DoubleBlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POTATO).useItemPrefixedTranslationKey().registryKey(keyOf("potato")), foodBlocks.POTATO.getBlock()));
         put("baked_potato", foodBlocks.BAKED_POTATO, FoodComponents.BAKED_POTATO);
-        put("carrot", foodBlocks.CARROT, FoodComponents.CARROT);
+        foodMap.put("carrot", new DoubleBlockItem(Blocks.CARROTS, new Item.Settings().food(FoodComponents.CARROT).useItemPrefixedTranslationKey().registryKey(keyOf("carrot")), foodBlocks.CARROT.getBlock()));
         put("sweet_berries", foodBlocks.SWEET_BERRIES, FoodComponents.SWEET_BERRIES);
         put("glow_berries", foodBlocks.GLOW_BERRIES, FoodComponents.GLOW_BERRIES);
 
@@ -74,7 +74,7 @@ public class foodToBlocks {
         Item item;
         if (id.equals("egg")){
             item = new ModEggItem(block.getBlock(), settings.useItemPrefixedTranslationKey().registryKey(keyOf(id)));
-        }else {
+        } else {
             item = new BlockItem(block.getBlock(), settings.useItemPrefixedTranslationKey().registryKey(keyOf(id)));
         }
         foodMap.put(id, item);

@@ -3,9 +3,10 @@
   "package": "org.dfood.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "BlockItemMixin",
     "BlocksMixin",
-    "FarmerVillagerTaskMixin",
-    "foodToBlockMixin"
+    "foodToBlockMixin",
+    "ServerPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

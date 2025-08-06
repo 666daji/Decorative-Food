@@ -13,7 +13,6 @@ import org.dfood.ThreedFood;
 public class Seeds {
     public static final Item SWEET_BERRIES_SEED = register("sweet_berries_seed", new BlockItem(Blocks.SWEET_BERRY_BUSH, new Item.Settings().useItemPrefixedTranslationKey().registryKey(keyOf("sweet_berries_seed"))));
     public static final Item GLOW_BERRIES_SEED = register("glow_berries_seed", new BlockItem(Blocks.CAVE_VINES, new Item.Settings().useItemPrefixedTranslationKey().registryKey(keyOf("glow_berries_seed"))));
-    public static final Item CARROT_SEED = register("carrot_seed", new BlockItem(Blocks.CARROTS, new Item.Settings().useItemPrefixedTranslationKey().registryKey(keyOf("carrot_seed"))));
 
     private static Item register(String id, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(ThreedFood.MOD_ID, id), item);

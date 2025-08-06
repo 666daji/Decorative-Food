@@ -34,7 +34,7 @@ public class foodBlocks {
     public static final foodBlockManage POTATO = new foodBlockManage(AbstractBlock.Settings.create()
             .mapColor(MapColor.GOLD).strength(0.2F, 0.2F).nonOpaque()
             .sounds(BlockSoundGroup.CANDLE).pistonBehavior(PistonBehavior.DESTROY),
-            5);
+            5, foodBlock.CROPS.POTATO);
     public static final foodBlockManage BAKED_POTATO = new foodBlockManage(AbstractBlock.Settings.create()
             .mapColor(MapColor.GOLD).strength(0.2F, 0.2F).nonOpaque()
             .sounds(BlockSoundGroup.CANDLE).pistonBehavior(PistonBehavior.DESTROY),
@@ -42,7 +42,7 @@ public class foodBlocks {
     public static final foodBlockManage CARROT = new foodBlockManage(AbstractBlock.Settings.create()
             .mapColor(MapColor.YELLOW).strength(0.2F, 0.2F).nonOpaque()
             .sounds(BlockSoundGroup.CANDLE).pistonBehavior(PistonBehavior.DESTROY),
-            5);
+            5, foodBlock.CROPS.CARROT);
     public static final foodBlockManage SWEET_BERRIES = new foodBlockManage(AbstractBlock.Settings.create()
             .mapColor(MapColor.RED).strength(0.2F, 0.2F).nonOpaque()
             .sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY),

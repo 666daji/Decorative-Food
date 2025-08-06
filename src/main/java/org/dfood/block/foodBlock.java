@@ -5,8 +5,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootWorldContext;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
@@ -40,6 +42,12 @@ public class foodBlock extends Block {
     private static final FoodShapeHandle foodShapeHandle = new FoodShapeHandle();
 
     public final int MAX_FOOD;
+    @Nullable public CROPS crop;
+
+    public enum CROPS {
+        POTATO,
+        CARROT;
+    }
 
     public foodBlock(Settings settings, int max_food) {
         super(settings);
@@ -47,6 +55,11 @@ public class foodBlock extends Block {
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(FACING, net.minecraft.util.math.Direction.NORTH)
                 .with(NUMBER_OF_FOOD, 0));
+    }
+
+    public foodBlock(Settings settings, int max_food, @Nullable CROPS crop) {
+        this(settings, max_food);
+        this.crop = crop;
     }
 
     @Override
@@ -157,6 +170,15 @@ public class foodBlock extends Block {
         return Collections.singletonList(new ItemStack(this.asItem(), foodCount));
     }
 
+    @Override
+    public Item asItem() {
+        if (this.crop == CROPS.POTATO) {
+            return Items.POTATO;
+        } else if (this.crop == CROPS.CARROT) {
+            return Items.CARROT;
+        }
+        return super.asItem();
+    }
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
