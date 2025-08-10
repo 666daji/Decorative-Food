@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/melon_slice_4",
+  "textures": {
+    "0": "minecraft:block/glistering_melon_slice",
+    "particle": "minecraft:item/glistering_melon_slice"
+  }
+}

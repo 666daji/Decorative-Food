@@ -52,6 +52,19 @@ public class foodBlocks {
             .sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY)
             .luminance(state -> state.get(foodBlock.NUMBER_OF_FOOD) + 3),
             12);
+    // 金制食物
+    public static final Block GOLDEN_APPLE = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.GOLD).strength(0.2F, 0.2F).nonOpaque()
+            .pistonBehavior(PistonBehavior.DESTROY),
+            5);
+    public static final Block GOLDEN_CARROT = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.GOLD).strength(0.2F, 0.2F).nonOpaque()
+            .sounds(BlockSoundGroup.CANDLE).pistonBehavior(PistonBehavior.DESTROY),
+            5);
+    public static final Block GLISTERING_MELON_SLICE = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.LIGHT_BLUE).strength(0.2F, 0.2F).nonOpaque()
+            .pistonBehavior(PistonBehavior.DESTROY),
+            5);
     // 生熟肉类
     public static final Block CHICKEN = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.LIGHT_GRAY).strength(0.2F, 0.2F).nonOpaque()
@@ -140,4 +153,9 @@ public class foodBlocks {
             .mapColor(MapColor.WHITE).strength(0.2F, 0.2F).nonOpaque()
             .sounds(ModSoundGroups.EGG).pistonBehavior(PistonBehavior.DESTROY),
             5);
+    // 药水
+    public static final Block POTION = new PotionBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.PURPLE).strength(0.2F, 0.2F).nonOpaque().solidBlock(Blocks::never)
+            .sounds(ModSoundGroups.POTION).pistonBehavior(PistonBehavior.DESTROY),
+            3);
 }

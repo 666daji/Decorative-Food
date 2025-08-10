@@ -32,6 +32,11 @@ public class foodToBlocks {
         foodMap.put("sweet_berries", getItem(foodBlocks.SWEET_BERRIES, FoodComponents.SWEET_BERRIES));
         foodMap.put("glow_berries", getItem(foodBlocks.GLOW_BERRIES, FoodComponents.GLOW_BERRIES));
 
+        // 金制食物
+        foodMap.put("golden_apple", getItem(foodBlocks.GOLDEN_APPLE, FoodComponents.GOLDEN_APPLE));
+        foodMap.put("golden_carrot", getItem(foodBlocks.GOLDEN_CARROT, FoodComponents.GOLDEN_CARROT));
+        foodMap.put("glistering_melon_slice", new BlockItem(foodBlocks.GLISTERING_MELON_SLICE, new Item.Settings()));
+
         // 生熟肉类
         foodMap.put("chicken", getItem(foodBlocks.CHICKEN, FoodComponents.CHICKEN));
         foodMap.put("cooked_chicken", getItem(foodBlocks.COOKED_CHICKEN, FoodComponents.COOKED_CHICKEN));
@@ -60,6 +65,9 @@ public class foodToBlocks {
         foodMap.put("pumpkin_pie", getItem(foodBlocks.PUMPKIN_PIE, FoodComponents.PUMPKIN_PIE));
         foodMap.put("chorus_fruit", new ModChorusFruitItem(foodBlocks.CHORUS_FRUIT,new Item.Settings().food(FoodComponents.CHORUS_FRUIT)));
         foodMap.put("egg", new ModEggItem(foodBlocks.EGG, new Item.Settings()));
+
+        // 药水类
+        foodMap.put("potion", new ModPotionItem(foodBlocks.POTION, new Item.Settings().maxCount(1)));
     }
 
     public static BlockItem getItem(Block foodBlock, FoodComponent foodComponent) {

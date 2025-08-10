@@ -30,6 +30,11 @@ public class BlocksMixin {
         register("sweet_berries", foodBlocks.SWEET_BERRIES);
         register("glow_berries", foodBlocks.GLOW_BERRIES);
 
+        // 金制食物
+        register("golden_apple", foodBlocks.GOLDEN_APPLE);
+        register("golden_carrot", foodBlocks.GOLDEN_CARROT);
+        register("glistering_melon_slice", foodBlocks.GLISTERING_MELON_SLICE);
+
         // 生熟肉类
         register("chicken", foodBlocks.CHICKEN);
         register("cooked_chicken", foodBlocks.COOKED_CHICKEN);
@@ -58,6 +63,9 @@ public class BlocksMixin {
         register("pumpkin_pie", foodBlocks.PUMPKIN_PIE);
         register("chorus_fruit", foodBlocks.CHORUS_FRUIT);
         register("egg", foodBlocks.EGG);
+
+        // 药水类
+        register("potion", foodBlocks.POTION);
     }
 
     @Unique
