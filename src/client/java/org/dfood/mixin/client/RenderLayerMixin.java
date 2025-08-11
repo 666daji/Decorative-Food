@@ -21,6 +21,7 @@ public class RenderLayerMixin {
     private static void init(CallbackInfo ci) {
         BLOCKS.put(foodBlocks.APPLE, RenderLayer.getCutout());
         BLOCKS.put(foodBlocks.GOLDEN_APPLE, RenderLayer.getCutout());
+        BLOCKS.put(foodBlocks.GOLDEN_CARROT, RenderLayer.getCutout());
         BLOCKS.put(foodBlocks.BEETROOT, RenderLayer.getCutout());
         BLOCKS.put(foodBlocks.COD, RenderLayer.getCutout());
         BLOCKS.put(foodBlocks.COOKED_COD, RenderLayer.getCutout());
