@@ -58,6 +58,7 @@ public class BlocksMixin {
         register("rabbit_stew", foodBlocks.RABBIT_STEW);
         register("mushroom_stew", foodBlocks.MUSHROOM_STEW);
         register("beetroot_soup", foodBlocks.BEETROOT_SOUP);
+        register("bowl", foodBlocks.BOWL);
 
         // 其他
         register("pumpkin_pie", foodBlocks.PUMPKIN_PIE);

@@ -140,6 +140,10 @@ public class foodBlocks {
             .mapColor(MapColor.BROWN).strength(0.1F, 0.1F).nonOpaque()
             .sounds(BlockSoundGroup.DECORATED_POT).pistonBehavior(PistonBehavior.DESTROY),
             1);
+    public static final Block BOWL = new foodBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.BROWN).strength(0.1F, 0.1F).nonOpaque()
+            .sounds(BlockSoundGroup.DECORATED_POT).pistonBehavior(PistonBehavior.DESTROY),
+            1);
     // 其他
     public static final Block PUMPKIN_PIE = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.TERRACOTTA_ORANGE).strength(0.2F, 0.2F).nonOpaque()

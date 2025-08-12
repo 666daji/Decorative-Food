@@ -53,10 +53,9 @@ public class PotionBlockEntity extends BlockEntity {
     }
 
     public int getColor() {
-        if (this.potion != null) {
-            return PotionUtil.getColor(this.potion);
-        }
-        return 16253176;
+        return this.potion != null ?
+                PotionUtil.getColor(this.potion):
+                16253176;
     }
 
     private Potion getPotionFromNbt(NbtCompound nbt) {
