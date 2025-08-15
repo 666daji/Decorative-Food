@@ -20,6 +20,8 @@ public class RenderLayerMixin {
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void init(CallbackInfo ci) {
         BLOCKS.put(foodBlocks.APPLE.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.GOLDEN_APPLE.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.GOLDEN_CARROT.getBlock(), BlockRenderLayer.CUTOUT);
         BLOCKS.put(foodBlocks.BEETROOT.getBlock(), BlockRenderLayer.CUTOUT);
         BLOCKS.put(foodBlocks.COD.getBlock(), BlockRenderLayer.CUTOUT);
         BLOCKS.put(foodBlocks.COOKED_COD.getBlock(), BlockRenderLayer.CUTOUT);
@@ -29,5 +31,6 @@ public class RenderLayerMixin {
         BLOCKS.put(foodBlocks.SWEET_BERRIES.getBlock(), BlockRenderLayer.CUTOUT);
         BLOCKS.put(foodBlocks.GLOW_BERRIES.getBlock(), BlockRenderLayer.CUTOUT);
         BLOCKS.put(foodBlocks.CARROT.getBlock(), BlockRenderLayer.CUTOUT);
+        BLOCKS.put(foodBlocks.POTION.getBlock(), BlockRenderLayer.CUTOUT);
     }
 }

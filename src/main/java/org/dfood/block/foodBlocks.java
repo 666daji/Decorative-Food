@@ -52,6 +52,19 @@ public class foodBlocks {
             .sounds(BlockSoundGroup.SWEET_BERRY_BUSH).pistonBehavior(PistonBehavior.DESTROY)
             .luminance(state -> state.get(foodBlock.NUMBER_OF_FOOD) + 3),
             12);
+    // 金制食物
+    public static final foodBlockManage GOLDEN_APPLE = new foodBlockManage(AbstractBlock.Settings.create()
+            .mapColor(MapColor.GOLD).strength(0.2F, 0.2F).nonOpaque()
+            .pistonBehavior(PistonBehavior.DESTROY),
+            5);
+    public static final foodBlockManage GOLDEN_CARROT = new foodBlockManage(AbstractBlock.Settings.create()
+            .mapColor(MapColor.GOLD).strength(0.2F, 0.2F).nonOpaque()
+            .sounds(BlockSoundGroup.CANDLE).pistonBehavior(PistonBehavior.DESTROY),
+            5);
+    public static final foodBlockManage GLISTERING_MELON_SLICE = new foodBlockManage(AbstractBlock.Settings.create()
+            .mapColor(MapColor.LIGHT_BLUE).strength(0.2F, 0.2F).nonOpaque()
+            .pistonBehavior(PistonBehavior.DESTROY),
+            5);
     // 生熟肉类
     public static final foodBlockManage CHICKEN = new foodBlockManage(AbstractBlock.Settings.create()
             .mapColor(MapColor.LIGHT_GRAY).strength(0.2F, 0.2F).nonOpaque()
@@ -127,6 +140,10 @@ public class foodBlocks {
             .mapColor(MapColor.BROWN).strength(0.1F, 0.1F).nonOpaque()
             .sounds(BlockSoundGroup.DECORATED_POT).pistonBehavior(PistonBehavior.DESTROY),
             1);
+    public static final foodBlockManage BOWL = new foodBlockManage(AbstractBlock.Settings.create()
+            .mapColor(MapColor.BROWN).strength(0.1F, 0.1F).nonOpaque()
+            .sounds(BlockSoundGroup.DECORATED_POT).pistonBehavior(PistonBehavior.DESTROY),
+            1);
     // 其他
     public static final foodBlockManage PUMPKIN_PIE = new foodBlockManage(AbstractBlock.Settings.create()
             .mapColor(MapColor.TERRACOTTA_ORANGE).strength(0.2F, 0.2F).nonOpaque()
@@ -140,4 +157,9 @@ public class foodBlocks {
             .mapColor(MapColor.WHITE).strength(0.2F, 0.2F).nonOpaque()
             .sounds(ModSoundGroups.EGG).pistonBehavior(PistonBehavior.DESTROY),
             5);
+    // 药水
+    public static final foodBlockManage POTION = new PotionBlockManage(AbstractBlock.Settings.create()
+            .mapColor(MapColor.WHITE).strength(0.2F, 0.2F).nonOpaque()
+            .sounds(ModSoundGroups.POTION).pistonBehavior(PistonBehavior.DESTROY),
+            3);
 }

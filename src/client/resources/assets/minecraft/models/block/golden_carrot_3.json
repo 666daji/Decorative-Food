@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/carrot_3",
+  "textures": {
+    "0": "minecraft:block/golden_carrot",
+    "particle": "minecraft:item/golden_carrot"
+  }
+}

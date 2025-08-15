@@ -5,6 +5,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.Identifier;
+import org.dfood.block.foodBlocks;
+import org.dfood.item.ModPotionItem;
 import org.dfood.util.StewToBlocks;
 import org.dfood.util.foodToBlocks;
 import org.spongepowered.asm.mixin.Mixin;
@@ -46,10 +51,28 @@ public abstract class foodToBlockMixin {
         }
     }
 
+    @Inject(method = "register(Ljava/lang/String;)Lnet/minecraft/item/Item;",at = @At("HEAD"),cancellable = true)
+    private static void modifyItem(String id, CallbackInfoReturnable<Item> cir){
+        if (foodToBlocks.foodMap.containsKey(id)) {
+            cir.setReturnValue(
+                    register(id, foodToBlocks.foodMap.get(id))
+            );
+        }
+        else if (id.equals("bowl")) {
+            cir.setReturnValue(
+                    register(id, new BlockItem(foodBlocks.BOWL.getBlock(), new Item.Settings()
+                            .useItemPrefixedTranslationKey()
+                            .registryKey(RegistryKey.of(RegistryKeys.ITEM, Identifier.ofVanilla(id)))))
+            );
+        }
+    }
+
     @Unique
     private static Item register(String id, Item item) {
         if (item instanceof BlockItem blockItem) {
             blockItem.appendBlocks(Item.BLOCK_ITEMS, item);
+        } else if (item instanceof ModPotionItem potionItem) {
+            potionItem.appendBlocks(Item.BLOCK_ITEMS, item);
         }
         return Registry.register(Registries.ITEM, id, item);
     }

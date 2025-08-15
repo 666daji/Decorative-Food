@@ -8,9 +8,9 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 public class foodBlockManage {
-    private final AbstractBlock.Settings settings;
-    private final int maxFood;
-    private Block block;
+    protected final AbstractBlock.Settings settings;
+    protected final int maxFood;
+    protected Block block;
     @Nullable
     private foodBlock.CROPS crops;
 
@@ -42,7 +42,7 @@ public class foodBlockManage {
         return this.block;
     }
 
-    private static RegistryKey<Block> keyOf(String id) {
+    protected static RegistryKey<Block> keyOf(String id) {
         return RegistryKey.of(RegistryKeys.BLOCK, Identifier.ofVanilla(id));
     }
 }

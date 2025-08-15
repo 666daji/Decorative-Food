@@ -50,6 +50,16 @@ public class Shapes {
         shapeMap.put("minecraft:glow_berries", new int[][]{
                 {1, 3, 11}, {4, 7, 12}, {8, 12, 2}
         });
+        // 金制食物
+        shapeMap.put("minecraft:golden_apple", new int[][]{
+                {1, 1, 11}, {2, 5, 8}
+        });
+        shapeMap.put("minecraft:golden_carrot", new int[][]{
+                {1, 3, 2}, {4, 5, 1}
+        });
+        shapeMap.put("minecraft:glistering_melon_slice", new int[][]{
+                {1, 1, 11}, {2, 3, 12}, {4, 5, 2}
+        });
         // 生熟肉类
         shapeMap.put("minecraft:chicken", new int[][]{
                 {1, 1, 12}
@@ -107,6 +117,9 @@ public class Shapes {
         shapeMap.put("minecraft:rabbit_stew", new int[][]{
                 {1, 1, 8}
         });
+        shapeMap.put("minecraft:bowl", new int[][]{
+                {1, 1, 8}
+        });
         // 其他
         shapeMap.put("minecraft:pumpkin_pie", new int[][]{
                 {1, 1, 1}
@@ -116,6 +129,10 @@ public class Shapes {
         });
         shapeMap.put("minecraft:egg", new int[][]{
                 {1, 1, 11}, {2, 5, 12}
+        });
+        // 药水
+        shapeMap.put("minecraft:potion", new int[][]{
+                {1, 2, 8}, {3, 3, 1}
         });
 
         return shapeMap;

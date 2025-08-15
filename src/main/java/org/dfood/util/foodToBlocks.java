@@ -3,10 +3,8 @@ package org.dfood.util;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.component.type.ConsumableComponent;
-import net.minecraft.component.type.ConsumableComponents;
-import net.minecraft.component.type.FoodComponent;
-import net.minecraft.component.type.FoodComponents;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.*;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -42,6 +40,11 @@ public class foodToBlocks {
         put("sweet_berries", foodBlocks.SWEET_BERRIES, FoodComponents.SWEET_BERRIES);
         put("glow_berries", foodBlocks.GLOW_BERRIES, FoodComponents.GLOW_BERRIES);
 
+        // 金制食物
+        put("golden_apple", foodBlocks.GOLDEN_APPLE, FoodComponents.GOLDEN_APPLE);
+        put("golden_carrot", foodBlocks.GOLDEN_CARROT, FoodComponents.GOLDEN_CARROT);
+        put("glistering_melon_slice", foodBlocks.GLISTERING_MELON_SLICE, new Item.Settings());
+
         // 生熟肉类
         put("chicken", foodBlocks.CHICKEN, new Item.Settings().food(FoodComponents.CHICKEN, ConsumableComponents.RAW_CHICKEN));
         put("cooked_chicken", foodBlocks.COOKED_CHICKEN, FoodComponents.COOKED_CHICKEN);
@@ -66,8 +69,11 @@ public class foodToBlocks {
         put("chorus_fruit", foodBlocks.CHORUS_FRUIT, new Item.Settings().food(FoodComponents.CHORUS_FRUIT, ConsumableComponents.CHORUS_FRUIT).useCooldown(1.0F));
         put("egg", foodBlocks.EGG, new Item.Settings());
 
-        // 种子类
-        foodMap.put("poisonous_potato", new BlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POISONOUS_POTATO).useItemPrefixedTranslationKey().registryKey(keyOf("poisonous_potato"))));
+        // 药水类
+        foodMap.put("potion", new ModPotionItem(foodBlocks.POTION.getBlock(), new Item.Settings().maxCount(1)
+                .component(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT)
+                .component(DataComponentTypes.CONSUMABLE, ConsumableComponents.DRINK)
+                .useItemPrefixedTranslationKey().registryKey(keyOf("potion"))));
     }
 
     public static void put(String id, foodBlockManage block, Item.Settings settings) {

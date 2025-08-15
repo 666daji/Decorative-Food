@@ -6,33 +6,53 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.dfood.item.ModPotionItem;
 import org.dfood.tag.ModTags;
 
 public class ModUtils {
 
     /**
-     * 检查一个物品是否是该模组添加的食物方块
-     * @param item
-     * @return 如果是食物方块则返回true，否则返回false
+     * 检查物品是否是该模组添加的食物方块
      */
-    public static boolean isModFoodItem (Item item){
-        if (item instanceof BlockItem) {
-            BlockState blockState = ((BlockItem) item).getBlock().getDefaultState();
-            if (blockState.equals(Blocks.POTATOES.getDefaultState()) || blockState.equals(Blocks.CARROTS.getDefaultState())) {
-                return true;
-            }
-            return blockState.isIn(ModTags.FOOD_BLOCK);
+    public static boolean isModFoodItem(Item item) {
+        BlockState state = getBlockStateFromItem(item);
+        if (state == null) return false;
+
+        if (item instanceof BlockItem && isPotatoOrCarrot(state)) {
+            return true;
         }
-        return false;
+        return state.isIn(ModTags.FOOD_BLOCK);
     }
 
+    /**
+     * 检查作物能否放置在指定位置
+     */
     public static boolean isCropCanPlaceAt(Item item, BlockPos pos, World world) {
-        if (item instanceof BlockItem) {
-            BlockState blockState = ((BlockItem) item).getBlock().getDefaultState();
-            if (blockState.equals(Blocks.POTATOES.getDefaultState()) || blockState.equals(Blocks.CARROTS.getDefaultState())) {
-                return blockState.canPlaceAt(world, pos.up());
-            }
+        if (!(item instanceof BlockItem)) return false;
+
+        BlockState state = getBlockStateFromItem(item);
+        return state != null
+                && isPotatoOrCarrot(state)
+                && state.canPlaceAt(world, pos.up());
+    }
+
+    /**
+     * 辅助方法
+     * @param item
+     * @return 对应的默认方块状态
+     */
+    private static BlockState getBlockStateFromItem(Item item) {
+        if (item instanceof BlockItem blockItem) {
+            return blockItem.getBlock().getDefaultState();
         }
-        return false;
+        if (item instanceof ModPotionItem potionItem) {
+            return potionItem.getBlock().getDefaultState();
+        }
+        return null;
+    }
+
+    private static boolean isPotatoOrCarrot(BlockState state) {
+        return state.equals(Blocks.POTATOES.getDefaultState())
+                || state.equals(Blocks.CARROTS.getDefaultState());
     }
 }
