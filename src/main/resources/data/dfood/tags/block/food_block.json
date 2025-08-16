@@ -2,9 +2,17 @@
   "values": [
     "minecraft:cookie",
     "minecraft:apple",
+    "minecraft:melon_slice",
     "minecraft:bread",
     "minecraft:beetroot",
+    "minecraft:potato",
     "minecraft:baked_potato",
+    "minecraft:carrot",
+    "minecraft:sweet_berries",
+    "minecraft:glow_berries",
+    "minecraft:golden_apple",
+    "minecraft:golden_carrot",
+    "minecraft:glistering_melon_slice",
     "minecraft:chicken",
     "minecraft:cooked_chicken",
     "minecraft:beef",
@@ -24,10 +32,8 @@
     "minecraft:mushroom_stew",
     "minecraft:beetroot_soup",
     "minecraft:pumpkin_pie",
-    "minecraft:egg",
     "minecraft:chorus_fruit",
-    "minecraft:sweet_berries",
-    "minecraft:glow_berries",
-    "minecraft:carrot"
+    "minecraft:egg",
+    "minecraft:potion"
   ]
 }

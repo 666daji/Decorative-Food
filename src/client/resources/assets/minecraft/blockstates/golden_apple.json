@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north,number_of_food=1": { "model": "minecraft:block/golden_apple", "y": 180 },
+    "facing=north,number_of_food=2": { "model": "minecraft:block/golden_apple_2", "y": 180 },
+    "facing=north,number_of_food=3": { "model": "minecraft:block/golden_apple_3", "y": 180 },
+    "facing=north,number_of_food=4": { "model": "minecraft:block/golden_apple_4", "y": 180 },
+    "facing=north,number_of_food=5": { "model": "minecraft:block/golden_apple_5", "y": 180 },
+
+    "facing=south,number_of_food=1": { "model": "minecraft:block/golden_apple" },
+    "facing=south,number_of_food=2": { "model": "minecraft:block/golden_apple_2" },
+    "facing=south,number_of_food=3": { "model": "minecraft:block/golden_apple_3" },
+    "facing=south,number_of_food=4": { "model": "minecraft:block/golden_apple_4" },
+    "facing=south,number_of_food=5": { "model": "minecraft:block/golden_apple_5" },
+
+    "facing=east,number_of_food=1": { "model": "minecraft:block/golden_apple", "y": 270 },
+    "facing=east,number_of_food=2": { "model": "minecraft:block/golden_apple_2", "y": 270 },
+    "facing=east,number_of_food=3": { "model": "minecraft:block/golden_apple_3", "y": 270 },
+    "facing=east,number_of_food=4": { "model": "minecraft:block/golden_apple_4", "y": 270 },
+    "facing=east,number_of_food=5": { "model": "minecraft:block/golden_apple_5", "y": 270 },
+
+    "facing=west,number_of_food=1": { "model": "minecraft:block/golden_apple", "y": 90 },
+    "facing=west,number_of_food=2": { "model": "minecraft:block/golden_apple_2", "y": 90 },
+    "facing=west,number_of_food=3": { "model": "minecraft:block/golden_apple_3", "y": 90 },
+    "facing=west,number_of_food=4": { "model": "minecraft:block/golden_apple_4", "y": 90 },
+    "facing=west,number_of_food=5": { "model": "minecraft:block/golden_apple_5", "y": 90 }
+  }
+}

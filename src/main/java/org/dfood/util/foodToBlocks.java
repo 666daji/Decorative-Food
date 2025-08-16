@@ -2,8 +2,10 @@ package org.dfood.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.component.type.FoodComponents;
+import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.item.*;
 import org.dfood.block.foodBlocks;
 import org.dfood.item.*;
@@ -28,11 +30,16 @@ public class foodToBlocks {
 
         // 蔬菜类
         foodMap.put("beetroot", getItem(foodBlocks.BEETROOT, ModFoodComponents.BEETROOT));
-        foodMap.put("potato", getItem(foodBlocks.POTATO, ModFoodComponents.POTATO));
+        foodMap.put("potato", new DoubleBlockItem(Blocks.POTATOES, new Item.Settings().food(ModFoodComponents.POTATO), foodBlocks.POTATO));
         foodMap.put("baked_potato", getItem(foodBlocks.BAKED_POTATO, ModFoodComponents.BAKED_POTATO));
-        foodMap.put("carrot", getItem(foodBlocks.CARROT, ModFoodComponents.CARROT));
+        foodMap.put("carrot", new DoubleBlockItem(Blocks.CARROTS, new Item.Settings().food(ModFoodComponents.CARROT), foodBlocks.CARROT));
         foodMap.put("sweet_berries", getItem(foodBlocks.SWEET_BERRIES, ModFoodComponents.SWEET_BERRIES));
         foodMap.put("glow_berries", getItem(foodBlocks.GLOW_BERRIES, ModFoodComponents.GLOW_BERRIES));
+
+        // 金制食物
+        foodMap.put("golden_apple", getItem(foodBlocks.GOLDEN_APPLE, ModFoodComponents.GOLDEN_APPLE));
+        foodMap.put("golden_carrot", getItem(foodBlocks.GOLDEN_CARROT, ModFoodComponents.GOLDEN_CARROT));
+        foodMap.put("glistering_melon_slice", new BlockItem(foodBlocks.GLISTERING_MELON_SLICE,  new Item.Settings()));
 
         // 生熟肉类
         foodMap.put("chicken", getItem(foodBlocks.CHICKEN, ModFoodComponents.CHICKEN));
@@ -58,8 +65,9 @@ public class foodToBlocks {
         foodMap.put("chorus_fruit", new ModChorusFruitItem(foodBlocks.CHORUS_FRUIT,new Item.Settings().food(ModFoodComponents.CHORUS_FRUIT)));
         foodMap.put("egg", new ModEggItem(foodBlocks.EGG, new Item.Settings()));
 
-        // 种子类
-        foodMap.put("poisonous_potato", new AliasedBlockItem(Blocks.POTATOES, new Item.Settings().food(ModFoodComponents.POISONOUS_POTATO)));
+        // 药水类
+        foodMap.put("potion", new ModPotionItem(foodBlocks.POTION, new Item.Settings().maxCount(1)
+                .component(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT)));
     }
 
     public static BlockItem getItem(Block foodBlock, FoodComponent foodComponent) {

@@ -22,6 +22,16 @@ public class ModFoodComponents {
     public static final FoodComponent SWEET_BERRIES = createFood(2, 0.1F);
     public static final FoodComponent GLOW_BERRIES = createFood(2, 0.1F);
 
+    // 金制食物
+    public static final FoodComponent GOLDEN_APPLE = new FoodComponent.Builder()
+            .nutrition(4)
+            .saturationModifier(1.2F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 0), 1.0F)
+            .alwaysEdible()
+            .build();
+    public static final FoodComponent GOLDEN_CARROT = new FoodComponent.Builder().nutrition(6).saturationModifier(1.2F).build();
+
     // 生熟肉类
     public static final FoodComponent CHICKEN = createFoodWithEffect(
             2, 0.3F,

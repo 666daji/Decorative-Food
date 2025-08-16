@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/apple_3",
+  "textures": {
+    "0": "minecraft:block/golden_apple",
+    "1": "minecraft:block/golden_apple_stem",
+    "particle": "minecraft:item/golden_apple"
+  }
+}

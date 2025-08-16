@@ -2,7 +2,6 @@ package org.dfood.item;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.text.Text;
@@ -14,12 +13,10 @@ public class ModItemGroups {
         Registry.register(Registries.ITEM_GROUP,Identifier.of(ThreedFood.MOD_ID,"dfoodseed"),
                 ItemGroup.create(ItemGroup.Row.TOP,-1)
                 .displayName(Text.translatable("itemGroup.dfoodseed"))
-                .icon(() -> new ItemStack(Seeds.CARROT_SEED))
+                .icon(() -> new ItemStack(Seeds.GLOW_BERRIES_SEED))
                 .entries((displayContext, entries) ->{
-                    entries.add(Seeds.CARROT_SEED);
                     entries.add(Seeds.GLOW_BERRIES_SEED);
                     entries.add(Seeds.SWEET_BERRIES_SEED);
-                    entries.add(Items.POISONOUS_POTATO);
             }).build()
         );
     }
