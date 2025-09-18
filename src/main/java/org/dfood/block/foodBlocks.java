@@ -140,6 +140,10 @@ public class foodBlocks {
             .mapColor(MapColor.BROWN).strength(0.1F, 0.1F).nonOpaque()
             .sounds(BlockSoundGroup.DECORATED_POT).pistonBehavior(PistonBehavior.DESTROY),
             1);
+    public static final Block SUSPICIOUS_STEW = new SuspiciousStewBlock(AbstractBlock.Settings.create()
+            .mapColor(MapColor.BROWN).strength(0.1F, 0.1F).nonOpaque()
+            .sounds(BlockSoundGroup.DECORATED_POT).pistonBehavior(PistonBehavior.DESTROY),
+            1);
     public static final Block BOWL = new foodBlock(AbstractBlock.Settings.create()
             .mapColor(MapColor.BROWN).strength(0.1F, 0.1F).nonOpaque()
             .sounds(BlockSoundGroup.DECORATED_POT).pistonBehavior(PistonBehavior.DESTROY),

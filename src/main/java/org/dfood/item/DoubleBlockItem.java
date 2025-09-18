@@ -29,4 +29,8 @@ public class DoubleBlockItem extends BlockItem {
             return this.block2;
         }
     }
+
+    public Block getSecondBlock() {
+        return this.block2;
+    }
 }

@@ -18,9 +18,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Util;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -41,11 +39,20 @@ import java.util.List;
  */
 public class foodBlock extends Block {
     @Nullable private CROPS CROP;
-    public static final DirectionProperty FACING = Properties.FACING;
-    public static final IntProperty NUMBER_OF_FOOD = IntProperty.of("number_of_food", 0, 12);
-    private static final FoodShapeHandle foodShapeHandle = new FoodShapeHandle();
+    private onUseHook onUseHook = (state, world, pos, player, hand, hit) -> ActionResult.PASS;
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    public static final IntProperty NUMBER_OF_FOOD = IntProperty.of("number_of_food", 1, 12);
+    private static final FoodShapeHandle foodShapeHandle = FoodShapeHandle.getInstance();
 
     public final int MAX_FOOD;
+
+    public onUseHook getOnUseHook() {
+        return onUseHook;
+    }
+
+    public void setOnUseHook(onUseHook onUseHook) {
+        this.onUseHook = onUseHook;
+    }
 
     public enum CROPS{
         POTATO,
@@ -57,7 +64,7 @@ public class foodBlock extends Block {
         MAX_FOOD = max_food;
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(FACING, net.minecraft.util.math.Direction.NORTH)
-                .with(NUMBER_OF_FOOD, 0));
+                .with(NUMBER_OF_FOOD, 1));
     }
 
     public foodBlock(Settings settings, int max_food, @Nullable CROPS crop) {
@@ -72,7 +79,7 @@ public class foodBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return foodShapeHandle.getShape(state);
+        return foodShapeHandle.getShape(state, NUMBER_OF_FOOD);
     }
 
     @Override
@@ -89,6 +96,11 @@ public class foodBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        // 调用自定义钩子
+        ActionResult HookResult = this.onUseHook.interact(state, world, pos, player, hand, hit);
+        if (HookResult != ActionResult.PASS) {
+            return HookResult;
+        }
         ItemStack handStack = player.getStackInHand(hand);
         int currentCount = state.get(NUMBER_OF_FOOD);
         BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -216,8 +228,23 @@ public class foodBlock extends Block {
     }
 
     @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state.rotate(mirror.getRotation(state.get(FACING)));
+    }
+
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
         builder.add(NUMBER_OF_FOOD);
+    }
+
+    @FunctionalInterface
+    public interface onUseHook{
+        ActionResult interact(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit);
     }
 }

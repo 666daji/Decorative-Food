@@ -3,8 +3,8 @@ package org.dfood.shape;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.registry.Registries;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.shape.VoxelShape;
-import org.dfood.block.foodBlock;
 
 import java.util.Map;
 
@@ -15,12 +15,19 @@ public class FoodShapeHandle {
      @see Shapes
      */
     private static final Map<String, int[][]> shapeMap = Shapes.shapeMap;
+    private static final FoodShapeHandle INSTANCE = new FoodShapeHandle();
 
-    public VoxelShape getShape(BlockState state) {
+    private FoodShapeHandle() {}
+
+    public static FoodShapeHandle getInstance() {
+        return INSTANCE;
+    }
+
+    public VoxelShape getShape(BlockState state, IntProperty number) {
         String blockId = Registries.BLOCK.getId(state.getBlock()).toString();
         if (shapeMap.containsKey(blockId)){
             for (int[] sha : shapeMap.get(blockId)){
-                int i = state.get(foodBlock.NUMBER_OF_FOOD); // 获取食物数量
+                int i = state.get(number); // 获取食物数量
                 if (i >= sha[0] && i <= sha[1]) {
                     return shapes.getShape(sha[2]); // 返回对应的形状
                 }

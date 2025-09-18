@@ -57,9 +57,10 @@ public class foodToBlocks {
         foodMap.put("pufferfish", getItem(foodBlocks.PUFFERFISH, FoodComponents.PUFFERFISH));
 
         // 炖菜类
-        foodMap.put("rabbit_stew", new ModStewItem(foodBlocks.RABBIT_STEW, new Item.Settings().food(FoodComponents.RABBIT_STEW)));
-        foodMap.put("mushroom_stew", new ModStewItem(foodBlocks.MUSHROOM_STEW, new Item.Settings().food(FoodComponents.MUSHROOM_STEW)));
-        foodMap.put("beetroot_soup", new ModStewItem(foodBlocks.BEETROOT_SOUP, new Item.Settings().food(FoodComponents.BEETROOT_SOUP)));
+        foodMap.put("rabbit_stew", new ModStewItem(foodBlocks.RABBIT_STEW, new Item.Settings().maxCount(1).food(FoodComponents.RABBIT_STEW)));
+        foodMap.put("mushroom_stew", new ModStewItem(foodBlocks.MUSHROOM_STEW, new Item.Settings().maxCount(1).food(FoodComponents.MUSHROOM_STEW)));
+        foodMap.put("beetroot_soup", new ModStewItem(foodBlocks.BEETROOT_SOUP, new Item.Settings().maxCount(1).food(FoodComponents.BEETROOT_SOUP)));
+        foodMap.put("suspicious_stew", new ModSuspiciousStewItem(foodBlocks.SUSPICIOUS_STEW, new Item.Settings().maxCount(1).food(FoodComponents.SUSPICIOUS_STEW)));
         foodMap.put("bowl", new BlockItem(foodBlocks.BOWL, new Item.Settings()));
 
         // 其他
