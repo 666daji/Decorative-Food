@@ -2,7 +2,9 @@ package org.dfood.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
+import net.minecraft.util.Rarity;
 import org.dfood.block.foodBlocks;
 import org.dfood.item.*;
 import org.dfood.mixin.foodToBlockMixin;
@@ -63,10 +65,16 @@ public class foodToBlocks {
         foodMap.put("suspicious_stew", new ModSuspiciousStewItem(foodBlocks.SUSPICIOUS_STEW, new Item.Settings().maxCount(1).food(FoodComponents.SUSPICIOUS_STEW)));
         foodMap.put("bowl", new BlockItem(foodBlocks.BOWL, new Item.Settings()));
 
+        // 桶
+        foodMap.put("bucket", new ModBucketItem(Fluids.EMPTY, new Item.Settings().maxCount(16), foodBlocks.BUCKET));
+        foodMap.put("water_bucket", new ModBucketItem(Fluids.WATER, new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1), foodBlocks.WATER_BUCKET));
+        foodMap.put("milk_bucket", new ModMilkBucketItem(foodBlocks.MILK_BUCKET, new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1)));
+
         // 其他
         foodMap.put("pumpkin_pie", getItem(foodBlocks.PUMPKIN_PIE, FoodComponents.PUMPKIN_PIE));
         foodMap.put("chorus_fruit", new ModChorusFruitItem(foodBlocks.CHORUS_FRUIT,new Item.Settings().food(FoodComponents.CHORUS_FRUIT)));
         foodMap.put("egg", new ModEggItem(foodBlocks.EGG, new Item.Settings()));
+        foodMap.put("totem_of_undying", new BlockItem(foodBlocks.TOTEM_OF_UNDYING, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
 
         // 药水类
         foodMap.put("potion", new ModPotionItem(foodBlocks.POTION, new Item.Settings().maxCount(1)));

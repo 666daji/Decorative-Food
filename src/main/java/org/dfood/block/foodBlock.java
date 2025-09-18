@@ -239,8 +239,7 @@ public class foodBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-        builder.add(NUMBER_OF_FOOD);
+        builder.add(FACING, NUMBER_OF_FOOD);
     }
 
     @FunctionalInterface
