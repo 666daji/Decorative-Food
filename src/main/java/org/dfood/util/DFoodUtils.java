@@ -1,5 +1,7 @@
 package org.dfood.util;
 
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
@@ -9,7 +11,9 @@ import net.minecraft.world.World;
 import org.dfood.item.ModPotionItem;
 import org.dfood.tag.ModTags;
 
-public class ModUtils {
+import java.util.function.Function;
+
+public class DFoodUtils {
 
     /**
      * 检查物品是否是该模组添加的食物方块
@@ -54,5 +58,11 @@ public class ModUtils {
     private static boolean isPotatoOrCarrot(BlockState state) {
         return state.equals(Blocks.POTATOES.getDefaultState())
                 || state.equals(Blocks.CARROTS.getDefaultState());
+    }
+
+    public static Block createFoodBlock(int foodValue, AbstractBlock.Settings settings,
+                                            Function<AbstractBlock.Settings, Block> blockCreator) {
+        IntPropertyManager.preCache("number_of_food", foodValue);
+        return blockCreator.apply(settings);
     }
 }

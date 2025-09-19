@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Objects;
 
-public class PotionBlock extends foodBlock implements BlockEntityProvider {
+public class PotionBlock extends FoodBlock implements BlockEntityProvider {
     public PotionBlock(Settings settings, int max_food) {
         super(settings, max_food);
     }

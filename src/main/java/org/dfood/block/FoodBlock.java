@@ -29,6 +29,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.dfood.shape.FoodShapeHandle;
 import org.dfood.tag.ModTags;
+import org.dfood.util.IntPropertyManager;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
@@ -37,13 +38,13 @@ import java.util.List;
 /**
  * 所有食物方块的父类，定义了食物方块的基本行为
  */
-public class foodBlock extends Block {
+public class FoodBlock extends Block {
     @Nullable private CROPS CROP;
     private onUseHook onUseHook = (state, world, pos, player, hand, hit) -> ActionResult.PASS;
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final IntProperty NUMBER_OF_FOOD = IntProperty.of("number_of_food", 1, 12);
     private static final FoodShapeHandle foodShapeHandle = FoodShapeHandle.getInstance();
 
+    public final IntProperty NUMBER_OF_FOOD;
     public final int MAX_FOOD;
 
     public onUseHook getOnUseHook() {
@@ -59,15 +60,16 @@ public class foodBlock extends Block {
         CARROT;
     }
 
-    public foodBlock(Settings settings, int max_food) {
+    public FoodBlock(Settings settings, int max_food) {
         super(settings);
         MAX_FOOD = max_food;
+        NUMBER_OF_FOOD = IntPropertyManager.create("number_of_food", MAX_FOOD);
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(FACING, net.minecraft.util.math.Direction.NORTH)
                 .with(NUMBER_OF_FOOD, 1));
     }
 
-    public foodBlock(Settings settings, int max_food, @Nullable CROPS crop) {
+    public FoodBlock(Settings settings, int max_food, @Nullable CROPS crop) {
         this(settings, max_food);
         this.CROP = crop;
     }
@@ -137,9 +139,8 @@ public class foodBlock extends Block {
         // 其他物品/空手 - 尝试取出
         if (currentCount > 0) {
             int newCount = currentCount - 1;
-            BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
-
             if (newCount > 0) {
+                BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
                 world.setBlockState(pos, newState, Block.NOTIFY_ALL);
             } else {
                 world.breakBlock(pos, false); // 数量为0时销毁方块
@@ -239,7 +240,8 @@ public class foodBlock extends Block {
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(FACING, NUMBER_OF_FOOD);
+        builder.add(FACING);
+        builder.add(IntPropertyManager.take());
     }
 
     @FunctionalInterface

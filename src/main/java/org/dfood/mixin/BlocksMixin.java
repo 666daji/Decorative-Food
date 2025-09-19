@@ -5,7 +5,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import org.dfood.block.foodBlocks;
+import org.dfood.block.FoodBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,7 +18,7 @@ public class BlocksMixin {
     @Inject(method = "<clinit>", at = @At("HEAD"), remap = false)
     private static void registerFoodBlocks(CallbackInfo ci) {
         // 遍历映射表中的所有方块并进行注册
-        foodBlocks.FOOD_BLOCK_REGISTRY.forEach(BlocksMixin::register);
+        FoodBlocks.FOOD_BLOCK_REGISTRY.forEach(BlocksMixin::register);
     }
 
     @Unique

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemUsageContext;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.dfood.util.ModUtils;
+import org.dfood.util.DFoodUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -26,7 +26,7 @@ public abstract class BlockItemMixin{
         Item item = context.getStack().getItem();
         BlockPos pos = context.getBlockPos();
         World world = context.getWorld();
-        if (player != null && !player.isSneaking() && ModUtils.isModFoodItem(item) && !ModUtils.isCropCanPlaceAt(item, pos, world)) {
+        if (player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item) && !DFoodUtils.isCropCanPlaceAt(item, pos, world)) {
             cir.setReturnValue(ActionResult.PASS);
         }
     }

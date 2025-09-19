@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Objects;
 
-public class SuspiciousStewBlock extends foodBlock implements BlockEntityProvider {
+public class SuspiciousStewBlock extends FoodBlock implements BlockEntityProvider {
 
     public SuspiciousStewBlock(Settings settings, int max_food) {
         super(settings, max_food);

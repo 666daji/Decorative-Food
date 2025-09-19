@@ -23,7 +23,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import org.dfood.util.ModUtils;
+import org.dfood.util.DFoodUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class ModPotionItem extends PotionItem{
         PlayerEntity player = context.getPlayer();
         Item item = context.getStack().getItem();
         // 仅当父类方法失败时才尝试放置方块
-        if (super.useOnBlock(context) != ActionResult.PASS || (player != null && !player.isSneaking() && ModUtils.isModFoodItem(item))){
+        if (super.useOnBlock(context) != ActionResult.PASS || (player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item))){
             return ActionResult.PASS;
         }
         ActionResult actionResult = this.place(new ItemPlacementContext(context));

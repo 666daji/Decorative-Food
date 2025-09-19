@@ -6,13 +6,13 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.dfood.ThreedFood;
-import org.dfood.block.foodBlocks;
+import org.dfood.block.FoodBlocks;
 
 public class ModBlockEntityTypes {
     public static final BlockEntityType<PotionBlockEntity> POTION_BLOCK_ENTITY = create("potion_block_entity",
-            BlockEntityType.Builder.create(PotionBlockEntity::new, foodBlocks.POTION));
+            BlockEntityType.Builder.create(PotionBlockEntity::new, FoodBlocks.POTION));
     public static final BlockEntityType<SuspiciousStewBlockEntity> SUSPICIOUS_STEW_BLOCK_ENTITY = create("suspicious_stew_block_entity",
-            BlockEntityType.Builder.create(SuspiciousStewBlockEntity::new, foodBlocks.SUSPICIOUS_STEW));
+            BlockEntityType.Builder.create(SuspiciousStewBlockEntity::new, FoodBlocks.SUSPICIOUS_STEW));
 
     private static <T extends BlockEntity> BlockEntityType<T> create(String id, BlockEntityType.Builder<T> builder) {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(ThreedFood.MOD_ID, id), builder.build(null));
