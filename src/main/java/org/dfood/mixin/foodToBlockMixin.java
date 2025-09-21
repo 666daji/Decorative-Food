@@ -6,6 +6,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
+import org.dfood.item.HaveBlock;
 import org.dfood.item.ModPotionItem;
 import org.dfood.util.FoodToBlocks;
 import org.spongepowered.asm.mixin.Mixin;
@@ -33,8 +34,8 @@ public abstract class foodToBlockMixin {
 
     @Inject(method = "register(Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/item/Item;)Lnet/minecraft/item/Item;", at = @At("RETURN"))
     private static void registerBlock(RegistryKey<Item> key, Item item, CallbackInfoReturnable<Item> cir) {
-        if (item instanceof ModPotionItem) {
-            ((ModPotionItem)item).appendBlocks(Item.BLOCK_ITEMS, item);
+        if (item instanceof HaveBlock haveBlock) {
+            haveBlock.appendBlocks(Item.BLOCK_ITEMS, item);
         }
     }
 }

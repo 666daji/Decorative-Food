@@ -28,12 +28,13 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.dfood.util.DFoodUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Objects;
 
-public class ModBucketItem extends BucketItem {
+public class ModBucketItem extends BucketItem implements HaveBlock{
     private final Block block;
 
     public ModBucketItem(Fluid fluid, Settings settings, Block block) {
@@ -43,6 +44,12 @@ public class ModBucketItem extends BucketItem {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        Item item = context.getStack().getItem();
+        // 仅当父类方法失败时才尝试放置方块
+        if (super.useOnBlock(context) != ActionResult.PASS || (player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item))){
+            return ActionResult.PASS;
+        }
         ActionResult actionResult = this.place(new ItemPlacementContext(context));
         if (!actionResult.isAccepted() && this.isFood()) {
             ActionResult actionResult2 = this.use(context.getWorld(), context.getPlayer(), context.getHand()).getResult();

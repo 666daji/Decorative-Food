@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class ModPotionItem extends PotionItem{
+public class ModPotionItem extends PotionItem implements HaveBlock{
     private final Block block;
 
     public ModPotionItem(Block block, Item.Settings settings) {
@@ -228,10 +228,6 @@ public class ModPotionItem extends PotionItem{
     @Override
     public FeatureSet getRequiredFeatures() {
         return this.getBlock().getRequiredFeatures();
-    }
-
-    public void appendBlocks(Map<Block, Item> map, Item item) {
-        map.put(this.getBlock(), item);
     }
 }
 

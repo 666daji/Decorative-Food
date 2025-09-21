@@ -8,9 +8,11 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.dfood.item.HaveBlock;
 import org.dfood.item.ModPotionItem;
 import org.dfood.tag.ModTags;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class DFoodUtils {
@@ -28,6 +30,10 @@ public class DFoodUtils {
         return state.isIn(ModTags.FOOD_BLOCK);
     }
 
+    public static boolean isHaveBlock(Item item) {
+        return item instanceof HaveBlock;
+    }
+
     /**
      * 检查作物能否放置在指定位置
      */
@@ -42,7 +48,7 @@ public class DFoodUtils {
 
     /**
      * 辅助方法
-     * @param item
+     * @param item 要转换的物品
      * @return 对应的默认方块状态
      */
     private static BlockState getBlockStateFromItem(Item item) {
@@ -51,6 +57,9 @@ public class DFoodUtils {
         }
         if (item instanceof ModPotionItem potionItem) {
             return potionItem.getBlock().getDefaultState();
+        }
+        if (item instanceof HaveBlock haveBlock) {
+            return haveBlock.getBlock().getDefaultState();
         }
         return null;
     }
@@ -61,8 +70,8 @@ public class DFoodUtils {
     }
 
     public static Block createFoodBlock(int foodValue, AbstractBlock.Settings settings,
-                                            Function<AbstractBlock.Settings, Block> blockCreator) {
+                                        BiFunction<AbstractBlock.Settings, Integer, Block> blockCreator) {
         IntPropertyManager.preCache("number_of_food", foodValue);
-        return blockCreator.apply(settings);
+        return blockCreator.apply(settings, foodValue);
     }
 }

@@ -9,7 +9,7 @@ import org.dfood.util.DFoodUtils;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.function.BiFunction;
 
 /**
  * 关于原版的食物方块定义
@@ -38,11 +38,11 @@ public class FoodBlocks {
                     .pistonBehavior(PistonBehavior.DESTROY)
                     .luminance(state -> {
                         if (state.getBlock() instanceof FoodBlock) {
-                            return state.get(IntPropertyManager.create("number_of_food",12)) + 3;
+                            return state.get(IntPropertyManager.create("number_of_food", 12)) + 3;
                         }
                         return 0;
                     }),
-            settings -> new FoodBlock(settings, 12));
+            (settings, foodVal) -> new FoodBlock(settings, foodVal));
 
     // 金制食物
     public static final Block GOLDEN_APPLE = createFoodBlock("golden_apple", MapColor.GOLD, 0.2F, null, 5);
@@ -79,13 +79,13 @@ public class FoodBlocks {
                     .nonOpaque()
                     .sounds(BlockSoundGroup.DECORATED_POT)
                     .pistonBehavior(PistonBehavior.DESTROY),
-            settings -> new SuspiciousStewBlock(settings, 1));
+            (settings, foodVal) -> new SuspiciousStewBlock(settings, foodVal));
     public static final Block BOWL = createFoodBlock("bowl", MapColor.BROWN, 0.1F, BlockSoundGroup.DECORATED_POT, 1);
 
     // 桶
-    public static final Block BUCKET = createFoodBlock("bucket", MapColor.WHITE, 1.0F, ModSoundGroups.BUCKET, 1);
-    public static final Block WATER_BUCKET = createFoodBlock("water_bucket", MapColor.BLUE, 1.0F, ModSoundGroups.BUCKET, 1);
-    public static final Block MILK_BUCKET = createFoodBlock("milk_bucket", MapColor.WHITE, 1.0F, ModSoundGroups.BUCKET, 1);
+    public static final Block BUCKET = createFoodBlock("bucket", MapColor.WHITE, 0.2F, ModSoundGroups.BUCKET, 1);
+    public static final Block WATER_BUCKET = createFoodBlock("water_bucket", MapColor.BLUE, 0.2F, ModSoundGroups.WATER_BUCKET, 1);
+    public static final Block MILK_BUCKET = createFoodBlock("milk_bucket", MapColor.WHITE, 0.2F, ModSoundGroups.WATER_BUCKET, 1);
 
     // 其他
     public static final Block PUMPKIN_PIE = createFoodBlock("pumpkin_pie", MapColor.TERRACOTTA_ORANGE, 0.2F, BlockSoundGroup.WOOL, 1);
@@ -96,16 +96,16 @@ public class FoodBlocks {
                     .nonOpaque()
                     .sounds(ModSoundGroups.CHORUS_FRUIT)
                     .pistonBehavior(PistonBehavior.DESTROY),
-            settings -> new ChorusFruitBlock(settings, 5));
+            (settings, foodVal) -> new ChorusFruitBlock(settings, foodVal));
     public static final Block EGG = createFoodBlock("egg", MapColor.WHITE, 0.2F, ModSoundGroups.EGG, 5);
     public static final Block TOTEM_OF_UNDYING = registerFoodBlock("totem_of_undying", 1,
             AbstractBlock.Settings.create()
                     .mapColor(MapColor.YELLOW)
-                    .strength(1.0F, 1.0F)
+                    .strength(0.2F, 0.2F)
                     .nonOpaque()
-                    .sounds(ModSoundGroups.TOTEM)
+                    .sounds(ModSoundGroups.EGG)
                     .pistonBehavior(PistonBehavior.DESTROY),
-            ModTotemBlock::new);
+            (settings, foodVal) -> new ModTotemBlock(settings));
 
     // 药水
     public static final Block POTION = registerFoodBlock("potion", 3,
@@ -116,7 +116,7 @@ public class FoodBlocks {
                     .solidBlock(Blocks::never)
                     .sounds(ModSoundGroups.POTION)
                     .pistonBehavior(PistonBehavior.DESTROY),
-            settings -> new PotionBlock(settings, 3));
+            (settings, foodVal) -> new PotionBlock(settings, foodVal));
 
     /**
      * 基础方法：注册食物方块
@@ -128,7 +128,7 @@ public class FoodBlocks {
      * @return 创建的方块
      */
     private static Block registerFoodBlock(String id, int foodValue, AbstractBlock.Settings settings,
-                                           Function<AbstractBlock.Settings, Block> blockCreator) {
+                                           BiFunction<AbstractBlock.Settings, Integer, Block> blockCreator) {
         Block block = DFoodUtils.createFoodBlock(foodValue, settings, blockCreator);
         FOOD_BLOCK_REGISTRY.put(id, block);
         return block;
@@ -157,9 +157,9 @@ public class FoodBlocks {
         }
 
         if (cropType != null) {
-            return registerFoodBlock(id, foodValue, settings, s -> new FoodBlock(s, foodValue, cropType));
+            return registerFoodBlock(id, foodValue, settings, (s, foodVal) -> new FoodBlock(s, foodVal, cropType));
         } else {
-            return registerFoodBlock(id, foodValue, settings, s -> new FoodBlock(s, foodValue));
+            return registerFoodBlock(id, foodValue, settings, (s, foodVal) -> new FoodBlock(s, foodVal));
         }
     }
 }

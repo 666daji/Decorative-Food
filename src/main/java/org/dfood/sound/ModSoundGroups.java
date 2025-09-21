@@ -58,7 +58,7 @@ public class ModSoundGroups {
             SoundEvents.ITEM_BOTTLE_EMPTY,
             SoundEvents.ITEM_BOTTLE_EMPTY
     );
-    public static final BlockSoundGroup BUCKET = new BlockSoundGroup(
+    public static final BlockSoundGroup WATER_BUCKET = new BlockSoundGroup(
             1.0f,
             1.0f,
             SoundEvents.ITEM_BUCKET_FILL,
@@ -67,13 +67,13 @@ public class ModSoundGroups {
             SoundEvents.ITEM_BUCKET_EMPTY,
             SoundEvents.ITEM_BUCKET_EMPTY
     );
-    public static final BlockSoundGroup TOTEM = new BlockSoundGroup(
+    public static final BlockSoundGroup BUCKET = new BlockSoundGroup(
             1.0f,
             1.0f,
-            SoundEvents.ITEM_TOTEM_USE,
-            SoundEvents.ITEM_TOTEM_USE,
-            SoundEvents.ITEM_TOTEM_USE,
-            SoundEvents.ITEM_TOTEM_USE,
-            SoundEvents.ITEM_TOTEM_USE
+            SoundEvents.ITEM_BUCKET_EMPTY,
+            SoundEvents.ITEM_BUCKET_EMPTY,
+            SoundEvents.ITEM_BUCKET_EMPTY,
+            SoundEvents.ITEM_BUCKET_EMPTY,
+            SoundEvents.ITEM_BUCKET_EMPTY
     );
 }
