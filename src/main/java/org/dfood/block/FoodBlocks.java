@@ -42,7 +42,7 @@ public class FoodBlocks {
                         }
                         return 0;
                     }),
-            (settings, foodVal) -> new FoodBlock(settings, foodVal));
+            FoodBlock::new);
 
     // 金制食物
     public static final Block GOLDEN_APPLE = createFoodBlock("golden_apple", MapColor.GOLD, 0.2F, null, 5);
@@ -79,7 +79,7 @@ public class FoodBlocks {
                     .nonOpaque()
                     .sounds(BlockSoundGroup.DECORATED_POT)
                     .pistonBehavior(PistonBehavior.DESTROY),
-            (settings, foodVal) -> new SuspiciousStewBlock(settings, foodVal));
+            SuspiciousStewBlock::new);
     public static final Block BOWL = createFoodBlock("bowl", MapColor.BROWN, 0.1F, BlockSoundGroup.DECORATED_POT, 1);
 
     // 桶
@@ -96,7 +96,7 @@ public class FoodBlocks {
                     .nonOpaque()
                     .sounds(ModSoundGroups.CHORUS_FRUIT)
                     .pistonBehavior(PistonBehavior.DESTROY),
-            (settings, foodVal) -> new ChorusFruitBlock(settings, foodVal));
+            ChorusFruitBlock::new);
     public static final Block EGG = createFoodBlock("egg", MapColor.WHITE, 0.2F, ModSoundGroups.EGG, 5);
     public static final Block TOTEM_OF_UNDYING = registerFoodBlock("totem_of_undying", 1,
             AbstractBlock.Settings.create()
@@ -116,7 +116,7 @@ public class FoodBlocks {
                     .solidBlock(Blocks::never)
                     .sounds(ModSoundGroups.POTION)
                     .pistonBehavior(PistonBehavior.DESTROY),
-            (settings, foodVal) -> new PotionBlock(settings, foodVal));
+            PotionBlock::new);
 
     /**
      * 基础方法：注册食物方块
@@ -159,7 +159,7 @@ public class FoodBlocks {
         if (cropType != null) {
             return registerFoodBlock(id, foodValue, settings, (s, foodVal) -> new FoodBlock(s, foodVal, cropType));
         } else {
-            return registerFoodBlock(id, foodValue, settings, (s, foodVal) -> new FoodBlock(s, foodVal));
+            return registerFoodBlock(id, foodValue, settings, FoodBlock::new);
         }
     }
 }

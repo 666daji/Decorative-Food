@@ -13,7 +13,6 @@ import org.dfood.item.ModPotionItem;
 import org.dfood.tag.ModTags;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class DFoodUtils {
 
