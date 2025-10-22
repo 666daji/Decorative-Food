@@ -21,7 +21,7 @@ public abstract class BlockItemMixin{
      * 解决了放置与食用的冲突问题。
      */
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
-    private static void useOnBlockMixin(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir){
+    private void useOnBlockMixin(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir){
         PlayerEntity player = context.getPlayer();
         Item item = context.getStack().getItem();
         BlockPos pos = context.getBlockPos();

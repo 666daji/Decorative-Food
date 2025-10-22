@@ -24,7 +24,7 @@ public class ServerPlayerInteractionManagerMixin {
      * 即使玩家下蹲也能与食物方块交互。
      */
     @Inject(method = "interactBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;copy()Lnet/minecraft/item/ItemStack;"), cancellable = true)
-    private static void interactBlockMixin(ServerPlayerEntity player, World world, ItemStack stack, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir){
+    private void interactBlockMixin(ServerPlayerEntity player, World world, ItemStack stack, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir){
         boolean bl3 = DFoodUtils.isModFoodItem(player.getMainHandStack().getItem());
         if (bl3) {
             BlockPos blockPos = hitResult.getBlockPos();

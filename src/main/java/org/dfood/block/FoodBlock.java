@@ -103,10 +103,12 @@ public class FoodBlock extends Block {
         if (HookResult != ActionResult.PASS) {
             return HookResult;
         }
+
         ItemStack handStack = player.getStackInHand(hand);
         int currentCount = state.get(NUMBER_OF_FOOD);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         boolean isSameItem = isSame(handStack, blockEntity);
+        boolean tryFetch = false;
 
         // 客户端只负责播放声音和返回结果
         if (world.isClient) {
@@ -115,49 +117,81 @@ public class FoodBlock extends Block {
             } else if (!isSameItem && currentCount > 0) {
                 playSound(this.soundGroup.getBreakSound(), world, pos, player);
             }
-            return ActionResult.SUCCESS; // 客户端返回成功并播放声音
+            return ActionResult.SUCCESS;
         }
 
         // 手持相同物品 - 尝试添加
         if (isSameItem) {
             if (currentCount < MAX_FOOD) {
-                // 更新方块状态
-                BlockState newState = state.with(NUMBER_OF_FOOD, currentCount + 1);
-                world.setBlockState(pos, newState, Block.NOTIFY_ALL);
-                playSound(this.soundGroup.getPlaceSound(), world, pos, player);
+                if (tryAdd(state, world, pos, player, handStack, blockEntity)) {
+                    playSound(this.soundGroup.getPlaceSound(), world, pos, player);
 
-                // 消耗物品（非创造模式）
-                if (!player.isCreative()) {
-                    handStack.decrement(1);
-                    player.setStackInHand(hand, handStack);
+                    // 消耗物品（非创造模式）
+                    if (!player.isCreative()) {
+                        handStack.decrement(1);
+                        player.setStackInHand(hand, handStack);
+                    }
+                    return ActionResult.SUCCESS;
                 }
-                return ActionResult.SUCCESS;
             }
-            return ActionResult.PASS; // 已达最大数量
+            tryFetch = true; // 已达最大数量，尝试取出
         }
 
         // 其他物品/空手 - 尝试取出
-        if (currentCount > 0) {
-            int newCount = currentCount - 1;
-            if (newCount > 0) {
-                BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
-                world.setBlockState(pos, newState, Block.NOTIFY_ALL);
-            } else {
-                world.breakBlock(pos, false); // 数量为0时销毁方块
+        if (currentCount > 0 || tryFetch) {
+            if (tryRemove(state, world, pos, player, blockEntity)) {
+                playSound(this.soundGroup.getBreakSound(), world, pos, player);
+                return ActionResult.SUCCESS;
             }
-            playSound(this.soundGroup.getBreakSound(), world, pos, player);
-
-            // 给予玩家物品（非创造模式）
-            if (!player.isCreative()) {
-                ItemStack foodItem = createStack(1, blockEntity);
-                if (!player.giveItemStack(foodItem)) {
-                    player.dropItem(foodItem, false); // 背包满时掉落
-                }
-            }
-            return ActionResult.SUCCESS;
         }
 
         return ActionResult.PASS;
+    }
+
+    /**
+     * 尝试增加堆叠数量
+     * @param state 当前的方块状态
+     * @param world 当前世界
+     * @param pos 方块的位置
+     * @param player 执行操作的玩家
+     * @param handStack 尝试添加的物品堆栈
+     * @param blockEntity 对应的方块实体
+     * @return 操作是否成功
+     */
+    protected boolean tryAdd(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack handStack, BlockEntity blockEntity) {
+        int currentCount = state.get(NUMBER_OF_FOOD);
+        BlockState newState = state.with(NUMBER_OF_FOOD, currentCount + 1);
+        return world.setBlockState(pos, newState, Block.NOTIFY_ALL);
+    }
+
+    /**
+     * 尝试减少方块的堆叠数量
+     * @param world 当前世界
+     * @param pos 方块的位置
+     * @param player 执行操作的玩家
+     * @param blockEntity 对应的方块实体
+     * @return 操作是否成功
+     */
+    protected boolean tryRemove(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockEntity blockEntity) {
+        int currentCount = state.get(NUMBER_OF_FOOD);
+        int newCount = currentCount - 1;
+
+        if (newCount > 0) {
+            BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
+            world.setBlockState(pos, newState, Block.NOTIFY_ALL);
+        } else {
+            world.breakBlock(pos, false);
+        }
+
+        // 给予玩家物品（非创造模式）
+        if (!player.isCreative()) {
+            ItemStack foodItem = createStack(1, blockEntity);
+            if (!player.giveItemStack(foodItem)) {
+                player.dropItem(foodItem, false);
+            }
+        }
+
+        return true;
     }
 
     /**
