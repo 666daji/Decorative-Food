@@ -8,9 +8,8 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.dfood.block.FoodBlock;
 import org.dfood.item.HaveBlock;
-import org.dfood.item.ModPotionItem;
-import org.dfood.tag.ModTags;
 
 import java.util.function.BiFunction;
 
@@ -26,7 +25,20 @@ public class DFoodUtils {
         if (item instanceof BlockItem && isPotatoOrCarrot(state)) {
             return true;
         }
-        return state.isIn(ModTags.FOOD_BLOCK);
+
+        if (state.getBlock() instanceof FoodBlock block){
+            return FoodBlock.FOOD_BLOCKS.contains(block);
+        }
+
+        return false;
+    }
+
+    public static boolean isModFoodBlock(Block block){
+        if (block instanceof FoodBlock foodBlock){
+            return FoodBlock.FOOD_BLOCKS.contains(foodBlock);
+        }
+
+        return false;
     }
 
     public static boolean isHaveBlock(Item item) {
@@ -53,9 +65,6 @@ public class DFoodUtils {
     private static BlockState getBlockStateFromItem(Item item) {
         if (item instanceof BlockItem blockItem) {
             return blockItem.getBlock().getDefaultState();
-        }
-        if (item instanceof ModPotionItem potionItem) {
-            return potionItem.getBlock().getDefaultState();
         }
         if (item instanceof HaveBlock haveBlock) {
             return haveBlock.getBlock().getDefaultState();

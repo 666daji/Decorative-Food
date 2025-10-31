@@ -29,23 +29,27 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.dfood.shape.FoodShapeHandle;
 import org.dfood.tag.ModTags;
+import org.dfood.util.DFoodUtils;
 import org.dfood.util.IntPropertyManager;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 所有食物方块的父类，定义了食物方块的基本行为
  */
 public class FoodBlock extends Block {
-    @Nullable private CROPS CROP;
-    private onUseHook onUseHook = (state, world, pos, player, hand, hit) -> ActionResult.PASS;
+    public static final Set<FoodBlock> FOOD_BLOCKS = new HashSet<>();
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     private static final FoodShapeHandle foodShapeHandle = FoodShapeHandle.getInstance();
 
     public final IntProperty NUMBER_OF_FOOD;
     public final int MAX_FOOD;
+    @Nullable private CROPS CROP;
+    private onUseHook onUseHook = (state, world, pos, player, hand, hit) -> ActionResult.PASS;
 
     public onUseHook getOnUseHook() {
         return onUseHook;
@@ -60,13 +64,20 @@ public class FoodBlock extends Block {
         CARROT;
     }
 
-    public FoodBlock(Settings settings, int max_food) {
+    public FoodBlock(Settings settings, int max_food, boolean isFood) {
         super(settings);
         MAX_FOOD = max_food;
         NUMBER_OF_FOOD = IntPropertyManager.create("number_of_food", MAX_FOOD);
+        if (isFood){
+            FOOD_BLOCKS.add(this);
+        }
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(FACING, net.minecraft.util.math.Direction.NORTH)
                 .with(NUMBER_OF_FOOD, 1));
+    }
+
+    public FoodBlock(Settings settings, int max_food){
+        this(settings, max_food, true);
     }
 
     public FoodBlock(Settings settings, int max_food, @Nullable CROPS crop) {
@@ -233,7 +244,8 @@ public class FoodBlock extends Block {
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos downPos = pos.down();
-        return !world.getBlockState(downPos).isIn(ModTags.FOOD_PLACE);
+        BlockState checkState = world.getBlockState(downPos);
+        return !checkState.isIn(ModTags.FOOD_PLACE) && !(DFoodUtils.isModFoodBlock(checkState.getBlock()));
     }
 
     /**
