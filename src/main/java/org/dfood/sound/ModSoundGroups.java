@@ -67,13 +67,5 @@ public class ModSoundGroups {
             SoundEvents.ITEM_BUCKET_EMPTY,
             SoundEvents.ITEM_BUCKET_EMPTY
     );
-    public static final BlockSoundGroup BUCKET = new BlockSoundGroup(
-            1.0f,
-            1.0f,
-            SoundEvents.BLOCK_IRON_DOOR_OPEN,
-            SoundEvents.BLOCK_IRON_DOOR_OPEN,
-            SoundEvents.BLOCK_IRON_DOOR_OPEN,
-            SoundEvents.BLOCK_IRON_DOOR_OPEN,
-            SoundEvents.BLOCK_IRON_DOOR_OPEN
-    );
+    public static final BlockSoundGroup BUCKET = BlockSoundGroup.METAL;
 }
