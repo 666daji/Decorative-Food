@@ -192,7 +192,6 @@ public class FoodShapeHandle {
                     return s.shape;
                 }
             }
-            LOGGER.warn("未找到ID为 {} 的形状，使用默认形状", id);
             return ALL.shape;
         }
     }
