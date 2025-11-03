@@ -44,7 +44,7 @@ import java.util.Set;
 public class FoodBlock extends Block {
     public static final Set<FoodBlock> FOOD_BLOCKS = new HashSet<>();
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    private static final FoodShapeHandle foodShapeHandle = FoodShapeHandle.getInstance();
+    protected static final FoodShapeHandle SHAPE_HANDLE = FoodShapeHandle.getInstance();
 
     public final IntProperty NUMBER_OF_FOOD;
     public final int MAX_FOOD;
@@ -92,7 +92,7 @@ public class FoodBlock extends Block {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return foodShapeHandle.getShape(state, NUMBER_OF_FOOD);
+        return SHAPE_HANDLE.getShape(state, NUMBER_OF_FOOD);
     }
 
     @Override

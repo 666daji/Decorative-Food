@@ -3,7 +3,7 @@
 	"id": "decorative-food",
 	"version": "${version}",
 	"name": "Decorative Food",
-	"description": "为我的世界的食物添加了装饰模型，增加了食物的可玩性和美观性。",
+	"description": "Make the food placeable!",
 	"authors": [
 		"玉隐",
 		"理神"
