@@ -9,7 +9,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.SoundCategory;
@@ -48,7 +47,8 @@ public class FoodBlock extends Block {
 
     public final IntProperty NUMBER_OF_FOOD;
     public final int MAX_FOOD;
-    @Nullable private CROPS CROP;
+    /** 用于强制指定该方块{@link FoodBlock#asItem()}方法的返回值，一般用于双方块物品的第二个方块 */
+    @Nullable private EnforceAsItem cItem;
     private onUseHook onUseHook = (state, world, pos, player, hand, hit) -> ActionResult.PASS;
 
     public onUseHook getOnUseHook() {
@@ -59,11 +59,6 @@ public class FoodBlock extends Block {
         this.onUseHook = onUseHook;
     }
 
-    public enum CROPS{
-        POTATO,
-        CARROT;
-    }
-
     public FoodBlock(Settings settings, int max_food, boolean isFood) {
         super(settings);
         MAX_FOOD = max_food;
@@ -72,7 +67,7 @@ public class FoodBlock extends Block {
             FOOD_BLOCKS.add(this);
         }
         this.setDefaultState(this.getStateManager().getDefaultState()
-                .with(FACING, net.minecraft.util.math.Direction.NORTH)
+                .with(FACING, Direction.NORTH)
                 .with(NUMBER_OF_FOOD, 1));
     }
 
@@ -80,9 +75,17 @@ public class FoodBlock extends Block {
         this(settings, max_food, true);
     }
 
-    public FoodBlock(Settings settings, int max_food, @Nullable CROPS crop) {
+    public FoodBlock(Settings settings, int max_food, @Nullable EnforceAsItem cItem) {
         this(settings, max_food);
-        this.CROP = crop;
+        this.cItem = cItem;
+    }
+
+    /**
+     * 检查该方块是否指定了强制的对应物品
+     * @return 如果指定了强制的对应物品则返回true,否则返回false
+     */
+    public boolean haveCItem(){
+        return this.cItem != null;
     }
 
     @Override
@@ -266,10 +269,8 @@ public class FoodBlock extends Block {
 
     @Override
     public Item asItem() {
-        if (this.CROP == CROPS.POTATO) {
-            return Items.POTATO;
-        } else if (this.CROP == CROPS.CARROT) {
-            return Items.CARROT;
+        if (this.cItem != null){
+            return cItem.getItem();
         }
         return super.asItem();
     }
@@ -293,5 +294,9 @@ public class FoodBlock extends Block {
     @FunctionalInterface
     public interface onUseHook{
         ActionResult interact(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit);
+    }
+
+    public interface EnforceAsItem {
+        Item getItem();
     }
 }

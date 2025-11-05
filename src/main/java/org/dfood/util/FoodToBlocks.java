@@ -31,8 +31,8 @@ public class FoodToBlocks {
         foodMap.put("potato", new DoubleBlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POTATO), FoodBlocks.POTATO));
         foodMap.put("baked_potato", getItem(FoodBlocks.BAKED_POTATO, FoodComponents.BAKED_POTATO));
         foodMap.put("carrot", new DoubleBlockItem(Blocks.CARROTS, new Item.Settings().food(FoodComponents.CARROT), FoodBlocks.CARROT));
-        foodMap.put("sweet_berries", getItem(FoodBlocks.SWEET_BERRIES, FoodComponents.SWEET_BERRIES));
-        foodMap.put("glow_berries", getItem(FoodBlocks.GLOW_BERRIES, FoodComponents.GLOW_BERRIES));
+        foodMap.put("sweet_berries", new DoubleBlockItem(Blocks.SWEET_BERRY_BUSH, new Item.Settings().food(FoodComponents.SWEET_BERRIES), FoodBlocks.SWEET_BERRIES));
+        foodMap.put("glow_berries", new DoubleBlockItem(Blocks.CAVE_VINES, new Item.Settings().food(FoodComponents.GLOW_BERRIES), FoodBlocks.GLOW_BERRIES));
 
         // 金制食物
         foodMap.put("golden_apple", getItem(FoodBlocks.GOLDEN_APPLE, FoodComponents.GOLDEN_APPLE));

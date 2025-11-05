@@ -25,10 +25,10 @@ public class FoodBlocks {
 
     // 蔬菜类
     public static final Block BEETROOT = createFoodBlock("beetroot", MapColor.RED, 0.2F, BlockSoundGroup.CANDLE, 5);
-    public static final Block POTATO = createFoodBlock("potato", MapColor.GOLD, 0.2F, BlockSoundGroup.CANDLE, 5, FoodBlock.CROPS.POTATO);
+    public static final Block POTATO = createFoodBlock("potato", MapColor.GOLD, 0.2F, BlockSoundGroup.CANDLE, 5, EnforceAsItems.POTATO);
     public static final Block BAKED_POTATO = createFoodBlock("baked_potato", MapColor.GOLD, 0.2F, BlockSoundGroup.CANDLE, 5);
-    public static final Block CARROT = createFoodBlock("carrot", MapColor.YELLOW, 0.2F, BlockSoundGroup.CANDLE, 5, FoodBlock.CROPS.CARROT);
-    public static final Block SWEET_BERRIES = createFoodBlock("sweet_berries", MapColor.RED, 0.2F, BlockSoundGroup.SWEET_BERRY_BUSH, 5);
+    public static final Block CARROT = createFoodBlock("carrot", MapColor.YELLOW, 0.2F, BlockSoundGroup.CANDLE, 5, EnforceAsItems.CARROT);
+    public static final Block SWEET_BERRIES = createFoodBlock("sweet_berries", MapColor.RED, 0.2F, BlockSoundGroup.SWEET_BERRY_BUSH, 5, EnforceAsItems.SWEET_BERRIES);
     public static final Block GLOW_BERRIES = registerFoodBlock("glow_berries", 12,
             AbstractBlock.Settings.create()
                     .mapColor(MapColor.YELLOW)
@@ -42,7 +42,7 @@ public class FoodBlocks {
                         }
                         return 0;
                     }),
-            FoodBlock::new);
+            ((settings, integer) -> new FoodBlock(settings, integer, EnforceAsItems.GLOW_BERRIES)));
 
     // 金制食物
     public static final Block GOLDEN_APPLE = createFoodBlock("golden_apple", MapColor.GOLD, 0.2F, null, 5);
@@ -145,7 +145,7 @@ public class FoodBlocks {
      * 创建普通食物方块的通用方法（作物类型）
      */
     private static Block createFoodBlock(String id, MapColor mapColor, float strength, BlockSoundGroup sound,
-                                         int foodValue, FoodBlock.CROPS cropType) {
+                                         int foodValue, FoodBlock.EnforceAsItem cropType) {
         AbstractBlock.Settings settings = AbstractBlock.Settings.create()
                 .mapColor(mapColor)
                 .strength(strength, strength)
