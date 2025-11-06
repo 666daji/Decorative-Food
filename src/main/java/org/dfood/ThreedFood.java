@@ -3,8 +3,6 @@ package org.dfood;
 import net.fabricmc.api.ModInitializer;
 
 import org.dfood.block.entity.ModBlockEntityTypes;
-import org.dfood.item.ModItemGroups;
-import org.dfood.item.Seeds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,8 +13,6 @@ public class ThreedFood implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		Seeds.registerItems();
-		ModItemGroups.registerItemGroups();
         ModBlockEntityTypes.register();
 		LOGGER.info("Hello Fabric world!");
 	}

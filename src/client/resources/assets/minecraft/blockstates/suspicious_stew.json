@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "minecraft:block/suspicious_stew",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "minecraft:block/suspicious_stew"
+    },
+    "facing=east": {
+      "model": "minecraft:block/suspicious_stew",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "minecraft:block/suspicious_stew",
+      "y": 90
+    }
+  }
+}

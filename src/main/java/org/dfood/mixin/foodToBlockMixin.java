@@ -7,8 +7,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
-import org.dfood.block.foodBlocks;
-import org.dfood.item.ModPotionItem;
+import org.dfood.block.FoodBlocks;
+import org.dfood.item.HaveBlock;
 import org.dfood.util.StewToBlocks;
 import org.dfood.util.foodToBlocks;
 import org.spongepowered.asm.mixin.Mixin;
@@ -30,12 +30,12 @@ public abstract class foodToBlockMixin {
         if (foodToBlocks.foodMap.containsKey(value)) {
             register(item, value);
             return foodToBlocks.foodMap.get(value);
-        } else if(value.equals("rabbit_stew")||value.equals("mushroom_stew")||value.equals("beetroot_soup")){
+        } else if(foodToBlocks.other.contains(value)){
             register(item, value);
             return StewToBlocks.stewMap.get(value);
         } else if (value.equals("bowl")) {
             register(item, value);
-            return new BlockItem(foodBlocks.BOWL, new Item.Settings());
+            return new BlockItem(FoodBlocks.BOWL, new Item.Settings());
         } else {
             return item;
         }
@@ -43,8 +43,8 @@ public abstract class foodToBlockMixin {
 
     @Inject(method = "register(Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/item/Item;)Lnet/minecraft/item/Item;", at = @At("HEAD"))
     private static void modifyBlockItem(RegistryKey<Item> key, Item item, CallbackInfoReturnable<Item> cir){
-        if (item instanceof ModPotionItem) {
-            ((ModPotionItem)item).appendBlocks(Item.BLOCK_ITEMS, item);
+        if (item instanceof HaveBlock haveBlock) {
+            haveBlock.appendBlocks(Item.BLOCK_ITEMS, item);
         }
     }
 
