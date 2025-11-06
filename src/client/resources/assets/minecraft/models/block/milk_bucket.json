@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/water_bucket",
+	"textures": {
+		"1": "minecraft:block/milk_bucket",
+		"particle": "minecraft:item/milk_bucket"
+	}
+}

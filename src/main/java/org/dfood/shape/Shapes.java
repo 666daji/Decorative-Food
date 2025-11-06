@@ -120,6 +120,19 @@ public class Shapes {
         shapeMap.put("minecraft:bowl", new int[][]{
                 {1, 1, 8}
         });
+        shapeMap.put("minecraft:suspicious_stew", new int[][]{
+                {1, 1, 8}
+        });
+        // 桶
+        shapeMap.put("minecraft:bucket", new int[][]{
+                {1, 1, 8}
+        });
+        shapeMap.put("minecraft:milk_bucket", new int[][]{
+                {1, 1, 8}
+        });
+        shapeMap.put("minecraft:water_bucket", new int[][]{
+                {1, 1, 8}
+        });
         // 其他
         shapeMap.put("minecraft:pumpkin_pie", new int[][]{
                 {1, 1, 1}

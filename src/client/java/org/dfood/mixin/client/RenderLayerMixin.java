@@ -3,7 +3,7 @@ package org.dfood.mixin.client;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderLayers;
-import org.dfood.block.foodBlocks;
+import org.dfood.block.FoodBlocks;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,18 +19,18 @@ public class RenderLayerMixin {
 
     @Inject(method = "<clinit>", at = @At("RETURN"))
     private static void init(CallbackInfo ci) {
-        BLOCKS.put(foodBlocks.APPLE, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.GOLDEN_APPLE, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.BEETROOT, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.COD, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.COOKED_COD, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.SALMON, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.COOKED_SALMON, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.CHORUS_FRUIT, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.SWEET_BERRIES, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.GLOW_BERRIES, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.CARROT, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.GOLDEN_CARROT, RenderLayer.getCutout());
-        BLOCKS.put(foodBlocks.POTION, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.APPLE, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.GOLDEN_APPLE, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.BEETROOT, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.COD, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.COOKED_COD, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.SALMON, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.COOKED_SALMON, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.CHORUS_FRUIT, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.SWEET_BERRIES, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.GLOW_BERRIES, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.CARROT, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.GOLDEN_CARROT, RenderLayer.getCutout());
+        BLOCKS.put(FoodBlocks.POTION, RenderLayer.getCutout());
     }
 }
