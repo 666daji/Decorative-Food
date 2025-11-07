@@ -69,8 +69,8 @@ public class foodToBlocks {
 
         // 桶
         foodMap.put("bucket", new ModBucketItem(Fluids.EMPTY, new Item.Settings().maxCount(16), FoodBlocks.BUCKET));
-        foodMap.put("water_bucket", new ModBucketItem(Fluids.WATER, new Item.Settings().maxCount(16), FoodBlocks.WATER_BUCKET));
-        foodMap.put("milk_bucket", new ModMilkBucketItem(FoodBlocks.MILK_BUCKET, new Item.Settings().maxCount(16)));
+        foodMap.put("water_bucket", new ModBucketItem(Fluids.WATER, new Item.Settings().maxCount(1), FoodBlocks.WATER_BUCKET));
+        foodMap.put("milk_bucket", new ModMilkBucketItem(FoodBlocks.MILK_BUCKET, new Item.Settings().maxCount(1)));
 
         // 其他
         foodMap.put("pumpkin_pie", getItem(FoodBlocks.PUMPKIN_PIE, ModFoodComponents.PUMPKIN_PIE));
