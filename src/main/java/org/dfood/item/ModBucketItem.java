@@ -1,7 +1,10 @@
 package org.dfood.item;
 
 import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.component.DataComponentTypes;
@@ -10,6 +13,7 @@ import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.resource.featuretoggle.FeatureSet;
@@ -26,11 +30,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 
-public class ModPotionItem extends PotionItem implements HaveBlock{
+public class ModBucketItem extends BucketItem implements HaveBlock {
     private final Block block;
 
-    public ModPotionItem(Block block, Settings settings) {
-        super(settings);
+    public ModBucketItem(Fluid fluid, Settings settings, Block block) {
+        super(fluid, settings);
         this.block = block;
     }
 
@@ -219,4 +223,3 @@ public class ModPotionItem extends PotionItem implements HaveBlock{
         return this.getBlock().getRequiredFeatures();
     }
 }
-

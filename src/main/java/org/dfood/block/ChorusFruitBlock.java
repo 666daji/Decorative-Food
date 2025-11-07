@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-public class ChorusFruitBlock extends foodBlock{
+public class ChorusFruitBlock extends FoodBlock {
     public ChorusFruitBlock(Settings settings, int max_food) {
         super(settings, max_food);
     }

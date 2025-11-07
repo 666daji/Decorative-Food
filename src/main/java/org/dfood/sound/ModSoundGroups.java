@@ -58,4 +58,14 @@ public class ModSoundGroups {
             SoundEvents.ITEM_BOTTLE_EMPTY,
             SoundEvents.ITEM_BOTTLE_EMPTY
     );
+    public static final BlockSoundGroup WATER_BUCKET = new BlockSoundGroup(
+            1.0f,
+            1.0f,
+            SoundEvents.ITEM_BUCKET_FILL,
+            SoundEvents.ITEM_BUCKET_FILL,
+            SoundEvents.ITEM_BUCKET_FILL,
+            SoundEvents.ITEM_BUCKET_EMPTY,
+            SoundEvents.ITEM_BUCKET_EMPTY
+    );
+    public static final BlockSoundGroup BUCKET = BlockSoundGroup.METAL;
 }

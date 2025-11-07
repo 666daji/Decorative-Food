@@ -9,7 +9,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.loot.context.LootWorldContext;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -17,8 +16,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -30,43 +28,69 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import org.dfood.shape.FoodShapeHandle;
 import org.dfood.tag.ModTags;
+import org.dfood.util.DFoodUtils;
+import org.dfood.util.IntPropertyManager;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 所有食物方块的父类，定义了食物方块的基本行为
  */
-public class foodBlock extends Block {
-    public static final EnumProperty<Direction> FACING = Properties.FACING;
-    public static final IntProperty NUMBER_OF_FOOD = IntProperty.of("number_of_food", 0, 12);
-    private static final FoodShapeHandle foodShapeHandle = new FoodShapeHandle();
+public class FoodBlock extends Block {
+    public static final Set<FoodBlock> FOOD_BLOCKS = new HashSet<>();
+    public static final EnumProperty<Direction> FACING = Properties.HORIZONTAL_FACING;
+    protected static final FoodShapeHandle SHAPE_HANDLE = FoodShapeHandle.getInstance();
 
+    public final IntProperty NUMBER_OF_FOOD;
     public final int MAX_FOOD;
-    @Nullable public CROPS crop;
+    /** 用于强制指定该方块{@link FoodBlock#asItem()}方法的返回值，一般用于双方块物品的第二个方块 */
+    @Nullable private EnforceAsItem cItem;
+    private onUseHook onUseHook = (state, world, pos, player, hit) -> ActionResult.PASS;
 
-    public enum CROPS {
-        POTATO,
-        CARROT
+    public onUseHook getOnUseHook() {
+        return onUseHook;
     }
 
-    public foodBlock(Settings settings, int max_food) {
+    public void setOnUseHook(onUseHook onUseHook) {
+        this.onUseHook = onUseHook;
+    }
+
+    public FoodBlock(Settings settings, int max_food, boolean isFood) {
         super(settings);
         MAX_FOOD = max_food;
+        NUMBER_OF_FOOD = IntPropertyManager.create("number_of_food", MAX_FOOD);
+        if (isFood){
+            FOOD_BLOCKS.add(this);
+        }
         this.setDefaultState(this.getStateManager().getDefaultState()
-                .with(FACING, net.minecraft.util.math.Direction.NORTH)
-                .with(NUMBER_OF_FOOD, 0));
+                .with(FACING, Direction.NORTH)
+                .with(NUMBER_OF_FOOD, 1));
     }
 
-    public foodBlock(Settings settings, int max_food, @Nullable CROPS crop) {
+    public FoodBlock(Settings settings, int max_food){
+        this(settings, max_food, true);
+    }
+
+    public FoodBlock(Settings settings, int max_food, @Nullable EnforceAsItem cItem) {
         this(settings, max_food);
-        this.crop = crop;
+        this.cItem = cItem;
+    }
+
+    /**
+     * 检查该方块是否指定了强制的对应物品
+     * @return 如果指定了强制的对应物品则返回true,否则返回false
+     */
+    public boolean haveCItem(){
+        return this.cItem != null;
     }
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return foodShapeHandle.getShape(state);
+        return SHAPE_HANDLE.getShape(state, NUMBER_OF_FOOD);
     }
 
     @Override
@@ -83,11 +107,18 @@ public class foodBlock extends Block {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        // 调用自定义钩子
+        ActionResult HookResult = this.onUseHook.interact(state, world, pos, player, hit);
+        if (HookResult != ActionResult.PASS) {
+            return HookResult;
+        }
+
         Hand hand = player.getActiveHand();
         ItemStack handStack = player.getStackInHand(hand);
         int currentCount = state.get(NUMBER_OF_FOOD);
         BlockEntity blockEntity = world.getBlockEntity(pos);
         boolean isSameItem = isSame(handStack, blockEntity);
+        boolean tryFetch = false;
 
         // 客户端只负责播放声音和返回结果
         if (world.isClient) {
@@ -96,50 +127,81 @@ public class foodBlock extends Block {
             } else if (!isSameItem && currentCount > 0) {
                 playSound(this.soundGroup.getBreakSound(), world, pos, player);
             }
-            return ActionResult.SUCCESS; // 客户端返回成功并播放声音
+            return ActionResult.SUCCESS;
         }
 
         // 手持相同物品 - 尝试添加
         if (isSameItem) {
             if (currentCount < MAX_FOOD) {
-                // 更新方块状态
-                BlockState newState = state.with(NUMBER_OF_FOOD, currentCount + 1);
-                world.setBlockState(pos, newState, Block.NOTIFY_ALL);
-                playSound(this.soundGroup.getPlaceSound(), world, pos, player);
+                if (tryAdd(state, world, pos, player, handStack, blockEntity)) {
+                    playSound(this.soundGroup.getPlaceSound(), world, pos, player);
 
-                // 消耗物品（非创造模式）
-                if (!player.isCreative()) {
-                    handStack.decrement(1);
-                    player.setStackInHand(hand, handStack);
+                    // 消耗物品（非创造模式）
+                    if (!player.isCreative()) {
+                        handStack.decrement(1);
+                        player.setStackInHand(hand, handStack);
+                    }
+                    return ActionResult.SUCCESS;
                 }
-                return ActionResult.SUCCESS;
             }
-            return ActionResult.PASS; // 已达最大数量
+            tryFetch = true; // 已达最大数量，尝试取出
         }
 
         // 其他物品/空手 - 尝试取出
-        if (currentCount > 0) {
-            int newCount = currentCount - 1;
-            BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
-
-            if (newCount > 0) {
-                world.setBlockState(pos, newState, Block.NOTIFY_ALL);
-            } else {
-                world.breakBlock(pos, false); // 数量为0时销毁方块
+        if (currentCount > 0 || tryFetch) {
+            if (tryRemove(state, world, pos, player, blockEntity)) {
+                playSound(this.soundGroup.getBreakSound(), world, pos, player);
+                return ActionResult.SUCCESS;
             }
-            playSound(this.soundGroup.getBreakSound(), world, pos, player);
-
-            // 给予玩家物品（非创造模式）
-            if (!player.isCreative()) {
-                ItemStack foodItem = createStack(1, blockEntity);
-                if (!player.giveItemStack(foodItem)) {
-                    player.dropItem(foodItem, false); // 背包满时掉落
-                }
-            }
-            return ActionResult.SUCCESS;
         }
 
         return ActionResult.PASS;
+    }
+
+    /**
+     * 尝试增加堆叠数量
+     * @param state 当前的方块状态
+     * @param world 当前世界
+     * @param pos 方块的位置
+     * @param player 执行操作的玩家
+     * @param handStack 尝试添加的物品堆栈
+     * @param blockEntity 对应的方块实体
+     * @return 操作是否成功
+     */
+    protected boolean tryAdd(BlockState state, World world, BlockPos pos, PlayerEntity player, ItemStack handStack, BlockEntity blockEntity) {
+        int currentCount = state.get(NUMBER_OF_FOOD);
+        BlockState newState = state.with(NUMBER_OF_FOOD, currentCount + 1);
+        return world.setBlockState(pos, newState, Block.NOTIFY_ALL);
+    }
+
+    /**
+     * 尝试减少方块的堆叠数量
+     * @param world 当前世界
+     * @param pos 方块的位置
+     * @param player 执行操作的玩家
+     * @param blockEntity 对应的方块实体
+     * @return 操作是否成功
+     */
+    protected boolean tryRemove(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockEntity blockEntity) {
+        int currentCount = state.get(NUMBER_OF_FOOD);
+        int newCount = currentCount - 1;
+
+        if (newCount > 0) {
+            BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
+            world.setBlockState(pos, newState, Block.NOTIFY_ALL);
+        } else {
+            world.breakBlock(pos, false);
+        }
+
+        // 给予玩家物品（非创造模式）
+        if (!player.isCreative()) {
+            ItemStack foodItem = createStack(1, blockEntity);
+            if (!player.giveItemStack(foodItem)) {
+                player.dropItem(foodItem, false);
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -181,14 +243,15 @@ public class foodBlock extends Block {
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos downPos = pos.down();
-        return !world.getBlockState(downPos).isIn(ModTags.FOOD_PLACE);
+        BlockState checkState = world.getBlockState(downPos);
+        return !checkState.isIn(ModTags.FOOD_PLACE) && !(DFoodUtils.isModFoodBlock(checkState.getBlock()));
     }
 
     /**
      *硬编码掉落物
      */
     @Override
-    protected List<ItemStack> getDroppedStacks(BlockState state, LootWorldContext.Builder builder) {
+    public List<ItemStack> getDroppedStacks(BlockState state, LootWorldContext.Builder builder) {
         int foodCount = state.get(NUMBER_OF_FOOD);
 
         // 当数量为0时，不返回任何物品
@@ -202,17 +265,34 @@ public class foodBlock extends Block {
 
     @Override
     public Item asItem() {
-        if (this.crop == CROPS.POTATO) {
-            return Items.POTATO;
-        } else if (this.crop == CROPS.CARROT) {
-            return Items.CARROT;
+        if (this.cItem != null){
+            return cItem.getItem();
         }
         return super.asItem();
     }
 
     @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state.rotate(mirror.getRotation(state.get(FACING)));
+    }
+
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
-        builder.add(NUMBER_OF_FOOD);
+        builder.add(IntPropertyManager.take());
+    }
+
+    @FunctionalInterface
+    public interface onUseHook{
+        ActionResult interact(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit);
+    }
+
+    public interface EnforceAsItem {
+        Item getItem();
     }
 }
