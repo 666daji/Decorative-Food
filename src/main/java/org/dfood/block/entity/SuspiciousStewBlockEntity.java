@@ -11,6 +11,7 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
@@ -117,13 +118,8 @@ public class SuspiciousStewBlockEntity extends BlockEntity {
         return new SuspiciousStewEffectsComponent(effects);
     }
 
-    // 辅助方法：通过Identifier获取StatusEffect的注册表条目
     private RegistryEntry<StatusEffect> getRegistryEntry(Identifier effectId) {
-        if (this.world != null) {
-            var registry = this.world.getRegistryManager().get(net.minecraft.registry.RegistryKeys.STATUS_EFFECT);
-            return registry.getEntry(registry.get(effectId));
-        }
-        return null;
+        return Registries.STATUS_EFFECT.getEntry(Registries.STATUS_EFFECT.get(effectId));
     }
 
     public ItemStack getStewStack() {

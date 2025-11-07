@@ -14,9 +14,9 @@ public class StewToBlocks {
 
     static {
         // 炖菜类
-        stewMap.put("rabbit_stew", new BlockItem(FoodBlocks.RABBIT_STEW, new Item.Settings().food(FoodComponents.RABBIT_STEW)));
-        stewMap.put("mushroom_stew", new BlockItem(FoodBlocks.MUSHROOM_STEW, new Item.Settings().food(FoodComponents.MUSHROOM_STEW)));
-        stewMap.put("beetroot_soup", new BlockItem(FoodBlocks.BEETROOT_SOUP, new Item.Settings().food(FoodComponents.BEETROOT_SOUP)));
-        stewMap.put("suspicious_stew", new ModSuspiciousItem(FoodBlocks.SUSPICIOUS_STEW, new Item.Settings().food(FoodComponents.SUSPICIOUS_STEW)));
+        stewMap.put("rabbit_stew", new BlockItem(FoodBlocks.RABBIT_STEW, new Item.Settings().food(FoodComponents.RABBIT_STEW).maxCount(1)));
+        stewMap.put("mushroom_stew", new BlockItem(FoodBlocks.MUSHROOM_STEW, new Item.Settings().food(FoodComponents.MUSHROOM_STEW).maxCount(1)));
+        stewMap.put("beetroot_soup", new BlockItem(FoodBlocks.BEETROOT_SOUP, new Item.Settings().food(FoodComponents.BEETROOT_SOUP).maxCount(1)));
+        stewMap.put("suspicious_stew", new ModSuspiciousItem(FoodBlocks.SUSPICIOUS_STEW, new Item.Settings().food(FoodComponents.SUSPICIOUS_STEW).maxCount(1)));
     }
 }
