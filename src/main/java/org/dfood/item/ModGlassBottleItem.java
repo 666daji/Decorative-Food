@@ -1,6 +1,7 @@
 package org.dfood.item;
 
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,10 +18,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ModPotionItem extends PotionItem implements HaveBlock{
+public class ModGlassBottleItem extends GlassBottleItem implements HaveBlock {
     private final Block block;
 
-    public ModPotionItem(Block block, Item.Settings settings) {
+    public ModGlassBottleItem(Settings settings, Block block) {
         super(settings);
         this.block = block;
     }
@@ -75,4 +76,3 @@ public class ModPotionItem extends PotionItem implements HaveBlock{
         return this.getBlock().getRequiredFeatures();
     }
 }
-
