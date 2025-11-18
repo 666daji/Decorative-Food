@@ -18,6 +18,7 @@ public class BlockColorsMixin {
     @ModifyVariable(method = "create", at = @At("RETURN"))
     private static BlockColors registerBlockColor(BlockColors blockColors) {
         blockColors.registerColorProvider(BlockColorsMixin::getPotionColor, FoodBlocks.POTION);
+        blockColors.registerColorProvider((state, world, pos, tintIndex) -> tintIndex != -1? 4159204: -1, FoodBlocks.WATER_BUCKET);
         return blockColors;
     }
 

@@ -18,10 +18,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ModGlassBottleItem extends GlassBottleItem implements HaveBlock {
+public class ModHoneyBottleItem extends HoneyBottleItem implements HaveBlock {
     private final Block block;
 
-    public ModGlassBottleItem(Block block, Settings settings) {
+    public ModHoneyBottleItem(Block block, Settings settings) {
         super(settings);
         this.block = block;
     }

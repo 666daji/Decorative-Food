@@ -68,4 +68,13 @@ public class ModSoundGroups {
             SoundEvents.ITEM_BUCKET_EMPTY
     );
     public static final BlockSoundGroup BUCKET = BlockSoundGroup.METAL;
+    public static final BlockSoundGroup LAVA_BUCKET = new BlockSoundGroup(
+            1.0f,
+            1.0f,
+            SoundEvents.ITEM_BUCKET_FILL_LAVA,
+            SoundEvents.ITEM_BUCKET_FILL_LAVA,
+            SoundEvents.ITEM_BUCKET_FILL_LAVA,
+            SoundEvents.ITEM_BUCKET_EMPTY_LAVA,
+            SoundEvents.ITEM_BUCKET_EMPTY_LAVA
+    );
 }

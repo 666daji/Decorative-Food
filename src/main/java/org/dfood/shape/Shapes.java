@@ -133,6 +133,9 @@ public class Shapes {
         shapeMap.put("minecraft:water_bucket", new int[][]{
                 {1, 1, 8}
         });
+        shapeMap.put("minecraft:lava_bucket", new int[][]{
+                {1, 1, 8}
+        });
         // 其他
         shapeMap.put("minecraft:pumpkin_pie", new int[][]{
                 {1, 1, 1}
@@ -145,6 +148,12 @@ public class Shapes {
         });
         // 药水
         shapeMap.put("minecraft:potion", new int[][]{
+                {1, 2, 8}, {3, 3, 1}
+        });
+        shapeMap.put("minecraft:glass_bottle", new int[][]{
+                {1, 2, 8}, {3, 3, 1}
+        });
+        shapeMap.put("minecraft:honey_bottle", new int[][]{
                 {1, 2, 8}, {3, 3, 1}
         });
 

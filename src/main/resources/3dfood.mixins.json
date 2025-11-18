@@ -5,7 +5,7 @@
   "mixins": [
     "BlockItemMixin",
     "BlocksMixin",
-    "foodToBlockMixin",
+    "FoodToBlockMixin",
     "ServerPlayerInteractionManagerMixin"
   ],
   "injectors": {
