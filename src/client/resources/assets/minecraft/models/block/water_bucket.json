@@ -5,7 +5,7 @@
 	"textures": {
 		"flow": "minecraft:block/water_still",
 		"bucket": "minecraft:block/bucket",
-		"particle": "minecraft:block/water_bucket"
+		"particle": "minecraft:item/water_bucket"
 	},
 	"elements": [
 		{

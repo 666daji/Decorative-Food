@@ -23,10 +23,10 @@ public class ClientPlayerInteractionManagerMixin {
      */
     @Inject(method = "interactBlockInternal", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;shouldCancelInteraction()Z"), cancellable = true)
     private void interactBlockMixin(ClientPlayerEntity player, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {
-        boolean bl3 = DFoodUtils.isModFoodItem(player.getMainHandStack().getItem());
+        BlockPos blockPos = hitResult.getBlockPos();
+        BlockState blockState = Objects.requireNonNull(((ClientPlayerInteractionManagerAccessor) this).getClient().world).getBlockState(blockPos);
+        boolean bl3 = DFoodUtils.isModFoodBlock(blockState.getBlock());
         if (bl3) {
-            BlockPos blockPos = hitResult.getBlockPos();
-            BlockState blockState = Objects.requireNonNull(((ClientPlayerInteractionManagerAccessor) this).getClient().world).getBlockState(blockPos);
             ActionResult actionResult = blockState.onUse(((ClientPlayerInteractionManagerAccessor) this).getClient().world, player, hand, hitResult);
             if (actionResult.isAccepted()) {
                 cir.setReturnValue(actionResult);

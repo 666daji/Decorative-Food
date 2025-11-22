@@ -25,10 +25,10 @@ public class ServerPlayerInteractionManagerMixin {
      */
     @Inject(method = "interactBlock", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;copy()Lnet/minecraft/item/ItemStack;"), cancellable = true)
     private void interactBlockMixin(ServerPlayerEntity player, World world, ItemStack stack, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir){
-        boolean bl3 = DFoodUtils.isModFoodItem(player.getMainHandStack().getItem());
+        BlockPos blockPos = hitResult.getBlockPos();
+        BlockState blockState = world.getBlockState(blockPos);
+        boolean bl3 = DFoodUtils.isModFoodBlock(blockState.getBlock());
         if (bl3) {
-            BlockPos blockPos = hitResult.getBlockPos();
-            BlockState blockState = world.getBlockState(blockPos);
             ActionResult actionResult = blockState.onUse(world, player, hand, hitResult);
             ItemStack itemStack = stack.copy();
             if (actionResult.isAccepted()) {
