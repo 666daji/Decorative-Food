@@ -4,9 +4,11 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BlockItemMixin",
+    "AbstractSignBlockMixin",
     "BlocksMixin",
     "FoodToBlockMixin",
-    "ServerPlayerInteractionManagerMixin"
+    "ServerPlayerInteractionManagerMixin",
+    "SignBlockEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

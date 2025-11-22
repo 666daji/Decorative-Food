@@ -64,7 +64,7 @@ public class DFoodUtils {
      * @param item 要转换的物品
      * @return 对应的默认方块状态
      */
-    private static BlockState getBlockStateFromItem(Item item) {
+    public static BlockState getBlockStateFromItem(Item item) {
         if (item instanceof DoubleBlockItem doubleBlockItem){
             return doubleBlockItem.getSecondBlock().getDefaultState();
         }

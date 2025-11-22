@@ -3,6 +3,6 @@
 	"textures": {
       "flow": "minecraft:block/milk",
       "bucket": "minecraft:block/bucket",
-      "particle": "minecraft:block/milk_bucket"
+      "particle": "minecraft:item/milk_bucket"
 	}
 }

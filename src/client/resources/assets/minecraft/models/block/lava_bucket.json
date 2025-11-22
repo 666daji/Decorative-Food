@@ -3,6 +3,6 @@
   "textures": {
     "flow": "minecraft:block/lava_still",
     "bucket": "minecraft:block/bucket",
-    "particle": "minecraft:block/lava_bucket"
+    "particle": "minecraft:item/lava_bucket"
   }
 }

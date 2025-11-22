@@ -281,6 +281,11 @@ public class FoodBlock extends Block {
     }
 
     @Override
+    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBreak(world, pos, state, player);
+    }
+
+    @Override
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
     }

@@ -40,5 +40,10 @@
 	},
 	"suggests": {
 		"another-mod": "*"
-	}
+	},
+    "custom": {
+      "loom:injected_interfaces": {
+        "net/minecraft/class_2625": ["org/dfood/util/mixin/dFoodSignBlockEntity"]
+      }
+    }
 }

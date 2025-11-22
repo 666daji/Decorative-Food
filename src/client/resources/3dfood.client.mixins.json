@@ -6,7 +6,8 @@
     "BlockColorsMixin",
     "ClientPlayerInteractionManagerAccessor",
     "ClientPlayerInteractionManagerMixin",
-    "RenderLayerMixin"
+    "RenderLayerMixin",
+    "SignBlockEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
