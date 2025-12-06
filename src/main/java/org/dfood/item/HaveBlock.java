@@ -28,6 +28,7 @@ import java.util.Objects;
 
 /**
  * 表示该模组独有的方块物品，虽然这样做会有很大一部分重复代码，但是可以很好地与其他模组兼容。
+ * <p>示例:{@linkplain ModPotionItem}</p>
  */
 public interface HaveBlock {
     Block getBlock();

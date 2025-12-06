@@ -212,7 +212,7 @@ public class FoodBlock extends Block {
      * 检查手持物品是否与方块匹配
      * @param stack 手持物品堆栈
      * @param blockEntity 对应的方块实体
-     * @return 匹配放回true,否则返回false
+     * @return 匹配返回true,否则返回false
      */
     public boolean isSame(ItemStack stack, BlockEntity blockEntity) {
         return stack.getItem() == this.asItem();

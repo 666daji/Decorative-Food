@@ -9,6 +9,9 @@ import org.dfood.ThreedFood;
 import org.dfood.block.FoodBlocks;
 
 public class ModBlockEntityTypes {
+    public static final BlockEntityType<ComplexFoodBlockEntity> COMPLEX_FOOD = create("complex_food",
+            BlockEntityType.Builder.create(ComplexFoodBlockEntity::new));
+
     public static final BlockEntityType<PotionBlockEntity> POTION_BLOCK_ENTITY = create("potion_block_entity",
             BlockEntityType.Builder.create(PotionBlockEntity::new, FoodBlocks.POTION));
     public static final BlockEntityType<SuspiciousStewBlockEntity> SUSPICIOUS_STEW_BLOCK_ENTITY = create("suspicious_stew_block_entity",
