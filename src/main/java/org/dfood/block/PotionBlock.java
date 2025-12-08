@@ -11,6 +11,7 @@ import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 import org.dfood.block.entity.PotionBlockEntity;
 import org.jetbrains.annotations.Nullable;
@@ -19,8 +20,29 @@ import java.util.List;
 import java.util.Objects;
 
 public class PotionBlock extends FoodBlock implements BlockEntityProvider {
-    public PotionBlock(Settings settings, int max_food) {
-        super(settings, max_food);
+    protected PotionBlock(Settings settings, int maxFood, boolean isFood,
+                          @Nullable VoxelShape simpleShape, boolean useItemTranslationKey,
+                          @Nullable EnforceAsItem cItem) {
+        super(settings, maxFood, isFood, simpleShape, useItemTranslationKey, cItem);
+    }
+
+    public static class Builder extends FoodBlockBuilder<PotionBlock, Builder> {
+        private Builder() {}
+
+        public static Builder create() {
+            return new Builder();
+        }
+
+        @Override
+        protected PotionBlock createBlock() {
+            return new PotionBlock(
+                    this.settings,
+                    this.maxFood,
+                    this.isFood,
+                    this.simpleShape,
+                    this.useItemTranslationKey,
+                    this.cItem);
+        }
     }
 
     @Override

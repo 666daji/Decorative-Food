@@ -11,6 +11,7 @@ import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 import org.dfood.block.entity.ComplexFoodBlockEntity;
 import org.jetbrains.annotations.Nullable;
@@ -28,17 +29,30 @@ import java.util.List;
  * @see ComplexFoodBlockEntity
  */
 public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
-
-    public ComplexFoodBlock(Settings settings, int max_food, boolean isFood) {
-        super(settings, max_food, isFood);
+    protected ComplexFoodBlock(Settings settings, int maxFood, boolean isFood,
+                               @Nullable VoxelShape simpleShape, boolean useItemTranslationKey,
+                               @Nullable EnforceAsItem cItem) {
+        super(settings, maxFood, isFood, simpleShape, useItemTranslationKey, cItem);
     }
 
-    public ComplexFoodBlock(Settings settings, int max_food) {
-        super(settings, max_food);
-    }
+    public static class Builder extends FoodBlockBuilder<ComplexFoodBlock, Builder> {
+        private Builder() {}
 
-    public ComplexFoodBlock(Settings settings, int max_food, @Nullable EnforceAsItem cItem) {
-        super(settings, max_food, cItem);
+        public static Builder create() {
+            return new Builder();
+        }
+
+        @Override
+        protected ComplexFoodBlock createBlock() {
+            return new ComplexFoodBlock(
+                    this.settings,
+                    this.maxFood,
+                    this.isFood,
+                    this.simpleShape,
+                    this.useItemTranslationKey,
+                    this.cItem
+            );
+        }
     }
 
     @Override

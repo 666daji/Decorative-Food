@@ -1,6 +1,5 @@
 package org.dfood.util;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItem;
@@ -8,8 +7,6 @@ import net.minecraft.item.Item;
 import org.dfood.block.FoodBlock;
 import org.dfood.item.DoubleBlockItem;
 import org.dfood.item.HaveBlock;
-
-import java.util.function.BiFunction;
 
 public class DFoodUtils {
     /**
@@ -22,7 +19,7 @@ public class DFoodUtils {
         if (state == null) return false;
 
         if (state.getBlock() instanceof FoodBlock block){
-            return FoodBlock.FOOD_BLOCKS.contains(block);
+            return FoodBlock.getRegisteredFoodBlocks().contains(block);
         }
 
         return false;
@@ -35,7 +32,7 @@ public class DFoodUtils {
      */
     public static boolean isModFoodBlock(Block block){
         if (block instanceof FoodBlock foodBlock){
-            return FoodBlock.FOOD_BLOCKS.contains(foodBlock);
+            return FoodBlock.getRegisteredFoodBlocks().contains(foodBlock);
         }
 
         return false;
@@ -55,7 +52,7 @@ public class DFoodUtils {
      * @param state 要检查的方块状态
      * @return 方块是否强制定义了asItem方法的返回值
      */
-    private static boolean HaveCItem(BlockState state) {
+    public static boolean HaveCItem(BlockState state) {
         return state.getBlock() instanceof FoodBlock foodBlock && foodBlock.haveCItem();
     }
 
@@ -75,18 +72,5 @@ public class DFoodUtils {
             return haveBlock.getBlock().getDefaultState();
         }
         return null;
-    }
-
-    /**
-     * 创建一个基本的食物方块
-     * @param foodValue 食物方块的堆叠数量
-     * @param settings 方块设置
-     * @param blockCreator 食物方块的构造器
-     * @return 一个新的食物方块
-     */
-    public static Block createFoodBlock(int foodValue, AbstractBlock.Settings settings,
-                                        BiFunction<AbstractBlock.Settings, Integer, Block> blockCreator) {
-        IntPropertyManager.preCache("number_of_food", foodValue);
-        return blockCreator.apply(settings, foodValue);
     }
 }
