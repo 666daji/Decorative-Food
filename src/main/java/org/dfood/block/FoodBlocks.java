@@ -102,7 +102,7 @@ public class FoodBlocks {
     public static final Block BEETROOT_SOUP = registerFoodBlock("beetroot_soup", 1,
             MapColor.BROWN, 0.1F, BlockSoundGroup.DECORATED_POT);
     public static final Block SUSPICIOUS_STEW = registerFoodBlock("suspicious_stew",
-            FoodBlock.Builder.create()
+            SuspiciousStewBlock.Builder.create()
                     .maxFood(1)
                     .settings(AbstractBlock.Settings.create()
                             .mapColor(MapColor.BROWN)
@@ -128,7 +128,7 @@ public class FoodBlocks {
     public static final Block PUMPKIN_PIE = registerFoodBlock("pumpkin_pie", 1,
             MapColor.TERRACOTTA_ORANGE, 0.2F, BlockSoundGroup.WOOL);
     public static final Block CHORUS_FRUIT = registerFoodBlock("chorus_fruit",
-            FoodBlock.Builder.create()
+            ChorusFruitBlock.Builder.create()
                     .maxFood(5)
                     .settings(AbstractBlock.Settings.create()
                             .mapColor(MapColor.PURPLE)
@@ -148,7 +148,7 @@ public class FoodBlocks {
 
     // 药水
     public static final Block POTION = registerFoodBlock("potion",
-            FoodBlock.Builder.create()
+            PotionBlock.Builder.create()
                     .maxFood(3)
                     .settings(AbstractBlock.Settings.create()
                             .mapColor(MapColor.PURPLE)

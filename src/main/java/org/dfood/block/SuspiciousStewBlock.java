@@ -10,7 +10,6 @@ import net.minecraft.loot.context.LootContextParameterSet;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
 import org.dfood.block.entity.SuspiciousStewBlockEntity;
 import org.jetbrains.annotations.Nullable;
@@ -19,10 +18,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class SuspiciousStewBlock extends FoodBlock implements BlockEntityProvider {
-    protected SuspiciousStewBlock(Settings settings, int maxFood,
-                                  boolean isFood, @Nullable VoxelShape simpleShape, boolean useItemTranslationKey,
-                                  @Nullable EnforceAsItem cItem) {
-        super(settings, maxFood, isFood, simpleShape, useItemTranslationKey, cItem);
+    protected SuspiciousStewBlock(Settings settings, int maxFood) {
+        super(settings, maxFood, true, null, true, null);
     }
 
     public static class Builder extends FoodBlockBuilder<SuspiciousStewBlock, Builder> {
@@ -35,12 +32,7 @@ public class SuspiciousStewBlock extends FoodBlock implements BlockEntityProvide
         @Override
         protected SuspiciousStewBlock createBlock() {
             return new SuspiciousStewBlock(
-                    this.settings,
-                    this.maxFood,
-                    this.isFood,
-                    this.simpleShape,
-                    this.useItemTranslationKey,
-                    this.cItem
+                    this.settings, this.maxFood
             );
         }
     }

@@ -2,6 +2,7 @@ package org.dfood.block.entity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
@@ -24,15 +25,19 @@ public class ComplexFoodBlockEntity extends BlockEntity {
     /**
      * 存储 NBT 数据的栈结构，底层使用 {@link NbtList} 便于序列化。
      */
-    private final Stack<NbtCompound> nbtStack = new Stack<>();
+    protected final Stack<NbtCompound> nbtStack = new Stack<>();
 
     /**
      * 最大存储容量，由对应的 {@link ComplexFoodBlock} 定义。
      */
-    private int maxCapacity;
+    protected int maxCapacity;
 
     public ComplexFoodBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntityTypes.COMPLEX_FOOD, pos, state);
+        this(ModBlockEntityTypes.COMPLEX_FOOD, pos, state);
+    }
+
+    public ComplexFoodBlockEntity(BlockEntityType<? extends ComplexFoodBlockEntity> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
 
         // 从方块状态中获取最大容量
         if (state.getBlock() instanceof ComplexFoodBlock complexFoodBlock) {

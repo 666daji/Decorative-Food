@@ -20,6 +20,7 @@ public class ClientPlayerInteractionManagerMixin {
 
     /**
      *与服务端的ServerPlayerInteractionManagerMixin同步
+     * @see org.dfood.mixin.ServerPlayerInteractionManagerMixin
      */
     @Inject(method = "interactBlockInternal", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;shouldCancelInteraction()Z"), cancellable = true)
     private void interactBlockMixin(ClientPlayerEntity player, Hand hand, BlockHitResult hitResult, CallbackInfoReturnable<ActionResult> cir) {

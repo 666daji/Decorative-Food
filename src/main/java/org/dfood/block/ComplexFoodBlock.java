@@ -114,8 +114,9 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
                 world.breakBlock(pos, false);
             }
 
+            ItemStack foodItem = createStack(1, blockEntity);
+
             if (!player.isCreative()) {
-                ItemStack foodItem = createStack(1, blockEntity);
                 if (!player.giveItemStack(foodItem)) {
                     player.dropItem(foodItem, false);
                 }

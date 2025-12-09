@@ -171,17 +171,6 @@ public class FoodBlock extends Block {
         // 检查手持物品是否与方块匹配
         boolean isHoldingSameItem = isSame(handStack, blockEntity);
 
-        // 客户端只播放声音，不处理逻辑
-        if (world.isClient) {
-            if (isHoldingSameItem && currentCount < MAX_FOOD) {
-                playPlaceSound(world, pos, player);
-            } else if (currentCount > 0) {
-                playTakeSound(world, pos, player);
-            }
-
-            return ActionResult.SUCCESS;
-        }
-
         // 尝试添加物品的情况
         if (isHoldingSameItem && currentCount < MAX_FOOD &&
                 tryAdd(state, world, pos, player, handStack, blockEntity)) {

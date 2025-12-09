@@ -27,7 +27,7 @@ public class BlockColorsMixin {
         if (world != null && tintIndex != -1) {
             BlockEntity blockEntity = world.getBlockEntity(pos);
             if (blockEntity instanceof PotionBlockEntity potionBlockEntity) {
-                return potionBlockEntity.getColor();
+                return potionBlockEntity.getColor(tintIndex);
             }
         }
         return -1;

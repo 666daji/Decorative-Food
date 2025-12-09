@@ -5,15 +5,11 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
 public class ChorusFruitBlock extends FoodBlock {
-    protected ChorusFruitBlock(Settings settings, int maxFood, boolean isFood,
-                               @Nullable VoxelShape simpleShape, boolean useItemTranslationKey,
-                               @Nullable EnforceAsItem cItem) {
-        super(settings, maxFood, isFood, simpleShape, useItemTranslationKey, cItem);
+    protected ChorusFruitBlock(Settings settings, int maxFood) {
+        super(settings, maxFood, true, null, true, null);
     }
 
     @Override
@@ -37,9 +33,7 @@ public class ChorusFruitBlock extends FoodBlock {
         @Override
         protected ChorusFruitBlock createBlock() {
             return new ChorusFruitBlock(
-                    this.settings, this.maxFood, this.isFood,
-                    this.simpleShape, this.useItemTranslationKey,
-                    this.cItem
+                    this.settings, this.maxFood
             );
         }
     }
