@@ -1,7 +1,7 @@
 {
 	"parent": "minecraft:block/water_bucket",
 	"textures": {
-      "flow": "minecraft:block/milk",
+      "flow": "minecraft:block/milk_still",
       "bucket": "minecraft:block/bucket",
       "particle": "minecraft:item/milk_bucket"
 	}

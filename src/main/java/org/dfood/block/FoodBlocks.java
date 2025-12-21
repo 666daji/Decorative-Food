@@ -122,7 +122,11 @@ public class FoodBlocks {
     public static final Block MILK_BUCKET = registerFoodBlock("milk_bucket", 1,
             MapColor.WHITE, 0.2F, ModSoundGroups.WATER_BUCKET);
     public static final Block LAVA_BUCKET = registerFoodBlock("lava_bucket", 1,
-            MapColor.ORANGE, 0.2F, ModSoundGroups.LAVA_BUCKET);
+            AbstractBlock.Settings.create()
+                    .sounds(ModSoundGroups.LAVA_BUCKET)
+                    .strength(0.2F, 0.2F)
+                    .mapColor(MapColor.ORANGE)
+                    .luminance(state -> 15));
 
     // 其他
     public static final Block PUMPKIN_PIE = registerFoodBlock("pumpkin_pie", 1,
@@ -169,6 +173,14 @@ public class FoodBlocks {
     private static Block registerFoodBlock(String id, Block block) {
         FOOD_BLOCK_REGISTRY.put(id, block);
         return block;
+    }
+
+    private static Block registerFoodBlock(String id, int maxFood, AbstractBlock.Settings settings){
+        Block block = FoodBlock.Builder.create()
+                .maxFood(maxFood)
+                .settings(settings)
+                .build();
+        return registerFoodBlock(id, block);
     }
 
     /**
