@@ -63,13 +63,14 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
     /**
      * 默认不比较 NBT 数据，子类可重写以支持特定 NBT 匹配逻辑。
      *
-     * @param stack       手持物品堆栈
+     * @param stack 手持物品堆栈
+     * @param state 对应的方块状态
      * @param blockEntity 对应的方块实体
      * @return 若匹配返回 {@code true}
      */
     @Override
-    public boolean isSame(ItemStack stack, @Nullable BlockEntity blockEntity) {
-        return super.isSame(stack, blockEntity);
+    public boolean isSame(ItemStack stack, BlockState state, @Nullable BlockEntity blockEntity) {
+        return super.isSame(stack, state, blockEntity);
     }
 
     /**
@@ -114,7 +115,7 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
                 world.breakBlock(pos, false);
             }
 
-            ItemStack foodItem = createStack(1, blockEntity);
+            ItemStack foodItem = createStack(1, state, blockEntity);
 
             if (!player.isCreative()) {
                 if (!player.giveItemStack(foodItem)) {
@@ -132,12 +133,13 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
      * 创建物品堆栈，并从方块实体恢复对应的 NBT 数据。
      *
      * @param count 创建数量（通常为 1）
+     * @param state 对应的方块状态
      * @param blockEntity 对应的方块实体
      * @return 带有原 NBT 数据的物品堆栈
      * @throws IllegalArgumentException 如果数量超出范围
      */
     @Override
-    public ItemStack createStack(int count, @Nullable BlockEntity blockEntity) {
+    public ItemStack createStack(int count, BlockState state, @Nullable BlockEntity blockEntity) {
         if (count <= 0 || count > MAX_FOOD) {
             throw new IllegalArgumentException("Count must be between 1 and " + MAX_FOOD);
         }
@@ -185,7 +187,7 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
         if (blockEntity instanceof ComplexFoodBlockEntity complexFoodBlockEntity) {
             List<ItemStack> droppedStacks = new ArrayList<>();
             for (int i = 0; i < foodCount; i++) {
-                droppedStacks.add(createStack(1, complexFoodBlockEntity));
+                droppedStacks.add(createStack(1, state, complexFoodBlockEntity));
             }
             return droppedStacks;
         }

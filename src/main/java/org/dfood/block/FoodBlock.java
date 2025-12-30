@@ -61,7 +61,7 @@ public class FoodBlock extends Block {
      * @see EnforceAsItem
      */
     @Nullable
-    private final EnforceAsItem cItem;
+    protected final EnforceAsItem cItem;
 
     /** 自定义交互钩子，允许子类扩展交互行为 */
     @Nullable
@@ -98,14 +98,6 @@ public class FoodBlock extends Block {
         this.setDefaultState(this.getStateManager().getDefaultState()
                 .with(FACING, Direction.NORTH)
                 .with(NUMBER_OF_FOOD, 1));
-    }
-
-    /**
-     * 检查是否指定了强制对应物品
-     * @return 若指定则返回true，否则返回false
-     */
-    public boolean hasCItem() {
-        return this.cItem != null;
     }
 
     /**
@@ -150,12 +142,7 @@ public class FoodBlock extends Block {
     }
 
     @Override
-    public ActionResult onUse(BlockState state,
-                              World world,
-                              BlockPos pos,
-                              PlayerEntity player,
-                              Hand hand,
-                              BlockHitResult hit) {
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         // 优先执行自定义钩子
         if (this.onUseHook != null) {
             ActionResult hookResult = this.onUseHook.interact(state, world, pos, player, hand, hit);
@@ -166,10 +153,12 @@ public class FoodBlock extends Block {
 
         ItemStack handStack = player.getStackInHand(hand);
         int currentCount = state.get(NUMBER_OF_FOOD);
+
+        // 食物方块不一定拥有方块实体
         BlockEntity blockEntity = world.getBlockEntity(pos);
 
         // 检查手持物品是否与方块匹配
-        boolean isHoldingSameItem = isSame(handStack, blockEntity);
+        boolean isHoldingSameItem = isSame(handStack, state, blockEntity);
 
         // 尝试添加物品的情况
         if (isHoldingSameItem && currentCount < MAX_FOOD &&
@@ -247,7 +236,7 @@ public class FoodBlock extends Block {
 
         // 给予玩家物品（非创造模式）
         if (!player.isCreative()) {
-            ItemStack foodItem = createStack(1, blockEntity);
+            ItemStack foodItem = createStack(1, state, blockEntity);
             if (!player.giveItemStack(foodItem)) {
                 player.dropItem(foodItem, false);
             }
@@ -260,18 +249,20 @@ public class FoodBlock extends Block {
      * 检查手持物品是否与方块匹配
      * @return 匹配返回true，否则返回false
      */
-    public boolean isSame(ItemStack stack, BlockEntity blockEntity) {
+    public boolean isSame(ItemStack stack, BlockState state, BlockEntity blockEntity) {
         return stack.getItem() == this.asItem();
     }
 
     /**
      * 创建对应物品堆栈
-     * @param count        物品数量
-     * @param blockEntity  对应的方块实体（可为null）
+     *
+     * @param count 物品数量
+     * @param state 方块状态
+     * @param blockEntity 对应的方块实体（可为null）
      * @return 物品堆栈
      * @throws IllegalArgumentException 当数量不在有效范围内时抛出
      */
-    public ItemStack createStack(int count, @Nullable BlockEntity blockEntity) {
+    public ItemStack createStack(int count, BlockState state, @Nullable BlockEntity blockEntity) {
         if (count <= 0 || count > MAX_FOOD) {
             throw new IllegalArgumentException("Count must be between 1 and " + MAX_FOOD);
         }
@@ -334,6 +325,14 @@ public class FoodBlock extends Block {
         return this.cItem != null;
     }
 
+    /**
+     * 获取强制指定的对应物品。
+     * @return 强制指定的对应物品，如果没有强制指定的物品则返回null
+     */
+    public @Nullable EnforceAsItem getCItem() {
+        return cItem;
+    }
+
     @Override
     public BlockState getStateForNeighborUpdate(BlockState state,
                                                 Direction direction,
@@ -371,7 +370,7 @@ public class FoodBlock extends Block {
      */
     @Override
     public Item asItem() {
-        if (this.cItem != null) {
+        if (haveCItem()) {
             return cItem.getItem();
         }
         return super.asItem();
