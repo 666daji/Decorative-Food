@@ -231,7 +231,7 @@ public class FoodBlock extends Block {
             BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
             world.setBlockState(pos, newState, Block.NOTIFY_ALL);
         } else {
-            world.breakBlock(pos, false);
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
         }
 
         // 给予玩家物品（非创造模式）
