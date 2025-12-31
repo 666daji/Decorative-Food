@@ -1,6 +1,5 @@
 package org.dfood.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -81,52 +80,12 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
     @Override
     protected boolean tryAdd(BlockState state, World world, BlockPos pos, PlayerEntity player,
                              ItemStack handStack, @Nullable BlockEntity blockEntity) {
-        int currentCount = state.get(NUMBER_OF_FOOD);
-
-        if (currentCount < MAX_FOOD) {
-            if (blockEntity instanceof ComplexFoodBlockEntity complexFoodBlockEntity) {
-                NbtCompound stackNbt = handStack.hasNbt() ? handStack.getNbt().copy() : new NbtCompound();
-                complexFoodBlockEntity.pushNbt(stackNbt);
-            }
-
-            BlockState newState = state.with(NUMBER_OF_FOOD, currentCount + 1);
-            return world.setBlockState(pos, newState, Block.NOTIFY_ALL);
+        if (blockEntity instanceof ComplexFoodBlockEntity complexFoodBlockEntity) {
+            NbtCompound stackNbt = handStack.hasNbt() ? handStack.getNbt().copy() : new NbtCompound();
+            complexFoodBlockEntity.pushNbt(stackNbt);
         }
 
-        return false;
-    }
-
-    /**
-     * 尝试减少堆叠数量，并从方块实体恢复物品 NBT 后给予玩家。
-     *
-     * @return {@code true} 如果操作成功
-     */
-    @Override
-    protected boolean tryRemove(BlockState state, World world, BlockPos pos,
-                                PlayerEntity player, @Nullable BlockEntity blockEntity) {
-        int currentCount = state.get(NUMBER_OF_FOOD);
-
-        if (currentCount > 0) {
-            int newCount = currentCount - 1;
-
-            if (newCount > 0) {
-                world.setBlockState(pos, state.with(NUMBER_OF_FOOD, newCount), Block.NOTIFY_ALL);
-            } else {
-                world.breakBlock(pos, false);
-            }
-
-            ItemStack foodItem = createStack(1, state, blockEntity);
-
-            if (!player.isCreative()) {
-                if (!player.giveItemStack(foodItem)) {
-                    player.dropItem(foodItem, false);
-                }
-            }
-
-            return true;
-        }
-
-        return false;
+        return super.tryAdd(state, world, pos, player, handStack, blockEntity);
     }
 
     /**

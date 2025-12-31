@@ -1,7 +1,10 @@
 package org.dfood.util;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import org.dfood.block.FoodBlock;
@@ -57,7 +60,7 @@ public class DFoodUtils {
     }
 
     /**
-     * 辅助方法
+     * 获取方块物品的对应默认方块状态
      * @param item 要转换的物品
      * @return 对应的默认方块状态
      */
@@ -72,5 +75,18 @@ public class DFoodUtils {
             return haveBlock.getBlock().getDefaultState();
         }
         return null;
+    }
+
+    /**
+     * 获取食物方块的基础设置。
+     * @return 食物方块的基础设置。
+     * @apiNote 这不是必须的，但是推荐使用这个方法来创建食物方块
+     */
+    public static AbstractBlock.Settings getFoodBlockSettings() {
+        return AbstractBlock.Settings.create()
+                .strength(0.1F, 0.1F)
+                .nonOpaque()
+                .solidBlock(Blocks::never)
+                .pistonBehavior(PistonBehavior.DESTROY);
     }
 }

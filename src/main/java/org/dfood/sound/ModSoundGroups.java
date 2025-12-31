@@ -55,6 +55,15 @@ public class ModSoundGroups {
             SoundEvents.ITEM_BOTTLE_FILL,
             SoundEvents.ITEM_BOTTLE_FILL,
             SoundEvents.ITEM_BOTTLE_FILL,
+            SoundEvents.ITEM_BOTTLE_FILL,
+            SoundEvents.ITEM_BOTTLE_FILL
+    );
+    public static final BlockSoundGroup GLASS_BOTTLE = new BlockSoundGroup(
+            1.0f,
+            1.0f,
+            SoundEvents.ITEM_BOTTLE_EMPTY,
+            SoundEvents.ITEM_BOTTLE_EMPTY,
+            SoundEvents.ITEM_BOTTLE_EMPTY,
             SoundEvents.ITEM_BOTTLE_EMPTY,
             SoundEvents.ITEM_BOTTLE_EMPTY
     );
