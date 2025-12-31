@@ -1,58 +1,66 @@
 package org.dfood.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.FoxEntity;
+import net.minecraft.block.ShulkerBoxBlock;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.resource.featuretoggle.FeatureSet;
+import net.minecraft.util.ActionResult;
+import org.dfood.util.DFoodUtils;
 
-public class ModChorusFruitItem extends BlockItem {
-    public ModChorusFruitItem(Block block, Settings settings) {
-        super(block, settings);
+public class ModChorusFruitItem extends ChorusFruitItem implements HaveBlock{
+    private final Block block;
+
+    public ModChorusFruitItem(Settings settings, Block block) {
+        super(settings);
+        this.block = block;
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        ItemStack itemStack = super.finishUsing(stack, world, user);
-        if (!world.isClient) {
-            double d = user.getX();
-            double e = user.getY();
-            double f = user.getZ();
+    public Block getBlock() {
+        return block;
+    }
 
-            for (int i = 0; i < 16; i++) {
-                double g = user.getX() + (user.getRandom().nextDouble() - 0.5) * 16.0;
-                double h = MathHelper.clamp(
-                        user.getY() + (user.getRandom().nextInt(16) - 8), (double)world.getBottomY(), (double)(world.getBottomY() + ((ServerWorld)world).getLogicalHeight() - 1)
-                );
-                double j = user.getZ() + (user.getRandom().nextDouble() - 0.5) * 16.0;
-                if (user.hasVehicle()) {
-                    user.stopRiding();
-                }
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        Item item = context.getStack().getItem();
+        // 仅当父类方法失败时才尝试放置方块
+        if (super.useOnBlock(context) != ActionResult.PASS || (player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item))){
+            return ActionResult.PASS;
+        }
+        ActionResult actionResult = this.place(new ItemPlacementContext(context));
+        if (!actionResult.isAccepted() && this.isFood()) {
+            ActionResult actionResult2 = this.use(context.getWorld(), context.getPlayer(), context.getHand()).getResult();
+            return actionResult2 == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : actionResult2;
+        } else {
+            return actionResult;
+        }
+    }
 
-                Vec3d vec3d = user.getPos();
-                if (user.teleport(g, h, j, true)) {
-                    world.emitGameEvent(GameEvent.TELEPORT, vec3d, GameEvent.Emitter.of(user));
-                    SoundEvent soundEvent = user instanceof FoxEntity ? SoundEvents.ENTITY_FOX_TELEPORT : SoundEvents.ITEM_CHORUS_FRUIT_TELEPORT;
-                    world.playSound(null, d, e, f, soundEvent, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                    user.playSound(soundEvent, 1.0F, 1.0F);
-                    break;
-                }
-            }
+    @Override
+    public boolean canBeNested() {
+        return !(this.block instanceof ShulkerBoxBlock);
+    }
 
-            if (user instanceof PlayerEntity) {
-                ((PlayerEntity)user).getItemCooldownManager().set(this, 20);
+    @Override
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        if (this.block instanceof ShulkerBoxBlock) {
+            ItemStack itemStack = entity.getStack();
+            NbtCompound nbtCompound = HaveBlock.getBlockEntityNbt(itemStack);
+            if (nbtCompound != null && nbtCompound.contains("Items", NbtElement.LIST_TYPE)) {
+                NbtList nbtList = nbtCompound.getList("Items", NbtElement.COMPOUND_TYPE);
+                ItemUsage.spawnItemContents(entity, nbtList.stream().map(NbtCompound.class::cast).map(ItemStack::fromNbt));
             }
         }
+    }
 
-        return itemStack;
+    @Override
+    public FeatureSet getRequiredFeatures() {
+        return this.getBlock().getRequiredFeatures();
     }
 }

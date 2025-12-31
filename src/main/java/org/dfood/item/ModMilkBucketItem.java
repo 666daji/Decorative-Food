@@ -1,53 +1,66 @@
 package org.dfood.item;
 
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.block.ShulkerBoxBlock;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.world.World;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.resource.featuretoggle.FeatureSet;
+import net.minecraft.util.ActionResult;
+import org.dfood.util.DFoodUtils;
 
-public class ModMilkBucketItem extends BlockItem {
+public class ModMilkBucketItem extends MilkBucketItem implements HaveBlock{
+    private final Block block;
 
-    public ModMilkBucketItem(Block block, Settings settings) {
-        super(block, settings);
+    public ModMilkBucketItem(Settings settings, Block block) {
+        super(settings);
+        this.block = block;
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (user instanceof ServerPlayerEntity serverPlayerEntity) {
-            Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
-            serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+    public Block getBlock() {
+        return block;
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        Item item = context.getStack().getItem();
+        // 仅当父类方法失败时才尝试放置方块
+        if (super.useOnBlock(context) != ActionResult.PASS || (player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item))){
+            return ActionResult.PASS;
         }
-
-        if (user instanceof PlayerEntity && !((PlayerEntity)user).getAbilities().creativeMode) {
-            stack.decrement(1);
+        ActionResult actionResult = this.place(new ItemPlacementContext(context));
+        if (!actionResult.isAccepted() && this.isFood()) {
+            ActionResult actionResult2 = this.use(context.getWorld(), context.getPlayer(), context.getHand()).getResult();
+            return actionResult2 == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : actionResult2;
+        } else {
+            return actionResult;
         }
+    }
 
-        if (!world.isClient) {
-            user.clearStatusEffects();
+    @Override
+    public boolean canBeNested() {
+        return !(this.block instanceof ShulkerBoxBlock);
+    }
+
+    @Override
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        if (this.block instanceof ShulkerBoxBlock) {
+            ItemStack itemStack = entity.getStack();
+            NbtCompound nbtCompound = HaveBlock.getBlockEntityNbt(itemStack);
+            if (nbtCompound != null && nbtCompound.contains("Items", NbtElement.LIST_TYPE)) {
+                NbtList nbtList = nbtCompound.getList("Items", NbtElement.COMPOUND_TYPE);
+                ItemUsage.spawnItemContents(entity, nbtList.stream().map(NbtCompound.class::cast).map(ItemStack::fromNbt));
+            }
         }
-
-        return stack.isEmpty() ? new ItemStack(Items.BUCKET) : stack;
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack) {
-        return 32;
-    }
-
-    @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.DRINK;
-    }
-
-    @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        return ItemUsage.consumeHeldItem(world, user, hand);
+    public FeatureSet getRequiredFeatures() {
+        return this.getBlock().getRequiredFeatures();
     }
 }

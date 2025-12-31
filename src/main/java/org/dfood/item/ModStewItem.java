@@ -1,22 +1,66 @@
 package org.dfood.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.block.ShulkerBoxBlock;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.world.World;
+import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.resource.featuretoggle.FeatureSet;
+import net.minecraft.util.ActionResult;
+import org.dfood.util.DFoodUtils;
 
-public class ModStewItem extends BlockItem {
+public class ModStewItem extends StewItem implements HaveBlock {
+    private final Block block;
 
-    public ModStewItem(Block block, Settings settings) {
-        super(block, settings);
+    public ModStewItem(Settings settings, Block block) {
+        super(settings);
+        this.block = block;
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        ItemStack itemStack = super.finishUsing(stack, world, user);
-        return user instanceof PlayerEntity && ((PlayerEntity)user).getAbilities().creativeMode ? itemStack : new ItemStack(Items.BOWL);
+    public Block getBlock() {
+        return block;
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        Item item = context.getStack().getItem();
+        // 仅当父类方法失败时才尝试放置方块
+        if (super.useOnBlock(context) != ActionResult.PASS || (player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item))){
+            return ActionResult.PASS;
+        }
+        ActionResult actionResult = this.place(new ItemPlacementContext(context));
+        if (!actionResult.isAccepted() && this.isFood()) {
+            ActionResult actionResult2 = this.use(context.getWorld(), context.getPlayer(), context.getHand()).getResult();
+            return actionResult2 == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : actionResult2;
+        } else {
+            return actionResult;
+        }
+    }
+
+    @Override
+    public boolean canBeNested() {
+        return !(this.block instanceof ShulkerBoxBlock);
+    }
+
+    @Override
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        if (this.block instanceof ShulkerBoxBlock) {
+            ItemStack itemStack = entity.getStack();
+            NbtCompound nbtCompound = HaveBlock.getBlockEntityNbt(itemStack);
+            if (nbtCompound != null && nbtCompound.contains("Items", NbtElement.LIST_TYPE)) {
+                NbtList nbtList = nbtCompound.getList("Items", NbtElement.COMPOUND_TYPE);
+                ItemUsage.spawnItemContents(entity, nbtList.stream().map(NbtCompound.class::cast).map(ItemStack::fromNbt));
+            }
+        }
+    }
+
+    @Override
+    public FeatureSet getRequiredFeatures() {
+        return this.getBlock().getRequiredFeatures();
     }
 }
