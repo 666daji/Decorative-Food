@@ -43,10 +43,11 @@ public class FoodBlocks {
                     .settings(DFoodUtils.getFoodBlockSettings()
                             .mapColor(MapColor.YELLOW).sounds(BlockSoundGroup.SWEET_BERRY_BUSH)
                             .luminance(state -> state.getBlock() instanceof FoodBlock ?
-                                state.get(IntPropertyManager.create("number_of_food", 12)) + 3 : 0))
+                                    state.get(IntPropertyManager.create("number_of_food", 12)) + 3 : 0))
                     .build());
 
     // 金制食物
+    // 注意：之前传入了 null，会导致 soundGroup 为 null，从而被 ExtraSoundsNext 使用时触发 NPE
     public static final Block GOLDEN_APPLE = registerFoodBlock("golden_apple", 5,
             MapColor.GOLD, null);
     public static final Block GOLDEN_CARROT = registerFoodBlock("golden_carrot", 5,
@@ -176,11 +177,13 @@ public class FoodBlocks {
      */
     private static Block registerFoodBlock(String id, int maxFood, MapColor mapColor,
                                            BlockSoundGroup sound, FoodBlock.EnforceAsItem cropType){
+        BlockSoundGroup finalSound = (sound == null) ? BlockSoundGroup.STONE : sound;
+
         Block block = FoodBlock.Builder.create()
                 .maxFood(maxFood)
                 .cItem(cropType)
                 .settings(DFoodUtils.getFoodBlockSettings()
-                        .mapColor(mapColor).sounds(sound))
+                        .mapColor(mapColor).sounds(finalSound))
                 .build();
 
         return registerFoodBlock(id, block);

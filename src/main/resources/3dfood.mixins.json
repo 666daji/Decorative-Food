@@ -3,8 +3,8 @@
   "package": "org.dfood.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "BlockItemMixin",
     "AbstractSignBlockMixin",
+    "BlockItemMixin",
     "BlocksMixin",
     "FoodToBlockMixin",
     "ServerPlayerInteractionManagerMixin",
