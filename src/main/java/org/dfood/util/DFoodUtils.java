@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import org.dfood.block.FoodBlock;
 import org.dfood.item.DoubleBlockItem;
 import org.dfood.item.HaveBlock;
+import org.jetbrains.annotations.Nullable;
 
 public class DFoodUtils {
     /**
@@ -64,6 +65,7 @@ public class DFoodUtils {
      * @param item 要转换的物品
      * @return 对应的默认方块状态
      */
+    @Nullable
     public static BlockState getBlockStateFromItem(Item item) {
         if (item instanceof DoubleBlockItem doubleBlockItem){
             return doubleBlockItem.getSecondBlock().getDefaultState();

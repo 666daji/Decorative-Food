@@ -1,0 +1,55 @@
+{
+  "subtitles.dfood.meat_break": "Fleisch zerbricht",
+  "subtitles.dfood.meat_step": "Auf Fleisch treten",
+  "subtitles.dfood.meat_place": "Fleisch platziert",
+  "subtitles.dfood.meat_hit": "Fleisch getroffen",
+  "subtitles.dfood.meat_fall": "Fleisch fällt",
+
+  "subtitles.dfood.fish_break": "Fisch zerbricht",
+  "subtitles.dfood.fish_step": "Auf Fisch treten",
+  "subtitles.dfood.fish_place": "Fisch platziert",
+  "subtitles.dfood.fish_hit": "Fisch getroffen",
+  "subtitles.dfood.fish_fall": "Fisch fällt",
+
+  "subtitles.dfood.bread_break": "Brot zerbricht",
+  "subtitles.dfood.bread_step": "Auf Brot treten",
+  "subtitles.dfood.bread_place": "Brot platziert",
+  "subtitles.dfood.bread_hit": "Brot getroffen",
+  "subtitles.dfood.bread_fall": "Brot fällt",
+
+  "subtitles.dfood.chorus_break": "Chorusfrucht zerbricht",
+  "subtitles.dfood.chorus_step": "Auf Chorusfrucht treten",
+  "subtitles.dfood.chorus_place": "Chorusfrucht platziert",
+  "subtitles.dfood.chorus_hit": "Chorusfrucht getroffen",
+  "subtitles.dfood.chorus_fall": "Chorusfrucht fällt",
+
+  "subtitles.dfood.egg_break": "Ei zerbricht",
+  "subtitles.dfood.egg_step": "Auf Ei treten",
+  "subtitles.dfood.egg_place": "Ei platziert",
+  "subtitles.dfood.egg_hit": "Ei getroffen",
+  "subtitles.dfood.egg_fall": "Ei fällt",
+
+  "subtitles.dfood.potion_break": "Trank zerbricht",
+  "subtitles.dfood.potion_step": "Auf Trank treten",
+  "subtitles.dfood.potion_place": "Trank platziert",
+  "subtitles.dfood.potion_hit": "Trank getroffen",
+  "subtitles.dfood.potion_fall": "Trank fällt",
+
+  "subtitles.dfood.glass_bottle_break": "Glasflasche zerbricht",
+  "subtitles.dfood.glass_bottle_step": "Auf Glasflasche treten",
+  "subtitles.dfood.glass_bottle_place": "Glasflasche platziert",
+  "subtitles.dfood.glass_bottle_hit": "Glasflasche getroffen",
+  "subtitles.dfood.glass_bottle_fall": "Glasflasche fällt",
+
+  "subtitles.dfood.water_bucket_break": "Wassereimer zerbricht",
+  "subtitles.dfood.water_bucket_step": "Auf Wassereimer treten",
+  "subtitles.dfood.water_bucket_place": "Wassereimer platziert",
+  "subtitles.dfood.water_bucket_hit": "Wassereimer getroffen",
+  "subtitles.dfood.water_bucket_fall": "Wassereimer fällt",
+
+  "subtitles.dfood.lava_bucket_break": "Lavaeimer zerbricht",
+  "subtitles.dfood.lava_bucket_step": "Auf Lavaeimer treten",
+  "subtitles.dfood.lava_bucket_place": "Lavaeimer platziert",
+  "subtitles.dfood.lava_bucket_hit": "Lavaeimer getroffen",
+  "subtitles.dfood.lava_bucket_fall": "Lavaeimer fällt"
+}

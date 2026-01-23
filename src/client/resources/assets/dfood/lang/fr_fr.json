@@ -1,0 +1,55 @@
+{
+  "subtitles.dfood.meat_break": "Viande se casse",
+  "subtitles.dfood.meat_step": "Marcher sur viande",
+  "subtitles.dfood.meat_place": "Viande placée",
+  "subtitles.dfood.meat_hit": "Frapper viande",
+  "subtitles.dfood.meat_fall": "Viande tombe",
+
+  "subtitles.dfood.fish_break": "Poisson se casse",
+  "subtitles.dfood.fish_step": "Marcher sur poisson",
+  "subtitles.dfood.fish_place": "Poisson placé",
+  "subtitles.dfood.fish_hit": "Frapper poisson",
+  "subtitles.dfood.fish_fall": "Poisson tombe",
+
+  "subtitles.dfood.bread_break": "Pain se casse",
+  "subtitles.dfood.bread_step": "Marcher sur pain",
+  "subtitles.dfood.bread_place": "Pain placé",
+  "subtitles.dfood.bread_hit": "Frapper pain",
+  "subtitles.dfood.bread_fall": "Pain tombe",
+
+  "subtitles.dfood.chorus_break": "Fruit chorus se casse",
+  "subtitles.dfood.chorus_step": "Marcher sur fruit chorus",
+  "subtitles.dfood.chorus_place": "Fruit chorus placé",
+  "subtitles.dfood.chorus_hit": "Frapper fruit chorus",
+  "subtitles.dfood.chorus_fall": "Fruit chorus tombe",
+
+  "subtitles.dfood.egg_break": "Œuf se casse",
+  "subtitles.dfood.egg_step": "Marcher sur œuf",
+  "subtitles.dfood.egg_place": "Œuf placé",
+  "subtitles.dfood.egg_hit": "Frapper œuf",
+  "subtitles.dfood.egg_fall": "Œuf tombe",
+
+  "subtitles.dfood.potion_break": "Potion se casse",
+  "subtitles.dfood.potion_step": "Marcher sur potion",
+  "subtitles.dfood.potion_place": "Potion placée",
+  "subtitles.dfood.potion_hit": "Frapper potion",
+  "subtitles.dfood.potion_fall": "Potion tombe",
+
+  "subtitles.dfood.glass_bottle_break": "Bouteille en verre se casse",
+  "subtitles.dfood.glass_bottle_step": "Marcher sur bouteille en verre",
+  "subtitles.dfood.glass_bottle_place": "Bouteille en verre placée",
+  "subtitles.dfood.glass_bottle_hit": "Frapper bouteille en verre",
+  "subtitles.dfood.glass_bottle_fall": "Bouteille en verre tombe",
+
+  "subtitles.dfood.water_bucket_break": "Seau d'eau se casse",
+  "subtitles.dfood.water_bucket_step": "Marcher sur seau d'eau",
+  "subtitles.dfood.water_bucket_place": "Seau d'eau placé",
+  "subtitles.dfood.water_bucket_hit": "Frapper seau d'eau",
+  "subtitles.dfood.water_bucket_fall": "Seau d'eau tombe",
+
+  "subtitles.dfood.lava_bucket_break": "Seau de lave se casse",
+  "subtitles.dfood.lava_bucket_step": "Marcher sur seau de lave",
+  "subtitles.dfood.lava_bucket_place": "Seau de lave placé",
+  "subtitles.dfood.lava_bucket_hit": "Frapper seau de lave",
+  "subtitles.dfood.lava_bucket_fall": "Seau de lave tombe"
+}

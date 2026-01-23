@@ -1,0 +1,55 @@
+{
+  "subtitles.dfood.meat_break": "Carne se rompe",
+  "subtitles.dfood.meat_step": "Pisar carne",
+  "subtitles.dfood.meat_place": "Carne colocada",
+  "subtitles.dfood.meat_hit": "Golpear carne",
+  "subtitles.dfood.meat_fall": "Carne cae",
+
+  "subtitles.dfood.fish_break": "Pescado se rompe",
+  "subtitles.dfood.fish_step": "Pisar pescado",
+  "subtitles.dfood.fish_place": "Pescado colocado",
+  "subtitles.dfood.fish_hit": "Golpear pescado",
+  "subtitles.dfood.fish_fall": "Pescado cae",
+
+  "subtitles.dfood.bread_break": "Pan se rompe",
+  "subtitles.dfood.bread_step": "Pisar pan",
+  "subtitles.dfood.bread_place": "Pan colocado",
+  "subtitles.dfood.bread_hit": "Golpear pan",
+  "subtitles.dfood.bread_fall": "Pan cae",
+
+  "subtitles.dfood.chorus_break": "Fruta chorus se rompe",
+  "subtitles.dfood.chorus_step": "Pisar fruta chorus",
+  "subtitles.dfood.chorus_place": "Fruta chorus colocada",
+  "subtitles.dfood.chorus_hit": "Golpear fruta chorus",
+  "subtitles.dfood.chorus_fall": "Fruta chorus cae",
+
+  "subtitles.dfood.egg_break": "Huevo se rompe",
+  "subtitles.dfood.egg_step": "Pisar huevo",
+  "subtitles.dfood.egg_place": "Huevo colocado",
+  "subtitles.dfood.egg_hit": "Golpear huevo",
+  "subtitles.dfood.egg_fall": "Huevo cae",
+
+  "subtitles.dfood.potion_break": "Poción se rompe",
+  "subtitles.dfood.potion_step": "Pisar poción",
+  "subtitles.dfood.potion_place": "Poción colocada",
+  "subtitles.dfood.potion_hit": "Golpear poción",
+  "subtitles.dfood.potion_fall": "Poción cae",
+
+  "subtitles.dfood.glass_bottle_break": "Botella de vidrio se rompe",
+  "subtitles.dfood.glass_bottle_step": "Pisar botella de vidrio",
+  "subtitles.dfood.glass_bottle_place": "Botella de vidrio colocada",
+  "subtitles.dfood.glass_bottle_hit": "Golpear botella de vidrio",
+  "subtitles.dfood.glass_bottle_fall": "Botella de vidrio cae",
+
+  "subtitles.dfood.water_bucket_break": "Cubo de agua se rompe",
+  "subtitles.dfood.water_bucket_step": "Pisar cubo de agua",
+  "subtitles.dfood.water_bucket_place": "Cubo de agua colocado",
+  "subtitles.dfood.water_bucket_hit": "Golpear cubo de agua",
+  "subtitles.dfood.water_bucket_fall": "Cubo de agua cae",
+
+  "subtitles.dfood.lava_bucket_break": "Cubo de lava se rompe",
+  "subtitles.dfood.lava_bucket_step": "Pisar cubo de lava",
+  "subtitles.dfood.lava_bucket_place": "Cubo de lava colocado",
+  "subtitles.dfood.lava_bucket_hit": "Golpear cubo de lava",
+  "subtitles.dfood.lava_bucket_fall": "Cubo de lava cae"
+}

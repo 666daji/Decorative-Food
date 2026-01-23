@@ -1,0 +1,55 @@
+{
+  "subtitles.dfood.meat_break": "Мясо ломается",
+  "subtitles.dfood.meat_step": "Наступление на мясо",
+  "subtitles.dfood.meat_place": "Мясо установлено",
+  "subtitles.dfood.meat_hit": "Удар по мясу",
+  "subtitles.dfood.meat_fall": "Мясо падает",
+
+  "subtitles.dfood.fish_break": "Рыба ломается",
+  "subtitles.dfood.fish_step": "Наступление на рыбу",
+  "subtitles.dfood.fish_place": "Рыба установлена",
+  "subtitles.dfood.fish_hit": "Удар по рыбе",
+  "subtitles.dfood.fish_fall": "Рыба падает",
+
+  "subtitles.dfood.bread_break": "Хлеб ломается",
+  "subtitles.dfood.bread_step": "Наступление на хлеб",
+  "subtitles.dfood.bread_place": "Хлеб установлен",
+  "subtitles.dfood.bread_hit": "Удар по хлебу",
+  "subtitles.dfood.bread_fall": "Хлеб падает",
+
+  "subtitles.dfood.chorus_break": "Фрукт хоруса ломается",
+  "subtitles.dfood.chorus_step": "Наступление на фрукт хоруса",
+  "subtitles.dfood.chorus_place": "Фрукт хоруса установлен",
+  "subtitles.dfood.chorus_hit": "Удар по фрукту хоруса",
+  "subtitles.dfood.chorus_fall": "Фрукт хоруса падает",
+
+  "subtitles.dfood.egg_break": "Яйцо ломается",
+  "subtitles.dfood.egg_step": "Наступление на яйцо",
+  "subtitles.dfood.egg_place": "Яйцо установлено",
+  "subtitles.dfood.egg_hit": "Удар по яйцу",
+  "subtitles.dfood.egg_fall": "Яйцо падает",
+
+  "subtitles.dfood.potion_break": "Зелье ломается",
+  "subtitles.dfood.potion_step": "Наступление на зелье",
+  "subtitles.dfood.potion_place": "Зелье установлено",
+  "subtitles.dfood.potion_hit": "Удар по зелью",
+  "subtitles.dfood.potion_fall": "Зелье падает",
+
+  "subtitles.dfood.glass_bottle_break": "Стеклянная бутылка ломается",
+  "subtitles.dfood.glass_bottle_step": "Наступление на стеклянную бутылку",
+  "subtitles.dfood.glass_bottle_place": "Стеклянная бутылка установлена",
+  "subtitles.dfood.glass_bottle_hit": "Удар по стеклянной бутылке",
+  "subtitles.dfood.glass_bottle_fall": "Стеклянная бутылка падает",
+
+  "subtitles.dfood.water_bucket_break": "Ведро с водой ломается",
+  "subtitles.dfood.water_bucket_step": "Наступление на ведро с водой",
+  "subtitles.dfood.water_bucket_place": "Ведро с водой установлено",
+  "subtitles.dfood.water_bucket_hit": "Удар по ведру с водой",
+  "subtitles.dfood.water_bucket_fall": "Ведро с водой падает",
+
+  "subtitles.dfood.lava_bucket_break": "Ведро с лавой ломается",
+  "subtitles.dfood.lava_bucket_step": "Наступление на ведро с лавой",
+  "subtitles.dfood.lava_bucket_place": "Ведро с лавой установлено",
+  "subtitles.dfood.lava_bucket_hit": "Удар по ведру с лавой",
+  "subtitles.dfood.lava_bucket_fall": "Ведро с лавой падает"
+}

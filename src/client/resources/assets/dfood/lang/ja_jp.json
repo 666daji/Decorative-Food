@@ -1,0 +1,55 @@
+{
+  "subtitles.dfood.meat_break": "肉が壊れる",
+  "subtitles.dfood.meat_step": "肉を踏む",
+  "subtitles.dfood.meat_place": "肉を設置",
+  "subtitles.dfood.meat_hit": "肉を叩く",
+  "subtitles.dfood.meat_fall": "肉が落下",
+
+  "subtitles.dfood.fish_break": "魚が壊れる",
+  "subtitles.dfood.fish_step": "魚を踏む",
+  "subtitles.dfood.fish_place": "魚を設置",
+  "subtitles.dfood.fish_hit": "魚を叩く",
+  "subtitles.dfood.fish_fall": "魚が落下",
+
+  "subtitles.dfood.bread_break": "パンが壊れる",
+  "subtitles.dfood.bread_step": "パンを踏む",
+  "subtitles.dfood.bread_place": "パンを設置",
+  "subtitles.dfood.bread_hit": "パンを叩く",
+  "subtitles.dfood.bread_fall": "パンが落下",
+
+  "subtitles.dfood.chorus_break": "コーラスフルーツが壊れる",
+  "subtitles.dfood.chorus_step": "コーラスフルーツを踏む",
+  "subtitles.dfood.chorus_place": "コーラスフルーツを設置",
+  "subtitles.dfood.chorus_hit": "コーラスフルーツを叩く",
+  "subtitles.dfood.chorus_fall": "コーラスフルーツが落下",
+
+  "subtitles.dfood.egg_break": "卵が壊れる",
+  "subtitles.dfood.egg_step": "卵を踏む",
+  "subtitles.dfood.egg_place": "卵を設置",
+  "subtitles.dfood.egg_hit": "卵を叩く",
+  "subtitles.dfood.egg_fall": "卵が落下",
+
+  "subtitles.dfood.potion_break": "ポーションが壊れる",
+  "subtitles.dfood.potion_step": "ポーションを踏む",
+  "subtitles.dfood.potion_place": "ポーションを設置",
+  "subtitles.dfood.potion_hit": "ポーションを叩く",
+  "subtitles.dfood.potion_fall": "ポーションが落下",
+
+  "subtitles.dfood.glass_bottle_break": "ガラス瓶が壊れる",
+  "subtitles.dfood.glass_bottle_step": "ガラス瓶を踏む",
+  "subtitles.dfood.glass_bottle_place": "ガラス瓶を設置",
+  "subtitles.dfood.glass_bottle_hit": "ガラス瓶を叩く",
+  "subtitles.dfood.glass_bottle_fall": "ガラス瓶が落下",
+
+  "subtitles.dfood.water_bucket_break": "水入りバケツが壊れる",
+  "subtitles.dfood.water_bucket_step": "水入りバケツを踏む",
+  "subtitles.dfood.water_bucket_place": "水入りバケツを設置",
+  "subtitles.dfood.water_bucket_hit": "水入りバケツを叩く",
+  "subtitles.dfood.water_bucket_fall": "水入りバケツが落下",
+
+  "subtitles.dfood.lava_bucket_break": "溶岩入りバケツが壊れる",
+  "subtitles.dfood.lava_bucket_step": "溶岩入りバケツを踏む",
+  "subtitles.dfood.lava_bucket_place": "溶岩入りバケツを設置",
+  "subtitles.dfood.lava_bucket_hit": "溶岩入りバケツを叩く",
+  "subtitles.dfood.lava_bucket_fall": "溶岩入りバケツが落下"
+}

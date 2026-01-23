@@ -1,0 +1,55 @@
+{
+  "subtitles.dfood.meat_break": "肉碎裂",
+  "subtitles.dfood.meat_step": "踩在肉上",
+  "subtitles.dfood.meat_place": "放置肉",
+  "subtitles.dfood.meat_hit": "擊中肉",
+  "subtitles.dfood.meat_fall": "肉掉落",
+
+  "subtitles.dfood.fish_break": "魚碎裂",
+  "subtitles.dfood.fish_step": "踩在魚上",
+  "subtitles.dfood.fish_place": "放置魚",
+  "subtitles.dfood.fish_hit": "擊中魚",
+  "subtitles.dfood.fish_fall": "魚掉落",
+
+  "subtitles.dfood.bread_break": "麵包碎裂",
+  "subtitles.dfood.bread_step": "踩在麵包上",
+  "subtitles.dfood.bread_place": "放置麵包",
+  "subtitles.dfood.bread_hit": "擊中麵包",
+  "subtitles.dfood.bread_fall": "麵包掉落",
+
+  "subtitles.dfood.chorus_break": "歌萊果碎裂",
+  "subtitles.dfood.chorus_step": "踩在歌萊果上",
+  "subtitles.dfood.chorus_place": "放置歌萊果",
+  "subtitles.dfood.chorus_hit": "擊中歌萊果",
+  "subtitles.dfood.chorus_fall": "歌萊果掉落",
+
+  "subtitles.dfood.egg_break": "蛋碎裂",
+  "subtitles.dfood.egg_step": "踩在蛋上",
+  "subtitles.dfood.egg_place": "放置蛋",
+  "subtitles.dfood.egg_hit": "擊中蛋",
+  "subtitles.dfood.egg_fall": "蛋掉落",
+
+  "subtitles.dfood.potion_break": "藥水碎裂",
+  "subtitles.dfood.potion_step": "踩在藥水上",
+  "subtitles.dfood.potion_place": "放置藥水",
+  "subtitles.dfood.potion_hit": "擊中藥水",
+  "subtitles.dfood.potion_fall": "藥水掉落",
+
+  "subtitles.dfood.glass_bottle_break": "玻璃瓶碎裂",
+  "subtitles.dfood.glass_bottle_step": "踩在玻璃瓶上",
+  "subtitles.dfood.glass_bottle_place": "放置玻璃瓶",
+  "subtitles.dfood.glass_bottle_hit": "擊中玻璃瓶",
+  "subtitles.dfood.glass_bottle_fall": "玻璃瓶掉落",
+
+  "subtitles.dfood.water_bucket_break": "水桶碎裂",
+  "subtitles.dfood.water_bucket_step": "踩在水桶上",
+  "subtitles.dfood.water_bucket_place": "放置水桶",
+  "subtitles.dfood.water_bucket_hit": "擊中水桶",
+  "subtitles.dfood.water_bucket_fall": "水桶掉落",
+
+  "subtitles.dfood.lava_bucket_break": "熔岩桶碎裂",
+  "subtitles.dfood.lava_bucket_step": "踩在熔岩桶上",
+  "subtitles.dfood.lava_bucket_place": "放置熔岩桶",
+  "subtitles.dfood.lava_bucket_hit": "擊中熔岩桶",
+  "subtitles.dfood.lava_bucket_fall": "熔岩桶掉落"
+}
