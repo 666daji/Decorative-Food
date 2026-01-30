@@ -47,7 +47,6 @@ public class FoodBlocks {
                     .build());
 
     // 金制食物
-    // 注意：之前传入了 null，会导致 soundGroup 为 null，从而被 ExtraSoundsNext 使用时触发 NPE
     public static final Block GOLDEN_APPLE = registerFoodBlock("golden_apple", 5,
             MapColor.GOLD, null);
     public static final Block GOLDEN_CARROT = registerFoodBlock("golden_carrot", 5,

@@ -28,7 +28,7 @@ public class ServerPlayerInteractionManagerMixin {
         BlockPos blockPos = hitResult.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);
         boolean bl3 = DFoodUtils.isModFoodBlock(blockState.getBlock());
-        if (bl3) {
+        if (bl3 && player.isSneaking()) {
             ActionResult actionResult = blockState.onUse(world, player, hand, hitResult);
             ItemStack itemStack = stack.copy();
             if (actionResult.isAccepted()) {

@@ -34,7 +34,7 @@ public class ClientPlayerInteractionManagerMixin {
         BlockPos blockPos = hitResult.getBlockPos();
         BlockState blockState = Objects.requireNonNull(client.world).getBlockState(blockPos);
         boolean bl3 = DFoodUtils.isModFoodBlock(blockState.getBlock());
-        if (bl3) {
+        if (bl3 && player.isSneaking()) {
             ActionResult actionResult = blockState.onUse(client.world, player, hand, hitResult);
             if (actionResult.isAccepted()) {
                 cir.setReturnValue(actionResult);
