@@ -54,6 +54,9 @@ public class Shapes {
         shapeMap.put("minecraft:golden_apple", new int[][]{
                 {1, 1, 11}, {2, 5, 8}
         });
+        shapeMap.put("minecraft:enchanted_golden_apple", new int[][]{
+                {1, 1, 11}, {2, 5, 8}
+        });
         shapeMap.put("minecraft:golden_carrot", new int[][]{
                 {1, 3, 2}, {4, 5, 1}
         });

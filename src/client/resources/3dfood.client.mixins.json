@@ -3,6 +3,7 @@
   "package": "org.dfood.mixin.client",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "BlockEntityRendererFactoriesMixin",
     "ClientPlayerInteractionManagerMixin",
     "ModelLoaderMixin",
     "SignBlockEntityRendererMixin"
