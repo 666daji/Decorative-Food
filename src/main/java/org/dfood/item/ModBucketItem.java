@@ -56,23 +56,6 @@ public class ModBucketItem extends BucketItem implements HaveBlock{
     }
 
     @Override
-    public boolean canBeNested() {
-        return !(this.block instanceof ShulkerBoxBlock);
-    }
-
-    @Override
-    public void onItemEntityDestroyed(ItemEntity entity) {
-        if (this.block instanceof ShulkerBoxBlock) {
-            ItemStack itemStack = entity.getStack();
-            NbtCompound nbtCompound = HaveBlock.getBlockEntityNbt(itemStack);
-            if (nbtCompound != null && nbtCompound.contains("Items", NbtElement.LIST_TYPE)) {
-                NbtList nbtList = nbtCompound.getList("Items", NbtElement.COMPOUND_TYPE);
-                ItemUsage.spawnItemContents(entity, nbtList.stream().map(NbtCompound.class::cast).map(ItemStack::fromNbt));
-            }
-        }
-    }
-
-    @Override
     public FeatureSet getRequiredFeatures() {
         return this.getBlock().getRequiredFeatures();
     }

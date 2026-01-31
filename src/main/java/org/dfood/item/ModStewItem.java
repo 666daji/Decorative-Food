@@ -1,13 +1,8 @@
 package org.dfood.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.ShulkerBoxBlock;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.util.ActionResult;
 import org.dfood.util.DFoodUtils;
@@ -39,23 +34,6 @@ public class ModStewItem extends StewItem implements HaveBlock {
             return actionResult2 == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : actionResult2;
         } else {
             return actionResult;
-        }
-    }
-
-    @Override
-    public boolean canBeNested() {
-        return !(this.block instanceof ShulkerBoxBlock);
-    }
-
-    @Override
-    public void onItemEntityDestroyed(ItemEntity entity) {
-        if (this.block instanceof ShulkerBoxBlock) {
-            ItemStack itemStack = entity.getStack();
-            NbtCompound nbtCompound = HaveBlock.getBlockEntityNbt(itemStack);
-            if (nbtCompound != null && nbtCompound.contains("Items", NbtElement.LIST_TYPE)) {
-                NbtList nbtList = nbtCompound.getList("Items", NbtElement.COMPOUND_TYPE);
-                ItemUsage.spawnItemContents(entity, nbtList.stream().map(NbtCompound.class::cast).map(ItemStack::fromNbt));
-            }
         }
     }
 

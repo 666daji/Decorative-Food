@@ -2,12 +2,8 @@ package org.dfood.item;
 
 import net.minecraft.block.*;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -51,23 +47,6 @@ public class ModPotionItem extends PotionItem implements HaveBlock{
     @Override
     public Block getBlock() {
         return this.block;
-    }
-
-    @Override
-    public boolean canBeNested() {
-        return !(this.block instanceof ShulkerBoxBlock);
-    }
-
-    @Override
-    public void onItemEntityDestroyed(ItemEntity entity) {
-        if (this.block instanceof ShulkerBoxBlock) {
-            ItemStack itemStack = entity.getStack();
-            NbtCompound nbtCompound = HaveBlock.getBlockEntityNbt(itemStack);
-            if (nbtCompound != null && nbtCompound.contains("Items", NbtElement.LIST_TYPE)) {
-                NbtList nbtList = nbtCompound.getList("Items", NbtElement.COMPOUND_TYPE);
-                ItemUsage.spawnItemContents(entity, nbtList.stream().map(NbtCompound.class::cast).map(ItemStack::fromNbt));
-            }
-        }
     }
 
     @Override

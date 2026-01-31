@@ -44,7 +44,7 @@ public class ModelLoaderMixin {
                 // 获取缺失模型（原版在异常处理中使用的方式）
                 UnbakedModel missingModel = this.unbakedModels.get(MISSING_ID);
 
-                // 将缺失模型放入unbakedModels（与原版异常处理一致）
+                // 将缺失模型放入unbakedModels
                 this.unbakedModels.put(id, missingModel);
 
                 // 直接返回缺失模型，不再执行原版逻辑
