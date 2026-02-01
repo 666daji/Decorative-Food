@@ -51,5 +51,10 @@
   "subtitles.dfood.lava_bucket_step": "용암 양동이 밟음",
   "subtitles.dfood.lava_bucket_place": "용암 양동이 설치됨",
   "subtitles.dfood.lava_bucket_hit": "용암 양동이 타격",
-  "subtitles.dfood.lava_bucket_fall": "용암 양동이 떨어짐"
+  "subtitles.dfood.lava_bucket_fall": "용암 양동이 떨어짐",
+
+  "config.jade.plugin_dfood": "장식용 음식",
+  "config.jade.plugin_dfood.food_block": "음식 블록 수",
+  "config.jade.plugin_dfood.complex_food_block": "복합 음식 블록 내용",
+  "jade.dfood.food_count": "수량: %s"
 }

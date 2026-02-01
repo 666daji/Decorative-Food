@@ -51,5 +51,10 @@
   "subtitles.dfood.lava_bucket_step": "Наступление на ведро с лавой",
   "subtitles.dfood.lava_bucket_place": "Ведро с лавой установлено",
   "subtitles.dfood.lava_bucket_hit": "Удар по ведру с лавой",
-  "subtitles.dfood.lava_bucket_fall": "Ведро с лавой падает"
+  "subtitles.dfood.lava_bucket_fall": "Ведро с лавой падает",
+
+  "config.jade.plugin_dfood": "Декоративная Еда",
+  "config.jade.plugin_dfood.food_block": "Количество Блоков Еды",
+  "config.jade.plugin_dfood.complex_food_block": "Содержимое Сложных Блоков Еды",
+  "jade.dfood.food_count": "Количество: %s"
 }
