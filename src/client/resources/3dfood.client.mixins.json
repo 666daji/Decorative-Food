@@ -5,8 +5,7 @@
   "client": [
     "BlockEntityRendererFactoriesMixin",
     "ClientPlayerInteractionManagerMixin",
-    "ModelLoaderMixin",
-    "SignBlockEntityRendererMixin"
+    "ModelLoaderMixin"
   ],
   "injectors": {
     "defaultRequire": 1

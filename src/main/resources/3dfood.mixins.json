@@ -3,12 +3,10 @@
   "package": "org.dfood.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AbstractSignBlockMixin",
     "BlockItemMixin",
     "BlocksMixin",
     "FoodToBlockMixin",
-    "ServerPlayerInteractionManagerMixin",
-    "SignBlockEntityMixin"
+    "ServerPlayerInteractionManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
