@@ -15,10 +15,10 @@ import org.dfood.block.entity.EnchantedGoldenAppleBlockEntity;
 import org.dfood.util.DFoodUtils;
 
 public class EnchantedGoldenAppleBlockEntityRenderer implements BlockEntityRenderer<EnchantedGoldenAppleBlockEntity> {
-    protected final BlockRenderManager blockRender;
+    protected final BlockRenderManager blockRenderer;
 
     public EnchantedGoldenAppleBlockEntityRenderer(BlockEntityRendererFactory.Context ctx) {
-        blockRender = ctx.getRenderManager();
+        blockRenderer = ctx.getRenderManager();
     }
 
     @Override
@@ -30,10 +30,10 @@ public class EnchantedGoldenAppleBlockEntityRenderer implements BlockEntityRende
                     .with(FoodBlock.FACING, facing)
                     .with(foodBlock.NUMBER_OF_FOOD, count);
 
-            blockRender.renderBlock(state, entity.getPos(), entity.getWorld(), matrices,
+            blockRenderer.renderBlock(state, entity.getPos(), entity.getWorld(), matrices,
                     vertexConsumers.getBuffer(RenderLayer.getCutout()), true, Random.create());
 
-            blockRender.renderBlock(state, entity.getPos(), entity.getWorld(), matrices,
+            blockRenderer.renderBlock(state, entity.getPos(), entity.getWorld(), matrices,
                     vertexConsumers.getBuffer(RenderLayer.getGlint()), true, Random.create());
         }
     }

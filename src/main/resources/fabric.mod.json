@@ -23,7 +23,10 @@
 		],
 		"fabric-datagen": [
 			"org.dfood.ThreedfoodDataGenerator"
-		]
+		],
+        "jade": [
+          "org.dfood.jade.FoodBlockPlugin"
+        ]
 	},
 	"mixins": [
 		"3dfood.mixins.json",
@@ -40,10 +43,5 @@
 	},
 	"suggests": {
 		"another-mod": "*"
-	},
-    "custom": {
-      "loom:injected_interfaces": {
-        "net/minecraft/class_2625": ["org/dfood/util/mixin/dFoodSignBlockEntity"]
-      }
-    }
+	}
 }
