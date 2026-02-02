@@ -3,13 +3,14 @@ package org.dfood.util;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import org.dfood.block.FoodBlock;
 import org.dfood.item.DoubleBlockItem;
 import org.dfood.item.HaveBlock;
-
-import java.util.function.BiFunction;
+import org.jetbrains.annotations.Nullable;
 
 public class DFoodUtils {
     /**
@@ -22,7 +23,7 @@ public class DFoodUtils {
         if (state == null) return false;
 
         if (state.getBlock() instanceof FoodBlock block){
-            return FoodBlock.FOOD_BLOCKS.contains(block);
+            return FoodBlock.getRegisteredFoodBlocks().contains(block);
         }
 
         return false;
@@ -35,10 +36,24 @@ public class DFoodUtils {
      */
     public static boolean isModFoodBlock(Block block){
         if (block instanceof FoodBlock foodBlock){
-            return FoodBlock.FOOD_BLOCKS.contains(foodBlock);
+            return FoodBlock.getRegisteredFoodBlocks().contains(foodBlock);
         }
 
         return false;
+    }
+
+    /**
+     * 获取食物方块的堆叠数量。
+     *
+     * @param state 原食物方块状态
+     * @return 对应的堆叠数量，如果不是有效的食物方块则返回0
+     */
+    public static int getFoodBlockCount(BlockState state) {
+        if (state.getBlock() instanceof FoodBlock foodBlock) {
+            return state.get(foodBlock.NUMBER_OF_FOOD);
+        }
+
+        return 0;
     }
 
     /**
@@ -55,16 +70,17 @@ public class DFoodUtils {
      * @param state 要检查的方块状态
      * @return 方块是否强制定义了asItem方法的返回值
      */
-    private static boolean HaveCItem(BlockState state) {
+    public static boolean HaveCItem(BlockState state) {
         return state.getBlock() instanceof FoodBlock foodBlock && foodBlock.haveCItem();
     }
 
     /**
-     * 辅助方法
+     * 获取方块物品的对应默认方块状态
      * @param item 要转换的物品
      * @return 对应的默认方块状态
      */
-    private static BlockState getBlockStateFromItem(Item item) {
+    @Nullable
+    public static BlockState getBlockStateFromItem(Item item) {
         if (item instanceof DoubleBlockItem doubleBlockItem){
             return doubleBlockItem.getSecondBlock().getDefaultState();
         }
@@ -78,15 +94,15 @@ public class DFoodUtils {
     }
 
     /**
-     * 创建一个基本的食物方块
-     * @param foodValue 食物方块的堆叠数量
-     * @param settings 方块设置
-     * @param blockCreator 食物方块的构造器
-     * @return 一个新的食物方块
+     * 获取食物方块的基础设置。
+     * @return 食物方块的基础设置。
+     * @apiNote 这不是必须的，但是推荐使用这个方法来创建食物方块
      */
-    public static Block createFoodBlock(int foodValue, AbstractBlock.Settings settings,
-                                        BiFunction<AbstractBlock.Settings, Integer, Block> blockCreator) {
-        IntPropertyManager.preCache("number_of_food", foodValue);
-        return blockCreator.apply(settings, foodValue);
+    public static AbstractBlock.Settings getFoodBlockSettings() {
+        return AbstractBlock.Settings.create()
+                .strength(0.1F, 0.1F)
+                .nonOpaque()
+                .solidBlock(Blocks::never)
+                .pistonBehavior(PistonBehavior.DESTROY);
     }
 }

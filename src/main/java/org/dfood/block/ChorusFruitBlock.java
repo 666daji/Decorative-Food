@@ -8,8 +8,23 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 public class ChorusFruitBlock extends FoodBlock {
-    public ChorusFruitBlock(Settings settings, int max_food) {
-        super(settings, max_food);
+    public ChorusFruitBlock(Settings settings, int maxFood) {
+        super(settings, maxFood, true, null, true, null);
+    }
+
+    public static class Builder extends FoodBlockBuilder<ChorusFruitBlock, Builder> {
+        private Builder() {}
+
+        public static Builder create() {
+            return new Builder();
+        }
+
+        @Override
+        protected ChorusFruitBlock createBlock() {
+            return new ChorusFruitBlock(
+                    this.settings, this.maxFood
+            );
+        }
     }
 
     @Override

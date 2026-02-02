@@ -30,6 +30,15 @@ public class ModFoodComponents {
             .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 0), 1.0F)
             .alwaysEdible()
             .build();
+    public static final FoodComponent ENCHANTED_GOLDEN_APPLE = new FoodComponent.Builder()
+            .nutrition(4)
+            .saturationModifier(1.2F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 400, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1.0F)
+            .alwaysEdible()
+            .build();
     public static final FoodComponent GOLDEN_CARROT = new FoodComponent.Builder().nutrition(6).saturationModifier(1.2F).build();
 
     // 生熟肉类
@@ -68,6 +77,7 @@ public class ModFoodComponents {
             new StatusEffectInstance(StatusEffects.POISON, 100, 0),
             0.6F
     );
+    public static final FoodComponent HONEY_BOTTLE = createFood(6, 0.1F);
 
     // 创建基本食物组件
     private static FoodComponent createFood(int nutrition, float saturationModifier) {

@@ -23,7 +23,10 @@
 		],
 		"fabric-datagen": [
 			"org.dfood.ThreedfoodDataGenerator"
-		]
+		],
+        "jade": [
+          "org.dfood.jade.FoodBlockPlugin"
+        ]
 	},
 	"mixins": [
 		"3dfood.mixins.json",

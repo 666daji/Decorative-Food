@@ -19,8 +19,23 @@ import java.util.List;
 
 public class SuspiciousStewBlock extends FoodBlock implements BlockEntityProvider {
 
-    public SuspiciousStewBlock(Settings settings, int max_food) {
-        super(settings, max_food);
+    public SuspiciousStewBlock(Settings settings, int maxFood) {
+        super(settings, maxFood, true, null, true, null);
+    }
+
+    public static class Builder extends FoodBlockBuilder<SuspiciousStewBlock, Builder> {
+        private Builder() {}
+
+        public static Builder create() {
+            return new Builder();
+        }
+
+        @Override
+        protected SuspiciousStewBlock createBlock() {
+            return new SuspiciousStewBlock(
+                    this.settings, this.maxFood
+            );
+        }
     }
 
     @Override
@@ -43,8 +58,8 @@ public class SuspiciousStewBlock extends FoodBlock implements BlockEntityProvide
     }
 
     @Override
-    public boolean isSame(ItemStack stack, BlockEntity blockEntity) {
-        if (blockEntity instanceof SuspiciousStewBlockEntity suspiciousStewBlockEntity && super.isSame(stack, blockEntity)) {
+    public boolean isSame(ItemStack stack, BlockState state, BlockEntity blockEntity) {
+        if (blockEntity instanceof SuspiciousStewBlockEntity suspiciousStewBlockEntity && super.isSame(stack, state, blockEntity)) {
             SuspiciousStewEffectsComponent blockEntityEffects = suspiciousStewBlockEntity.createStewEffectsComponent();
             SuspiciousStewEffectsComponent stackEffects = stack.get(DataComponentTypes.SUSPICIOUS_STEW_EFFECTS);
 
@@ -65,7 +80,7 @@ public class SuspiciousStewBlock extends FoodBlock implements BlockEntityProvide
     }
 
     @Override
-    public ItemStack createStack(int count, @Nullable BlockEntity blockEntity) {
+    public ItemStack createStack(int count, BlockState state, @Nullable BlockEntity blockEntity) {
         ItemStack stack = new ItemStack(Items.SUSPICIOUS_STEW, count);
 
         if (blockEntity instanceof SuspiciousStewBlockEntity suspiciousStewBlockEntity) {

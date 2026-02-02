@@ -1,0 +1,60 @@
+{
+  "subtitles.dfood.meat_break": "고기 파괴됨",
+  "subtitles.dfood.meat_step": "고기 밟음",
+  "subtitles.dfood.meat_place": "고기 설치됨",
+  "subtitles.dfood.meat_hit": "고기 타격",
+  "subtitles.dfood.meat_fall": "고기 떨어짐",
+
+  "subtitles.dfood.fish_break": "생선 파괴됨",
+  "subtitles.dfood.fish_step": "생선 밟음",
+  "subtitles.dfood.fish_place": "생선 설치됨",
+  "subtitles.dfood.fish_hit": "생선 타격",
+  "subtitles.dfood.fish_fall": "생선 떨어짐",
+
+  "subtitles.dfood.bread_break": "빵 파괴됨",
+  "subtitles.dfood.bread_step": "빵 밟음",
+  "subtitles.dfood.bread_place": "빵 설치됨",
+  "subtitles.dfood.bread_hit": "빵 타격",
+  "subtitles.dfood.bread_fall": "빵 떨어짐",
+
+  "subtitles.dfood.chorus_break": "코러스 프루트 파괴됨",
+  "subtitles.dfood.chorus_step": "코러스 프루트 밟음",
+  "subtitles.dfood.chorus_place": "코러스 프루트 설치됨",
+  "subtitles.dfood.chorus_hit": "코러스 프루트 타격",
+  "subtitles.dfood.chorus_fall": "코러스 프루트 떨어짐",
+
+  "subtitles.dfood.egg_break": "달걀 파괴됨",
+  "subtitles.dfood.egg_step": "달걀 밟음",
+  "subtitles.dfood.egg_place": "달걀 설치됨",
+  "subtitles.dfood.egg_hit": "달걀 타격",
+  "subtitles.dfood.egg_fall": "달걀 떨어짐",
+
+  "subtitles.dfood.potion_break": "물약 파괴됨",
+  "subtitles.dfood.potion_step": "물약 밟음",
+  "subtitles.dfood.potion_place": "물약 설치됨",
+  "subtitles.dfood.potion_hit": "물약 타격",
+  "subtitles.dfood.potion_fall": "물약 떨어짐",
+
+  "subtitles.dfood.glass_bottle_break": "유리병 파괴됨",
+  "subtitles.dfood.glass_bottle_step": "유리병 밟음",
+  "subtitles.dfood.glass_bottle_place": "유리병 설치됨",
+  "subtitles.dfood.glass_bottle_hit": "유리병 타격",
+  "subtitles.dfood.glass_bottle_fall": "유리병 떨어짐",
+
+  "subtitles.dfood.water_bucket_break": "물 양동이 파괴됨",
+  "subtitles.dfood.water_bucket_step": "물 양동이 밟음",
+  "subtitles.dfood.water_bucket_place": "물 양동이 설치됨",
+  "subtitles.dfood.water_bucket_hit": "물 양동이 타격",
+  "subtitles.dfood.water_bucket_fall": "물 양동이 떨어짐",
+
+  "subtitles.dfood.lava_bucket_break": "용암 양동이 파괴됨",
+  "subtitles.dfood.lava_bucket_step": "용암 양동이 밟음",
+  "subtitles.dfood.lava_bucket_place": "용암 양동이 설치됨",
+  "subtitles.dfood.lava_bucket_hit": "용암 양동이 타격",
+  "subtitles.dfood.lava_bucket_fall": "용암 양동이 떨어짐",
+
+  "config.jade.plugin_dfood": "장식용 음식",
+  "config.jade.plugin_dfood.food_block": "음식 블록 수",
+  "config.jade.plugin_dfood.complex_food_block": "복합 음식 블록 내용",
+  "jade.dfood.food_count": "수량: %s"
+}

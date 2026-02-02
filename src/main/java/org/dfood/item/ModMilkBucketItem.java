@@ -1,56 +1,70 @@
 package org.dfood.item;
 
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.Block;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ContainerComponent;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsage;
-import net.minecraft.item.Items;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
-import net.minecraft.world.World;
+import net.minecraft.item.*;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.resource.featuretoggle.FeatureSet;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import org.dfood.util.DFoodUtils;
 
-public class ModMilkBucketItem extends BlockItem {
+import java.util.List;
+
+public class ModMilkBucketItem extends MilkBucketItem implements HaveBlock{
+    private final Block block;
+
     public ModMilkBucketItem(Block block, Settings settings) {
-        super(block, settings);
+        super(settings);
+        this.block = block;
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (user instanceof ServerPlayerEntity serverPlayerEntity) {
-            Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
-            serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        Item item = context.getStack().getItem();
+        // 仅当父类方法失败时才尝试放置方块
+        if (super.useOnBlock(context) != ActionResult.PASS || (player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item))){
+            return ActionResult.PASS;
         }
-
-        if (!world.isClient) {
-            user.clearStatusEffects();
-        }
-
-        if (user instanceof PlayerEntity playerEntity) {
-            return ItemUsage.exchangeStack(stack, playerEntity, new ItemStack(Items.BUCKET), false);
+        ActionResult actionResult = this.place(new ItemPlacementContext(context));
+        if (!actionResult.isAccepted() && context.getStack().contains(DataComponentTypes.FOOD)) {
+            ActionResult actionResult2 = super.use(context.getWorld(), context.getPlayer(), context.getHand()).getResult();
+            return actionResult2 == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : actionResult2;
         } else {
-            stack.decrementUnlessCreative(1, user);
-            return stack;
+            return actionResult;
         }
     }
 
     @Override
-    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
-        return 32;
+    public String getTranslationKey() {
+        return this.getBlock().getTranslationKey();
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.DRINK;
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
+        super.appendTooltip(stack, context, tooltip, type);
+        this.getBlock().appendTooltip(stack, context, tooltip, type);
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        return ItemUsage.consumeHeldItem(world, user, hand);
+    public Block getBlock() {
+        return this.block;
+    }
+
+    @Override
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        ContainerComponent containerComponent = entity.getStack().set(DataComponentTypes.CONTAINER, ContainerComponent.DEFAULT);
+        if (containerComponent != null) {
+            ItemUsage.spawnItemContents(entity, containerComponent.iterateNonEmptyCopy());
+        }
+    }
+
+    @Override
+    public FeatureSet getRequiredFeatures() {
+        return this.getBlock().getRequiredFeatures();
     }
 }

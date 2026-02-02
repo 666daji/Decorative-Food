@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north,number_of_food=1": { "model": "minecraft:block/honey_bottle", "y": 180 },
+    "facing=north,number_of_food=2": { "model": "minecraft:block/honey_bottle_2", "y": 180 },
+    "facing=north,number_of_food=3": { "model": "minecraft:block/honey_bottle_3", "y": 180 },
+
+    "facing=south,number_of_food=1": { "model": "minecraft:block/honey_bottle" },
+    "facing=south,number_of_food=2": { "model": "minecraft:block/honey_bottle_2" },
+    "facing=south,number_of_food=3": { "model": "minecraft:block/honey_bottle_3" },
+
+    "facing=east,number_of_food=1": { "model": "minecraft:block/honey_bottle", "y": 270 },
+    "facing=east,number_of_food=2": { "model": "minecraft:block/honey_bottle_2", "y": 270 },
+    "facing=east,number_of_food=3": { "model": "minecraft:block/honey_bottle_3", "y": 270 },
+
+    "facing=west,number_of_food=1": { "model": "minecraft:block/honey_bottle", "y": 90 },
+    "facing=west,number_of_food=2": { "model": "minecraft:block/honey_bottle_2", "y": 90 },
+    "facing=west,number_of_food=3": { "model": "minecraft:block/honey_bottle_3", "y": 90 }
+  }
+}

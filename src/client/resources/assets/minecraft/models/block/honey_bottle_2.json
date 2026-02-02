@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/potion_2",
+  "textures":{
+    "6": "minecraft:block/honey_overlay"
+  }
+}

@@ -1,49 +1,70 @@
 package org.dfood.item;
 
 import net.minecraft.block.Block;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ContainerComponent;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.entity.projectile.thrown.EggEntity;
 import net.minecraft.item.*;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Position;
-import net.minecraft.world.World;
+import net.minecraft.item.tooltip.TooltipType;
+import net.minecraft.resource.featuretoggle.FeatureSet;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import org.dfood.util.DFoodUtils;
 
-public class ModEggItem extends BlockItem implements ProjectileItem {
+import java.util.List;
+
+public class ModEggItem extends EggItem implements HaveBlock {
+    private final Block block;
+
     public ModEggItem(Block block, Item.Settings settings) {
-        super(block, settings);
+        super(settings);
+        this.block = block;
     }
 
     @Override
-    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        ItemStack itemStack = user.getStackInHand(hand);
-        world.playSound(
-                null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENTITY_EGG_THROW, SoundCategory.PLAYERS, 0.5F, 0.4F / (world.getRandom().nextFloat() * 0.4F + 0.8F)
-        );
-        if (!world.isClient) {
-            EggEntity eggEntity = new EggEntity(world, user);
-            eggEntity.setItem(itemStack);
-            eggEntity.setVelocity(user, user.getPitch(), user.getYaw(), 0.0F, 1.5F, 1.0F);
-            world.spawnEntity(eggEntity);
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        Item item = context.getStack().getItem();
+        // 仅当父类方法失败时才尝试放置方块
+        if (super.useOnBlock(context) != ActionResult.PASS || (player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item))){
+            return ActionResult.PASS;
         }
-
-        user.incrementStat(Stats.USED.getOrCreateStat(this));
-        if (!user.getAbilities().creativeMode) {
-            itemStack.decrement(1);
+        ActionResult actionResult = this.place(new ItemPlacementContext(context));
+        if (!actionResult.isAccepted() && context.getStack().contains(DataComponentTypes.FOOD)) {
+            ActionResult actionResult2 = super.use(context.getWorld(), context.getPlayer(), context.getHand()).getResult();
+            return actionResult2 == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : actionResult2;
+        } else {
+            return actionResult;
         }
-
-        return TypedActionResult.success(itemStack, world.isClient());
     }
 
     @Override
-    public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
-        EggEntity eggEntity = new EggEntity(world, pos.getX(), pos.getY(), pos.getZ());
-        eggEntity.setItem(stack);
-        return eggEntity;
+    public String getTranslationKey() {
+        return this.getBlock().getTranslationKey();
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, Item.TooltipContext context, List<Text> tooltip, TooltipType type) {
+        super.appendTooltip(stack, context, tooltip, type);
+        this.getBlock().appendTooltip(stack, context, tooltip, type);
+    }
+
+    @Override
+    public Block getBlock() {
+        return this.block;
+    }
+
+    @Override
+    public void onItemEntityDestroyed(ItemEntity entity) {
+        ContainerComponent containerComponent = entity.getStack().set(DataComponentTypes.CONTAINER, ContainerComponent.DEFAULT);
+        if (containerComponent != null) {
+            ItemUsage.spawnItemContents(entity, containerComponent.iterateNonEmptyCopy());
+        }
+    }
+
+    @Override
+    public FeatureSet getRequiredFeatures() {
+        return this.getBlock().getRequiredFeatures();
     }
 }
