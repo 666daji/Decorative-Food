@@ -82,6 +82,8 @@ public class FoodToBlocks {
         FOOD_MAP.put("salmon", createItem(FoodBlocks.SALMON, FoodComponents.SALMON));
         FOOD_MAP.put("cooked_salmon", createItem(FoodBlocks.COOKED_SALMON, FoodComponents.COOKED_SALMON));
         FOOD_MAP.put("pufferfish", createItem(FoodBlocks.PUFFERFISH, FoodComponents.PUFFERFISH));
+        FOOD_MAP.put("tropical_fish", createItem(FoodBlocks.TROPICAL_FISH, FoodComponents.TROPICAL_FISH));
+
 
         // 炖菜类
         FOOD_MAP.put("rabbit_stew", new ModStewItem(new Item.Settings().maxCount(1).food(FoodComponents.RABBIT_STEW), FoodBlocks.RABBIT_STEW));

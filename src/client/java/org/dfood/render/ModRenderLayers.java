@@ -16,6 +16,7 @@ public class ModRenderLayers {
         instance.putBlock(FoodBlocks.COOKED_COD, RenderLayer.getCutout());
         instance.putBlock(FoodBlocks.SALMON, RenderLayer.getCutout());
         instance.putBlock(FoodBlocks.COOKED_SALMON, RenderLayer.getCutout());
+        instance.putBlock(FoodBlocks.TROPICAL_FISH, RenderLayer.getCutout());
         instance.putBlock(FoodBlocks.CHORUS_FRUIT, RenderLayer.getCutout());
         instance.putBlock(FoodBlocks.SWEET_BERRIES, RenderLayer.getCutout());
         instance.putBlock(FoodBlocks.GLOW_BERRIES, RenderLayer.getCutout());

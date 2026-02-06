@@ -110,6 +110,9 @@ public class Shapes {
         shapeMap.put("minecraft:pufferfish", new int[][]{
                 {1, 1, 7}
         });
+        shapeMap.put("minecraft:tropical_fish", new int[][]{
+                {1, 1, 11}, {2, 3, 12}, {4, 4, 2}
+        });
         // 炖菜
         shapeMap.put("minecraft:beetroot_soup", new int[][]{
                 {1, 1, 8}
