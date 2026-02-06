@@ -1,0 +1,23 @@
+{
+  "variants": {
+    "facing=north,number_of_food=1": { "model": "minecraft:block/tropical_fish", "y": 180 },
+    "facing=north,number_of_food=2": { "model": "minecraft:block/tropical_fish_2", "y": 180 },
+    "facing=north,number_of_food=3": { "model": "minecraft:block/tropical_fish_3", "y": 180 },
+    "facing=north,number_of_food=4": { "model": "minecraft:block/tropical_fish_4", "y": 180 },
+
+    "facing=south,number_of_food=1": { "model": "minecraft:block/tropical_fish" },
+    "facing=south,number_of_food=2": { "model": "minecraft:block/tropical_fish_2" },
+    "facing=south,number_of_food=3": { "model": "minecraft:block/tropical_fish_3" },
+    "facing=south,number_of_food=4": { "model": "minecraft:block/tropical_fish_4" },
+
+    "facing=east,number_of_food=1": { "model": "minecraft:block/tropical_fish", "y": 270 },
+    "facing=east,number_of_food=2": { "model": "minecraft:block/tropical_fish_2", "y": 270 },
+    "facing=east,number_of_food=3": { "model": "minecraft:block/tropical_fish_3", "y": 270 },
+    "facing=east,number_of_food=4": { "model": "minecraft:block/tropical_fish_4", "y": 270 },
+
+    "facing=west,number_of_food=1": { "model": "minecraft:block/tropical_fish", "y": 90 },
+    "facing=west,number_of_food=2": { "model": "minecraft:block/tropical_fish_2", "y": 90 },
+    "facing=west,number_of_food=3": { "model": "minecraft:block/tropical_fish_3", "y": 90 },
+    "facing=west,number_of_food=4": { "model": "minecraft:block/tropical_fish_4", "y": 90 }
+  }
+}

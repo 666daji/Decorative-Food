@@ -68,6 +68,7 @@ public class ModFoodComponents {
             new StatusEffectInstance(StatusEffects.HUNGER, 300, 2),
             new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0)
     );
+    public static final FoodComponent TROPICAL_FISH = createFood(1, 0.1F);
 
     // 其他非炖菜类
     public static final FoodComponent PUMPKIN_PIE = createFood(8, 0.3F);

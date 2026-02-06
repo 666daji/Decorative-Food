@@ -92,6 +92,8 @@ public class FoodBlocks {
             MapColor.TERRACOTTA_LIGHT_BLUE, ModSoundGroups.FISH);
     public static final Block PUFFERFISH = registerFoodBlock("pufferfish", 1,
             MapColor.LIGHT_BLUE, ModSoundGroups.FISH);
+    public static final Block TROPICAL_FISH = registerFoodBlock("tropical_fish", 4,
+            MapColor.RED, ModSoundGroups.FISH);
 
     // 炖菜
     public static final Block RABBIT_STEW = registerFoodBlock("rabbit_stew", 1,
