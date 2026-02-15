@@ -56,5 +56,9 @@
   "config.jade.plugin_dfood": "装飾用食品",
   "config.jade.plugin_dfood.food_block": "食品ブロックの数",
   "config.jade.plugin_dfood.complex_food_block": "複合食品ブロックの内容",
-  "jade.dfood.food_count": "数量: %s"
+  "jade.dfood.food_count": "数量: %s",
+
+  "modmenu.nameTranslation.decorative-food": "装飾食品",
+  "modmenu.descriptionTranslation.decorative-food": "食べ物を設置可能にします。あなたの世界を飾りましょう！",
+  "modmenu.summaryTranslation.decorative-food": "食べ物を設置可能にします。あなたの世界を飾りましょう！"
 }

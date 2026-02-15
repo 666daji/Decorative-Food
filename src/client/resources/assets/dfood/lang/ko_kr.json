@@ -56,5 +56,9 @@
   "config.jade.plugin_dfood": "장식용 음식",
   "config.jade.plugin_dfood.food_block": "음식 블록 수",
   "config.jade.plugin_dfood.complex_food_block": "복합 음식 블록 내용",
-  "jade.dfood.food_count": "수량: %s"
+  "jade.dfood.food_count": "수량: %s",
+
+  "modmenu.nameTranslation.decorative-food": "장식용 음식",
+  "modmenu.descriptionTranslation.decorative-food": "음식을 설치 가능하게 만듭니다. 당신의 세계를 장식하세요!",
+  "modmenu.summaryTranslation.decorative-food": "음식을 설치 가능하게 만듭니다. 당신의 세계를 장식하세요!"
 }

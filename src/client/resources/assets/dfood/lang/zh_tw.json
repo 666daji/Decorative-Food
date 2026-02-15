@@ -56,5 +56,9 @@
   "config.jade.plugin_dfood": "裝飾性食物",
   "config.jade.plugin_dfood.food_block": "食物方塊數量",
   "config.jade.plugin_dfood.complex_food_block": "複雜食物方塊內容",
-  "jade.dfood.food_count": "數量: %s"
+  "jade.dfood.food_count": "數量: %s",
+
+  "modmenu.nameTranslation.decorative-food": "裝飾性食物",
+  "modmenu.descriptionTranslation.decorative-food": "讓食物變得可放置。裝飾你的世界！",
+  "modmenu.summaryTranslation.decorative-food": "讓食物變得可放置。裝飾你的世界！"
 }

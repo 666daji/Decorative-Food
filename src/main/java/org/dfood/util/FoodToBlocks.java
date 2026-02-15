@@ -84,7 +84,6 @@ public class FoodToBlocks {
         FOOD_MAP.put("pufferfish", createItem(FoodBlocks.PUFFERFISH, FoodComponents.PUFFERFISH));
         FOOD_MAP.put("tropical_fish", createItem(FoodBlocks.TROPICAL_FISH, FoodComponents.TROPICAL_FISH));
 
-
         // 炖菜类
         FOOD_MAP.put("rabbit_stew", new ModStewItem(new Item.Settings().maxCount(1).food(FoodComponents.RABBIT_STEW), FoodBlocks.RABBIT_STEW));
         FOOD_MAP.put("mushroom_stew", new ModStewItem(new Item.Settings().maxCount(1).food(FoodComponents.MUSHROOM_STEW), FoodBlocks.MUSHROOM_STEW));
@@ -101,7 +100,7 @@ public class FoodToBlocks {
         // 其他
         FOOD_MAP.put("pumpkin_pie", createItem(FoodBlocks.PUMPKIN_PIE, FoodComponents.PUMPKIN_PIE));
         FOOD_MAP.put("chorus_fruit", new ModChorusFruitItem(new Item.Settings().food(FoodComponents.CHORUS_FRUIT), FoodBlocks.CHORUS_FRUIT));
-        FOOD_MAP.put("egg", new ModEggItem(new Item.Settings(), FoodBlocks.EGG));
+        FOOD_MAP.put("egg", new ModEggItem(new Item.Settings().maxCount(16), FoodBlocks.EGG));
         FOOD_MAP.put("totem_of_undying", new BlockItem(FoodBlocks.TOTEM_OF_UNDYING, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
 
         // 药水类

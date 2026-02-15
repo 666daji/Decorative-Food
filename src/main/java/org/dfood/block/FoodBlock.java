@@ -352,6 +352,11 @@ public class FoodBlock extends Block {
         return !checkState.isIn(ModTags.FOOD_PLACE) && !DFoodUtils.isModFoodBlock(checkState.getBlock());
     }
 
+    @Override
+    public boolean canReplace(BlockState state, ItemPlacementContext context) {
+        return DFoodUtils.isModFoodBlock(state.getBlock());
+    }
+
     /**
      * 硬编码掉落物，直接返回方块对应的物品
      */

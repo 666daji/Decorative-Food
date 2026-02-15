@@ -56,5 +56,9 @@
   "config.jade.plugin_dfood": "Dekoratives Essen",
   "config.jade.plugin_dfood.food_block": "Anzahl der Nahrungsblöcke",
   "config.jade.plugin_dfood.complex_food_block": "Inhalte komplexer Nahrungsblöcke",
-  "jade.dfood.food_count": "Anzahl: %s"
+  "jade.dfood.food_count": "Anzahl: %s",
+
+  "modmenu.nameTranslation.decorative-food": "Dekoratives Essen",
+  "modmenu.descriptionTranslation.decorative-food": "Mach das Essen platzierbar. Dekoriere deine Welt!",
+  "modmenu.summaryTranslation.decorative-food": "Mach das Essen platzierbar. Dekoriere deine Welt!"
 }

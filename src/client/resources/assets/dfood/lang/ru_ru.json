@@ -56,5 +56,9 @@
   "config.jade.plugin_dfood": "Декоративная Еда",
   "config.jade.plugin_dfood.food_block": "Количество Блоков Еды",
   "config.jade.plugin_dfood.complex_food_block": "Содержимое Сложных Блоков Еды",
-  "jade.dfood.food_count": "Количество: %s"
+  "jade.dfood.food_count": "Количество: %s",
+
+  "modmenu.nameTranslation.decorative-food": "Декоративная еда",
+  "modmenu.descriptionTranslation.decorative-food": "Сделайте еду размещаемой. Украсьте свой мир!",
+  "modmenu.summaryTranslation.decorative-food": "Сделайте еду размещаемой. Украсьте свой мир!"
 }

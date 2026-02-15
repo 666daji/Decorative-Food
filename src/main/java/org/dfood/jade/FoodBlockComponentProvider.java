@@ -14,8 +14,10 @@ public class FoodBlockComponentProvider implements IBlockComponentProvider {
     @Override
     public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {
         // 显示当前食物方块的堆叠数量
-        int count = DFoodUtils.getFoodBlockCount(blockAccessor.getBlockState());
-        iTooltip.add(Text.translatable("jade.dfood.food_count", count));
+        if (DFoodUtils.isModFoodBlock(blockAccessor.getBlock())) {
+            int count = DFoodUtils.getFoodBlockCount(blockAccessor.getBlockState());
+            iTooltip.add(Text.translatable("jade.dfood.food_count", count));
+        }
     }
 
     @Override

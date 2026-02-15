@@ -56,5 +56,9 @@
   "config.jade.plugin_dfood": "Comida Decorativa",
   "config.jade.plugin_dfood.food_block": "Cantidad de Bloques de Comida",
   "config.jade.plugin_dfood.complex_food_block": "Contenido de Bloques de Comida Complejos",
-  "jade.dfood.food_count": "Cantidad: %s"
+  "jade.dfood.food_count": "Cantidad: %s",
+
+  "modmenu.nameTranslation.decorative-food": "Comida Decorativa",
+  "modmenu.descriptionTranslation.decorative-food": "Haz que la comida sea colocable. ¡Decora tu mundo!",
+  "modmenu.summaryTranslation.decorative-food": "Haz que la comida sea colocable. ¡Decora tu mundo!"
 }
