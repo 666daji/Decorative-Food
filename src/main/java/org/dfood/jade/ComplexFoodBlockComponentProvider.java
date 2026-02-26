@@ -16,6 +16,8 @@ import snownee.jade.api.ui.IElementHelper;
 import java.util.List;
 
 public class ComplexFoodBlockComponentProvider implements IBlockComponentProvider {
+    public static final Identifier ID = new Identifier(ThreedFood.MOD_ID, "complex_food_block");
+
     @Override
     public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {
         BlockEntity entity = blockAccessor.getBlockEntity();
@@ -35,6 +37,6 @@ public class ComplexFoodBlockComponentProvider implements IBlockComponentProvide
 
     @Override
     public Identifier getUid() {
-        return new Identifier(ThreedFood.MOD_ID, "complex_food_block");
+        return ID;
     }
 }
