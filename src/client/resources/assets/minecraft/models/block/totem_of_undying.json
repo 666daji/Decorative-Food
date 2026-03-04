@@ -3,7 +3,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "minecraft:block/totem_of_undying",
-		"particle": "minecraft:block/totem_of_undying"
+		"particle": "minecraft:item/totem_of_undying"
 	},
 	"elements": [
 		{

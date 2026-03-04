@@ -1,13 +1,8 @@
 package org.dfood.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.ShulkerBoxBlock;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.util.ActionResult;
 import org.dfood.util.DFoodUtils;

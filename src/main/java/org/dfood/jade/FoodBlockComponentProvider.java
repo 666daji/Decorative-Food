@@ -3,6 +3,7 @@ package org.dfood.jade;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.dfood.ThreedFood;
+import org.dfood.block.SimpleFoodBlock;
 import org.dfood.util.DFoodUtils;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
@@ -15,7 +16,7 @@ public class FoodBlockComponentProvider implements IBlockComponentProvider {
     @Override
     public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {
         // 显示当前食物方块的堆叠数量
-        if (DFoodUtils.isModFoodBlock(blockAccessor.getBlock())) {
+        if (DFoodUtils.isModFoodBlock(blockAccessor.getBlock()) && !(blockAccessor.getBlock() instanceof SimpleFoodBlock)) {
             int count = DFoodUtils.getFoodBlockCount(blockAccessor.getBlockState());
             iTooltip.add(Text.translatable("jade.dfood.food_count", count));
         }

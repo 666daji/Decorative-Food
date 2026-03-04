@@ -27,7 +27,6 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.dfood.item.DoubleBlockItem;
 import org.dfood.shape.FoodShapeHandle;
-import org.dfood.tag.ModTags;
 import org.dfood.util.DFoodUtils;
 import org.dfood.util.IntPropertyManager;
 import org.jetbrains.annotations.Nullable;
@@ -349,7 +348,7 @@ public class FoodBlock extends Block {
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos downPos = pos.down();
         BlockState checkState = world.getBlockState(downPos);
-        return !checkState.isIn(ModTags.FOOD_PLACE) && !DFoodUtils.isModFoodBlock(checkState.getBlock());
+        return !state.isReplaceable() && !DFoodUtils.isModFoodBlock(checkState.getBlock());
     }
 
     @Override
