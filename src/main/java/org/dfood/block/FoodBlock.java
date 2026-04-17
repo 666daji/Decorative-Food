@@ -249,7 +249,7 @@ public class FoodBlock extends Block {
      * @return 匹配返回true，否则返回false
      */
     public boolean isSame(ItemStack stack, BlockState state, BlockEntity blockEntity) {
-        return stack.getItem() == this.asItem();
+        return stack.isOf(state.getBlock().asItem());
     }
 
     /**
@@ -348,7 +348,7 @@ public class FoodBlock extends Block {
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos downPos = pos.down();
         BlockState checkState = world.getBlockState(downPos);
-        return !state.isReplaceable() && !DFoodUtils.isModFoodBlock(checkState.getBlock());
+        return !checkState.isReplaceable() && !DFoodUtils.isModFoodBlock(checkState.getBlock());
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 
 public class ThreedFood implements ModInitializer {
 	public static final String MOD_ID = "dfood";
-	public static final Logger LOGGER = LoggerFactory.getLogger("Tw`s Decorative Food");
+	public static final Logger LOGGER = LoggerFactory.getLogger("TW`s Decorative Food");
 
 	@Override
 	public void onInitialize() {
