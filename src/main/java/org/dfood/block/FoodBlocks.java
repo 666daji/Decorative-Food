@@ -24,6 +24,8 @@ public class FoodBlocks {
             MapColor.LIME, BlockSoundGroup.STONE);
     public static final Block BREAD = registerFoodBlock("bread", 5,
             MapColor.TERRACOTTA_YELLOW, ModSoundGroups.BREAD);
+    public static final Block DRIED_KELP = registerFoodBlock("dried_kelp", 4,
+            MapColor.GREEN, BlockSoundGroup.GRASS);
 
     // 蔬菜类
     public static final Block BEETROOT = registerFoodBlock("beetroot", 5,
@@ -124,6 +126,10 @@ public class FoodBlocks {
                     .sounds(ModSoundGroups.LAVA_BUCKET)
                     .mapColor(MapColor.ORANGE)
                     .luminance(state -> 15));
+
+    // 怪物
+    public static final Block SPIDER_EYE = registerFoodBlock("spider_eye", 6,
+            MapColor.RED, ModSoundGroups.MEAT);
 
     // 其他
     public static final Block PUMPKIN_PIE = registerFoodBlock("pumpkin_pie", 1,

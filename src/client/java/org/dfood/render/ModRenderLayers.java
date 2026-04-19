@@ -25,5 +25,6 @@ public class ModRenderLayers {
         instance.putBlock(FoodBlocks.GLASS_BOTTLE, RenderLayer.getCutout());
         instance.putBlock(FoodBlocks.HONEY_BOTTLE, RenderLayer.getCutout());
         instance.putBlock(FoodBlocks.SUSPICIOUS_STEW, RenderLayer.getCutout());
+        instance.putBlock(FoodBlocks.SPIDER_EYE, RenderLayer.getCutout());
     }
 }

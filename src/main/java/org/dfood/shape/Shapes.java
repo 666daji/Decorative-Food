@@ -31,6 +31,9 @@ public class Shapes {
         shapeMap.put("minecraft:bread", new int[][]{
                 {1, 2, 3}, {3, 4, 2}, {5, 5, 1}
         });
+        shapeMap.put("minecraft:dried_kelp", new int[][]{
+                {1, 4, 4}
+        });
         // 蔬菜类
         shapeMap.put("minecraft:beetroot", new int[][]{
                 {1, 1, 11}, {2, 5, 12}
@@ -141,6 +144,10 @@ public class Shapes {
         });
         shapeMap.put("minecraft:lava_bucket", new int[][]{
                 {1, 1, 8}
+        });
+        // 怪物
+        shapeMap.put("minecraft:spider_eye", new int[][]{
+                {1, 1, 9}, {2, 4, 10}, {5, 6, 3}
         });
         // 其他
         shapeMap.put("minecraft:pumpkin_pie", new int[][]{

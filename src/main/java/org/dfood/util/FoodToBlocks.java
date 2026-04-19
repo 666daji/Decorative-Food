@@ -49,6 +49,7 @@ public class FoodToBlocks {
         FOOD_MAP.put("apple", createItem(FoodBlocks.APPLE, FoodComponents.APPLE));
         FOOD_MAP.put("melon_slice", createItem(FoodBlocks.MELON_SLICE, FoodComponents.MELON_SLICE));
         FOOD_MAP.put("bread", createItem(FoodBlocks.BREAD, FoodComponents.BREAD));
+        FOOD_MAP.put("dried_kelp", createItem(FoodBlocks.DRIED_KELP, FoodComponents.DRIED_KELP));
 
         // 蔬菜类
         FOOD_MAP.put("beetroot", createItem(FoodBlocks.BEETROOT, FoodComponents.BEETROOT));
@@ -96,6 +97,9 @@ public class FoodToBlocks {
         FOOD_MAP.put("water_bucket", null);
         FOOD_MAP.put("milk_bucket", null);
         FOOD_MAP.put("lava_bucket", null);
+
+        // 怪物
+        FOOD_MAP.put("spider_eye", createItem(FoodBlocks.SPIDER_EYE, FoodComponents.SPIDER_EYE));
 
         // 其他
         FOOD_MAP.put("pumpkin_pie", createItem(FoodBlocks.PUMPKIN_PIE, FoodComponents.PUMPKIN_PIE));
