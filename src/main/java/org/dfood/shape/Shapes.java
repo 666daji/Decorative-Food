@@ -41,6 +41,9 @@ public class Shapes {
         shapeMap.put("minecraft:potato", new int[][]{
                 {1, 1, 11}, {2, 4, 2}, {5, 5, 1}
         });
+        shapeMap.put("minecraft:poisonous_potato", new int[][]{
+                {1, 1, 11}, {2, 4, 2}, {5, 5, 1}
+        });
         shapeMap.put("minecraft:baked_potato", new int[][]{
                 {1, 1, 11}, {2, 4, 2}, {5, 5, 1}
         });

@@ -16,7 +16,7 @@ public class FoodBlocks {
     public static final Map<String, Block> FOOD_BLOCK_REGISTRY = new HashMap<>();
 
     // 零食
-    public static final Block COOKIE = registerFoodBlock("cookie", 10,
+    public static final Block COOKIE = registerFoodBlock("cookie", 7,
             MapColor.TERRACOTTA_YELLOW, BlockSoundGroup.STONE);
     public static final Block APPLE = registerFoodBlock("apple", 5,
             MapColor.RED, BlockSoundGroup.STONE);
@@ -32,6 +32,8 @@ public class FoodBlocks {
             MapColor.RED, BlockSoundGroup.CANDLE);
     public static final Block POTATO = registerFoodBlock("potato", 5,
             MapColor.GOLD, BlockSoundGroup.CANDLE, EnforceAsItems.POTATO);
+    public static final Block POISONOUS_POTATO = registerFoodBlock("poisonous_potato", 5,
+            MapColor.GOLD, BlockSoundGroup.CANDLE);
     public static final Block BAKED_POTATO = registerFoodBlock("baked_potato", 5,
             MapColor.GOLD, BlockSoundGroup.CANDLE);
     public static final Block CARROT = registerFoodBlock("carrot", 5,

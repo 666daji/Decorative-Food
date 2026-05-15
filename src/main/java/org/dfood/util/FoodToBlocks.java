@@ -54,6 +54,7 @@ public class FoodToBlocks {
         // 蔬菜类
         FOOD_MAP.put("beetroot", createItem(FoodBlocks.BEETROOT, FoodComponents.BEETROOT));
         FOOD_MAP.put("potato", new DoubleBlockItem(Blocks.POTATOES, new Item.Settings().food(FoodComponents.POTATO), FoodBlocks.POTATO));
+        FOOD_MAP.put("poisonous_potato", createItem(FoodBlocks.POISONOUS_POTATO, FoodComponents.POISONOUS_POTATO));
         FOOD_MAP.put("baked_potato", createItem(FoodBlocks.BAKED_POTATO, FoodComponents.BAKED_POTATO));
         FOOD_MAP.put("carrot", new DoubleBlockItem(Blocks.CARROTS, new Item.Settings().food(FoodComponents.CARROT), FoodBlocks.CARROT));
         FOOD_MAP.put("sweet_berries", new DoubleBlockItem(Blocks.SWEET_BERRY_BUSH, new Item.Settings().food(FoodComponents.SWEET_BERRIES), FoodBlocks.SWEET_BERRIES));

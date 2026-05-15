@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/potato_2",
+  "textures": {
+    "0": "minecraft:block/poisonous_potato",
+    "particle": "minecraft:item/poisonous_potato"
+  }
+}
