@@ -54,10 +54,12 @@ public class FoodToBlocks {
         FOOD_MAP.put("apple", createItem(FoodBlocks.APPLE, ModFoodComponents.APPLE));
         FOOD_MAP.put("melon_slice", createItem(FoodBlocks.MELON_SLICE, ModFoodComponents.MELON_SLICE));
         FOOD_MAP.put("bread", createItem(FoodBlocks.BREAD, ModFoodComponents.BREAD));
+        FOOD_MAP.put("dried_kelp", createItem(FoodBlocks.DRIED_KELP, ModFoodComponents.DRIED_KELP));
 
         // 蔬菜类
         FOOD_MAP.put("beetroot", createItem(FoodBlocks.BEETROOT, ModFoodComponents.BEETROOT));
         FOOD_MAP.put("potato", new DoubleBlockItem(Blocks.POTATOES, new Item.Settings().food(ModFoodComponents.POTATO), FoodBlocks.POTATO));
+        FOOD_MAP.put("poisonous_potato", createItem(FoodBlocks.POISONOUS_POTATO, ModFoodComponents.POISONOUS_POTATO));
         FOOD_MAP.put("baked_potato", createItem(FoodBlocks.BAKED_POTATO, ModFoodComponents.BAKED_POTATO));
         FOOD_MAP.put("carrot", new DoubleBlockItem(Blocks.CARROTS, new Item.Settings().food(ModFoodComponents.CARROT), FoodBlocks.CARROT));
         FOOD_MAP.put("sweet_berries", new DoubleBlockItem(Blocks.SWEET_BERRY_BUSH, new Item.Settings().food(ModFoodComponents.SWEET_BERRIES), FoodBlocks.SWEET_BERRIES));
@@ -102,10 +104,13 @@ public class FoodToBlocks {
         FOOD_MAP.put("milk_bucket", null);
         FOOD_MAP.put("lava_bucket", null);
 
+        // 怪物
+        FOOD_MAP.put("spider_eye", createItem(FoodBlocks.SPIDER_EYE, ModFoodComponents.SPIDER_EYE));
+
         // 其他
         FOOD_MAP.put("pumpkin_pie", createItem(FoodBlocks.PUMPKIN_PIE, ModFoodComponents.PUMPKIN_PIE));
         FOOD_MAP.put("chorus_fruit", new ModChorusFruitItem(new Item.Settings().food(ModFoodComponents.CHORUS_FRUIT), FoodBlocks.CHORUS_FRUIT));
-        FOOD_MAP.put("egg", new ModEggItem(FoodBlocks.EGG, new Item.Settings()));
+        FOOD_MAP.put("egg", new ModEggItem(FoodBlocks.EGG, new Item.Settings().maxCount(16)));
         FOOD_MAP.put("totem_of_undying", new BlockItem(FoodBlocks.TOTEM_OF_UNDYING, new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)));
 
         // 药水类

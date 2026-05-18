@@ -27,7 +27,6 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import org.dfood.item.DoubleBlockItem;
 import org.dfood.shape.FoodShapeHandle;
-import org.dfood.tag.ModTags;
 import org.dfood.util.DFoodUtils;
 import org.dfood.util.IntPropertyManager;
 import org.jetbrains.annotations.Nullable;
@@ -77,11 +76,11 @@ public class FoodBlock extends Block {
      * @param cItem                 强制指定的对应物品（可为null）
      */
     protected FoodBlock(Settings settings,
-                        int maxFood,
-                        boolean isFood,
-                        @Nullable VoxelShape simpleShape,
-                        boolean useItemTranslationKey,
-                        @Nullable EnforceAsItem cItem) {
+                      int maxFood,
+                      boolean isFood,
+                      @Nullable VoxelShape simpleShape,
+                      boolean useItemTranslationKey,
+                      @Nullable EnforceAsItem cItem) {
         super(settings);
         this.MAX_FOOD = maxFood;
         this.NUMBER_OF_FOOD = IntPropertyManager.create("number_of_food", MAX_FOOD);
@@ -251,7 +250,7 @@ public class FoodBlock extends Block {
      * @return 匹配返回true，否则返回false
      */
     public boolean isSame(ItemStack stack, BlockState state, BlockEntity blockEntity) {
-        return stack.getItem() == this.asItem();
+        return stack.isOf(state.getBlock().asItem());
     }
 
     /**
@@ -350,7 +349,12 @@ public class FoodBlock extends Block {
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos downPos = pos.down();
         BlockState checkState = world.getBlockState(downPos);
-        return !checkState.isIn(ModTags.FOOD_PLACE) && !DFoodUtils.isModFoodBlock(checkState.getBlock());
+        return !state.isReplaceable() && !DFoodUtils.isModFoodBlock(checkState.getBlock());
+    }
+
+    @Override
+    public boolean canReplace(BlockState state, ItemPlacementContext context) {
+        return DFoodUtils.isModFoodBlock(state.getBlock());
     }
 
     /**

@@ -12,5 +12,7 @@ public class FoodBlockPlugin implements IWailaPlugin {
     public void registerClient(IWailaClientRegistration registration) {
         registration.registerBlockComponent(new FoodBlockComponentProvider(), FoodBlock.class);
         registration.registerBlockComponent(new ComplexFoodBlockComponentProvider(), ComplexFoodBlock.class);
+        registration.markAsClientFeature(FoodBlockComponentProvider.ID);
+        registration.markAsClientFeature(ComplexFoodBlockComponentProvider.ID);
     }
 }

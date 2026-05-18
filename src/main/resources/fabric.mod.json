@@ -2,17 +2,16 @@
 	"schemaVersion": 1,
 	"id": "decorative-food",
 	"version": "${version}",
-	"name": "Decorative Food",
+	"name": "TW`s Decorative Food",
 	"description": "Make the food placeable.Decorate your world!",
-	"authors": [
-		"玉隐",
-		"理神"
-	],
-	"contact": {
-		"sources": "https://github.com/666daji/Decorative-Food"
-	},
+    "authors": ["Tenacious Wonder"],
+    "contact": {
+      "homepage": "https://modrinth.com/mod/decorative-food",
+      "sources": "https://github.com/666daji/Decorative-Food",
+      "issues": "https://github.com/666daji/Decorative-Food/issues"
+    },
 	"license": "MIT License",
-	"icon": "assets/dfood/icon.png",
+	"icon": "assets/dfood/icon.jpg",
 	"environment": "*",
 	"entrypoints": {
 		"main": [

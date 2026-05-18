@@ -3,11 +3,9 @@ package org.dfood.mixin;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.*;
 import net.minecraft.util.ActionResult;
+import org.dfood.block.ModTotemBlock;
 import org.dfood.util.DFoodUtils;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -36,13 +34,15 @@ public abstract class BlockItemMixin extends Item {
      */
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
     private void useOnBlockMixin(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir){
-        if (DFoodUtils.isModFoodItem(((BlockItem)(Object)this))) {
+        BlockItem mySelf = ((BlockItem)(Object)this);
+
+        if (DFoodUtils.isModFoodItem(mySelf) || mySelf.equals(Items.TOTEM_OF_UNDYING)) {
             PlayerEntity player = context.getPlayer();
             ItemPlacementContext placementContext = new ItemPlacementContext(context);
             BlockState expectedState = getPlacementState(placementContext);
 
             if (expectedState != null && player != null &&
-                    !player.isSneaking() && DFoodUtils.isModFoodBlock(expectedState.getBlock())) {
+                    !player.isSneaking() && (DFoodUtils.isModFoodBlock(expectedState.getBlock()) || expectedState.getBlock() instanceof ModTotemBlock)) {
                 cir.setReturnValue(ActionResult.PASS);
             }
         }

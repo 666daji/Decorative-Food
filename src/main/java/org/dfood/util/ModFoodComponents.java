@@ -13,6 +13,7 @@ public class ModFoodComponents {
     public static final FoodComponent APPLE = createFood(4, 0.3F);
     public static final FoodComponent MELON_SLICE = createFood(2, 0.3F);
     public static final FoodComponent BREAD = createFood(5, 0.6F);
+    public static final FoodComponent DRIED_KELP = createFood(1, 0.3F);
 
     // 蔬菜类
     public static final FoodComponent BEETROOT = createFood(1, 0.6F);
@@ -69,6 +70,8 @@ public class ModFoodComponents {
             new StatusEffectInstance(StatusEffects.NAUSEA, 300, 0)
     );
     public static final FoodComponent TROPICAL_FISH = createFood(1, 0.1F);
+
+    public static final FoodComponent SPIDER_EYE = createFoodWithEffect(2, 0.8F, new StatusEffectInstance(StatusEffects.POISON, 100, 0), 1.0F);
 
     // 其他非炖菜类
     public static final FoodComponent PUMPKIN_PIE = createFood(8, 0.3F);

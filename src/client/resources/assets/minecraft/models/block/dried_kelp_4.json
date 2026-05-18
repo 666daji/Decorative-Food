@@ -1,0 +1,88 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"textures": {
+      "0": "minecraft:block/dried_kelp",
+      "particle": "minecraft:item/dried_kelp"
+	},
+	"elements": [
+		{
+			"from": [2.5, 0.1, 5],
+			"to": [13.5, 0.1, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0.1, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 11, 0], "texture": "#0"},
+				"east": {"uv": [0, 0, 6, 0], "texture": "#0"},
+				"south": {"uv": [0, 0, 11, 0], "texture": "#0"},
+				"west": {"uv": [0, 0, 6, 0], "texture": "#0"},
+				"up": {"uv": [11, 6, 0, 0], "texture": "#0"},
+				"down": {"uv": [11, 6, 0, 12], "texture": "#0"}
+			}
+		},
+		{
+			"from": [2.5, 0.2, 5],
+			"to": [13.5, 0.2, 11],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [8, 0.2, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 11, 0], "texture": "#0"},
+				"east": {"uv": [0, 0, 6, 0], "texture": "#0"},
+				"south": {"uv": [0, 0, 11, 0], "texture": "#0"},
+				"west": {"uv": [0, 0, 6, 0], "texture": "#0"},
+				"up": {"uv": [11, 6, 0, 0], "texture": "#0"},
+				"down": {"uv": [11, 6, 0, 12], "texture": "#0"}
+			}
+		},
+		{
+			"from": [1.5, 0.3, 6],
+			"to": [12.5, 0.3, 12],
+			"rotation": {"angle": -45, "axis": "y", "origin": [7, 0.3, 9]},
+			"faces": {
+				"north": {"uv": [0, 0, 11, 0], "texture": "#0"},
+				"east": {"uv": [0, 0, 6, 0], "texture": "#0"},
+				"south": {"uv": [0, 0, 11, 0], "texture": "#0"},
+				"west": {"uv": [0, 0, 6, 0], "texture": "#0"},
+				"up": {"uv": [11, 6, 0, 0], "texture": "#0"},
+				"down": {"uv": [11, 6, 0, 12], "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 0.4, 3.5],
+			"to": [10, 0.4, 14.5],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [7, 0.4, 9]},
+			"faces": {
+				"north": {"uv": [0, 0, 6, 0], "texture": "#0"},
+				"east": {"uv": [0, 0, 11, 0], "texture": "#0"},
+				"south": {"uv": [0, 0, 6, 0], "texture": "#0"},
+				"west": {"uv": [0, 0, 11, 0], "texture": "#0"},
+				"up": {"uv": [11, 6, 0, 0], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [11, 6, 0, 12], "rotation": 270, "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0]
+		},
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [1]
+		},
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [2]
+		},
+		{
+			"name": "group",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [3]
+		}
+	]
+}

@@ -10,12 +10,15 @@ import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 
 public class FoodBlockComponentProvider implements IBlockComponentProvider {
+    public static final Identifier ID = Identifier.of(ThreedFood.MOD_ID, "food_block");
 
     @Override
     public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {
         // 显示当前食物方块的堆叠数量
-        int count = DFoodUtils.getFoodBlockCount(blockAccessor.getBlockState());
-        iTooltip.add(Text.translatable("jade.dfood.food_count", count));
+        if (DFoodUtils.isModFoodBlock(blockAccessor.getBlock())) {
+            int count = DFoodUtils.getFoodBlockCount(blockAccessor.getBlockState());
+            iTooltip.add(Text.translatable("jade.dfood.food_count", count));
+        }
     }
 
     @Override
