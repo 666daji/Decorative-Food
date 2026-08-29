@@ -175,7 +175,10 @@ public class ComplexFoodBlockEntity extends BlockEntity {
 
         for (int i = 0; i < count; i++) {
             ItemStack stack = new ItemStack(getCachedState().getBlock().asItem());
-            stack.setNbt(getNbtAt(i));
+            NbtCompound nbt = getNbtAt(i);
+            if (nbt != null) {
+                stack.setNbt(nbt);
+            }
             stacks.add(stack);
         }
 

@@ -60,19 +60,6 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
     }
 
     /**
-     * 默认不比较 NBT 数据，子类可重写以支持特定 NBT 匹配逻辑。
-     *
-     * @param stack 手持物品堆栈
-     * @param state 对应的方块状态
-     * @param blockEntity 对应的方块实体
-     * @return 若匹配返回 {@code true}
-     */
-    @Override
-    public boolean isSame(ItemStack stack, BlockState state, @Nullable BlockEntity blockEntity) {
-        return super.isSame(stack, state, blockEntity);
-    }
-
-    /**
      * 尝试增加堆叠数量，并将物品 NBT 存入方块实体。
      *
      * @return {@code true} 如果操作成功
@@ -81,8 +68,7 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
     protected boolean tryAdd(BlockState state, World world, BlockPos pos, PlayerEntity player,
                              ItemStack handStack, @Nullable BlockEntity blockEntity) {
         if (blockEntity instanceof ComplexFoodBlockEntity complexFoodBlockEntity) {
-            NbtCompound stackNbt = handStack.hasNbt() ? handStack.getNbt().copy() : new NbtCompound();
-            complexFoodBlockEntity.pushNbt(stackNbt);
+            complexFoodBlockEntity.pushNbt(copyOrEmpty(handStack));
         }
 
         return super.tryAdd(state, world, pos, player, handStack, blockEntity);
@@ -122,8 +108,7 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
 
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof ComplexFoodBlockEntity complexFoodBlockEntity) {
-            NbtCompound stackNbt = itemStack.hasNbt() ? itemStack.getNbt().copy() : new NbtCompound();
-            complexFoodBlockEntity.pushNbt(stackNbt);
+            complexFoodBlockEntity.pushNbt(copyOrEmpty(itemStack));
             complexFoodBlockEntity.markDirty();
         }
     }
@@ -141,7 +126,7 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
             return Collections.emptyList();
         }
 
-        BlockEntity blockEntity = builder.get(LootContextParameters.BLOCK_ENTITY);
+        BlockEntity blockEntity = builder.getOptional(LootContextParameters.BLOCK_ENTITY);
 
         if (blockEntity instanceof ComplexFoodBlockEntity complexFoodBlockEntity) {
             List<ItemStack> droppedStacks = new ArrayList<>();
@@ -152,5 +137,13 @@ public class ComplexFoodBlock extends FoodBlock implements BlockEntityProvider {
         }
 
         return Collections.singletonList(new ItemStack(this.asItem(), foodCount));
+    }
+
+    /**
+     * 复制物品 NBT；物品无 NBT 时返回空 NBT，确保每个堆叠都对应一个栈条目。
+     */
+    private static NbtCompound copyOrEmpty(ItemStack stack) {
+        NbtCompound nbt = stack.getNbt();
+        return nbt == null ? new NbtCompound() : nbt.copy();
     }
 }
