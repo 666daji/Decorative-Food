@@ -1,13 +1,10 @@
 package org.dfood.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
-import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.util.ActionResult;
-import org.dfood.util.DFoodUtils;
 
-public class ModChorusFruitItem extends ChorusFruitItem implements HaveBlock{
+public class ModChorusFruitItem extends ChorusFruitItem implements HaveBlock {
     private final Block block;
 
     public ModChorusFruitItem(Settings settings, Block block) {
@@ -22,23 +19,9 @@ public class ModChorusFruitItem extends ChorusFruitItem implements HaveBlock{
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        PlayerEntity player = context.getPlayer();
-        Item item = context.getStack().getItem();
-        // 仅当父类方法失败时才尝试放置方块
-        if (super.useOnBlock(context) != ActionResult.PASS || (player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item))){
+        if (super.useOnBlock(context) != ActionResult.PASS || shouldPassToVanilla(context)) {
             return ActionResult.PASS;
         }
-        ActionResult actionResult = this.place(new ItemPlacementContext(context));
-        if (!actionResult.isAccepted() && this.isFood()) {
-            ActionResult actionResult2 = this.use(context.getWorld(), context.getPlayer(), context.getHand()).getResult();
-            return actionResult2 == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : actionResult2;
-        } else {
-            return actionResult;
-        }
-    }
-
-    @Override
-    public FeatureSet getRequiredFeatures() {
-        return this.getBlock().getRequiredFeatures();
+        return placeOrConsume(context, this::isFood, c -> this.use(c.getWorld(), c.getPlayer(), c.getHand()));
     }
 }

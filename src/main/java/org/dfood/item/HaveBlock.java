@@ -5,11 +5,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.BlockSoundGroup;
@@ -17,18 +20,33 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Property;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+import org.dfood.util.DFoodUtils;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.BooleanSupplier;
+import java.util.function.Function;
 
 /**
- * 表示该模组独有的方块物品，虽然这样做会有很大一部分重复代码，但是可以很好地与其他模组兼容。
- * <p>示例:{@linkplain ModPotionItem}</p>
+ * 让原版的特殊物品类获得“放置方块”效果的妥协方案。
+ * <p>
+ * {@code EggItem}、{@code PotionItem}、{@code BucketItem} 这类原版物品类各自带额外的物品行为
+ * （投掷、药水、盛放流体等），无法直接用 {@link net.minecraft.item.BlockItem} 替换。于是本接口
+ * 把这些类包装为“仍是原版物品、但多一种放置方块能力”：对其它模组而言，这里对应的物品依旧是
+ * {@code EggItem}/{@code BucketItem}，只是通过本接口多了一条可行的放置路径。代价是模板逻辑会
+ * 在实现类中重复，因此本接口集中提供可复用的默认方法以减少重复。
+ *
+ * <p>实现类构造时持有对应的{@link Block}，并通过{@link #getBlock()}暴露。
+ *
+ * @see ModEggItem
  */
 public interface HaveBlock {
     Block getBlock();
@@ -41,6 +59,49 @@ public interface HaveBlock {
      */
     default void appendBlocks(Map<Block, Item> map, Item item) {
         map.put(this.getBlock(), item);
+    }
+
+    /**
+     * 将物品作为方块放置；若放置失败且物品可食用，则回退为“使用物品”（例如食用/喝下）。
+     *
+     * @param context 使用物品的上下文
+     * @param isEdible 判断物品是否可食用的回调
+     * @param use 执行“使用物品”的回调，返回使用结果
+     * @return 放置成功或回退使用后的结果
+     */
+    default ActionResult placeOrConsume(ItemUsageContext context,
+                                        BooleanSupplier isEdible,
+                                        Function<ItemUsageContext, TypedActionResult<ItemStack>> use) {
+        ActionResult placeResult = this.place(new ItemPlacementContext(context));
+        if (!placeResult.isAccepted() && isEdible.getAsBoolean()) {
+            ActionResult useResult = use.apply(context).getResult();
+            return useResult == ActionResult.CONSUME ? ActionResult.CONSUME_PARTIAL : useResult;
+        }
+        return placeResult;
+    }
+
+    /**
+     * 判断是否应交由原版行为处理：手持的是模组食物且玩家未潜行时返回 {@code true}，
+     * 避免食物被反复当作方块放置。
+     */
+    default boolean shouldPassToVanilla(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        Item item = context.getStack().getItem();
+        return player != null && !player.isSneaking() && DFoodUtils.isModFoodItem(item);
+    }
+
+    /**
+     * 获取对应方块的功能特性集。
+     */
+    default FeatureSet getRequiredFeatures() {
+        return this.getBlock().getRequiredFeatures();
+    }
+
+    /**
+     * 追加对应方块的物品提示文本。
+     */
+    default void appendBlockTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        this.getBlock().appendTooltip(stack, world, tooltip, context);
     }
 
     default ActionResult place(ItemPlacementContext context) {
