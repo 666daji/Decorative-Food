@@ -38,7 +38,6 @@ import java.util.Set;
 
 /**
  * 食物方块的抽象基类，定义了所有食物方块的通用行为和属性。
- * 支持堆叠放置、方向控制、自定义交互逻辑等功能。
  */
 public class FoodBlock extends Block {
     /** 所有食物方块的注册集合，用于统一管理 */
@@ -99,6 +98,8 @@ public class FoodBlock extends Block {
                 .with(NUMBER_OF_FOOD, 1));
     }
 
+    /* ==================== 方块生命周期回调（Vanilla Block 行为） ==================== */
+
     /**
      * 获取翻译键，根据配置决定使用物品翻译键或方块翻译键
      */
@@ -140,6 +141,10 @@ public class FoodBlock extends Block {
                 .with(NUMBER_OF_FOOD, 1);
     }
 
+    /**
+     * 玩家右键方块时触发。整体流程为“优先调用自定义钩子 → 尝试添加 → 尝试取出”，
+     * 其中添加与取出的具体行为委托给可重写扩展点。
+     */
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         // 优先执行自定义钩子
@@ -181,155 +186,6 @@ public class FoodBlock extends Block {
 
         // 没有可执行的操作
         return ActionResult.PASS;
-    }
-
-    /**
-     * 尝试增加堆叠数量
-     * @return 操作是否成功
-     */
-    protected boolean tryAdd(BlockState state,
-                             World world,
-                             BlockPos pos,
-                             PlayerEntity player,
-                             ItemStack handStack,
-                             BlockEntity blockEntity) {
-        int currentCount = state.get(NUMBER_OF_FOOD);
-        BlockState newState = state.with(NUMBER_OF_FOOD, currentCount + 1);
-        return world.setBlockState(pos, newState, Block.NOTIFY_ALL);
-    }
-
-    /**
-     * 消耗玩家手中的物品
-     * @param player 执行操作的玩家
-     * @param handStack 手持物品堆栈
-     * @param hand 使用的手
-     * @return 消耗是否成功
-     */
-    protected boolean consumeItemIfNotCreative(PlayerEntity player, ItemStack handStack, Hand hand) {
-        if (!player.isCreative() && !handStack.isEmpty()) {
-            handStack.decrement(1);
-            player.setStackInHand(hand, handStack);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * 尝试减少堆叠数量
-     * @return 操作是否成功
-     */
-    protected boolean tryRemove(BlockState state,
-                                World world,
-                                BlockPos pos,
-                                PlayerEntity player,
-                                BlockEntity blockEntity) {
-        int currentCount = state.get(NUMBER_OF_FOOD);
-        int newCount = currentCount - 1;
-
-        if (newCount > 0) {
-            BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
-            world.setBlockState(pos, newState, Block.NOTIFY_ALL);
-        } else {
-            world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
-        }
-
-        // 给予玩家物品（非创造模式）
-        if (!player.isCreative()) {
-            ItemStack foodItem = createStack(1, state, blockEntity);
-            if (!player.giveItemStack(foodItem)) {
-                player.dropItem(foodItem, false);
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * 检查手持物品是否与方块匹配
-     * @return 匹配返回true，否则返回false
-     */
-    public boolean isSame(ItemStack stack, BlockState state, BlockEntity blockEntity) {
-        return stack.isOf(state.getBlock().asItem());
-    }
-
-    /**
-     * 创建对应物品堆栈
-     *
-     * @param count 物品数量
-     * @param state 方块状态
-     * @param blockEntity 对应的方块实体（可为null）
-     * @return 物品堆栈
-     * @throws IllegalArgumentException 当数量不在有效范围内时抛出
-     */
-    public ItemStack createStack(int count, BlockState state, @Nullable BlockEntity blockEntity) {
-        if (count <= 0 || count > MAX_FOOD) {
-            throw new IllegalArgumentException("Count must be between 1 and " + MAX_FOOD);
-        }
-        return new ItemStack(this.asItem(), count);
-    }
-
-    /**
-     * 播放放置物品的声音
-     */
-    public void playPlaceSound(World world, BlockPos pos, PlayerEntity player) {
-        world.playSound(
-                player,
-                pos,
-                this.soundGroup.getPlaceSound(),
-                SoundCategory.BLOCKS,
-                1.0F,
-                world.getRandom().nextFloat() * 0.1F + 0.9F
-        );
-    }
-
-    /**
-     * 播放取出物品的声音
-     */
-    public void playTakeSound(World world, BlockPos pos, PlayerEntity player) {
-        world.playSound(
-                player,
-                pos,
-                this.soundGroup.getBreakSound(),
-                SoundCategory.BLOCKS,
-                1.0F,
-                world.getRandom().nextFloat() * 0.1F + 0.9F
-        );
-    }
-
-    public @Nullable OnUseHook getOnUseHook() {
-        return onUseHook;
-    }
-
-    /**
-     * 设置自定义交互钩子
-     * @param onUseHook 自定义钩子实例（可为null以移除钩子）
-     */
-    public void setOnUseHook(@Nullable OnUseHook onUseHook) {
-        this.onUseHook = onUseHook;
-    }
-
-    /**
-     * 获取所有注册的食物方块，需要方块在构造时指定isFood为true
-     * @return 不可变集合，包含所有注册的食物方块
-     */
-    public static Set<FoodBlock> getRegisteredFoodBlocks() {
-        return Collections.unmodifiableSet(REGISTERED_FOOD_BLOCKS);
-    }
-
-    /**
-     * 检查是否指定了强制对应物品
-     * @return 若指定则返回true，否则返回false
-     */
-    public boolean haveCItem() {
-        return this.cItem != null;
-    }
-
-    /**
-     * 获取强制指定的对应物品。
-     * @return 强制指定的对应物品，如果没有强制指定的物品则返回null
-     */
-    public @Nullable EnforceAsItem getCItem() {
-        return cItem;
     }
 
     @Override
@@ -395,6 +251,164 @@ public class FoodBlock extends Block {
         builder.add(FACING);
         builder.add(IntPropertyManager.take());
     }
+
+    /* ==================== 可重写扩展点（子类可定制） ==================== */
+
+    /**
+     * 尝试增加堆叠数量。子类可覆写以在堆叠时写入额外数据
+     * （例如{@linkplain ComplexFoodBlock}把物品组件存入方块实体）。
+     * @return 操作是否成功
+     */
+    protected boolean tryAdd(BlockState state,
+                             World world,
+                             BlockPos pos,
+                             PlayerEntity player,
+                             ItemStack handStack,
+                             BlockEntity blockEntity) {
+        int currentCount = state.get(NUMBER_OF_FOOD);
+        BlockState newState = state.with(NUMBER_OF_FOOD, currentCount + 1);
+        return world.setBlockState(pos, newState, Block.NOTIFY_ALL);
+    }
+
+    /**
+     * 尝试减少堆叠数量；减到 0 时移除方块，并把取出的食物交给玩家（非创造模式）。
+     * @return 操作是否成功
+     */
+    protected boolean tryRemove(BlockState state,
+                                World world,
+                                BlockPos pos,
+                                PlayerEntity player,
+                                BlockEntity blockEntity) {
+        int currentCount = state.get(NUMBER_OF_FOOD);
+        int newCount = currentCount - 1;
+
+        if (newCount > 0) {
+            BlockState newState = state.with(NUMBER_OF_FOOD, newCount);
+            world.setBlockState(pos, newState, Block.NOTIFY_ALL);
+        } else {
+            world.setBlockState(pos, Blocks.AIR.getDefaultState(), Block.NOTIFY_ALL);
+        }
+
+        // 给予玩家物品（非创造模式）
+        if (!player.isCreative()) {
+            ItemStack foodItem = createStack(1, state, blockEntity);
+            if (!player.giveItemStack(foodItem)) {
+                player.dropItem(foodItem, false);
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * 消耗玩家手中的物品（非创造模式才消耗）。
+     * @param player 执行操作的玩家
+     * @param handStack 手持物品堆栈
+     * @param hand 使用的手
+     * @return 消耗是否成功
+     */
+    protected boolean consumeItemIfNotCreative(PlayerEntity player, ItemStack handStack, Hand hand) {
+        if (!player.isCreative() && !handStack.isEmpty()) {
+            handStack.decrement(1);
+            player.setStackInHand(hand, handStack);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 检查手持物品是否与方块匹配。子类可覆写以比较更细的物品数据
+     * （例如{@linkplain SuspiciousStewBlock}比较可疑炖菜的 NBT 效果）。
+     * @return 匹配返回true，否则返回false
+     */
+    public boolean isSame(ItemStack stack, BlockState state, BlockEntity blockEntity) {
+        return stack.isOf(state.getBlock().asItem());
+    }
+
+    /**
+     * 创建对应物品堆栈。子类可覆写以把方块实体中的附加数据写回物品
+     * （例如恢复药水效果、可疑炖菜效果）。
+     *
+     * @param count 物品数量
+     * @param state 方块状态
+     * @param blockEntity 对应的方块实体（可为null）
+     * @return 物品堆栈
+     * @throws IllegalArgumentException 当数量不在有效范围内时抛出
+     */
+    public ItemStack createStack(int count, BlockState state, @Nullable BlockEntity blockEntity) {
+        if (count <= 0 || count > MAX_FOOD) {
+            throw new IllegalArgumentException("Count must be between 1 and " + MAX_FOOD);
+        }
+        return new ItemStack(this.asItem(), count);
+    }
+
+    /**
+     * 播放放置物品的声音
+     */
+    public void playPlaceSound(World world, BlockPos pos, PlayerEntity player) {
+        world.playSound(
+                player,
+                pos,
+                this.soundGroup.getPlaceSound(),
+                SoundCategory.BLOCKS,
+                1.0F,
+                world.getRandom().nextFloat() * 0.1F + 0.9F
+        );
+    }
+
+    /**
+     * 播放取出物品的声音
+     */
+    public void playTakeSound(World world, BlockPos pos, PlayerEntity player) {
+        world.playSound(
+                player,
+                pos,
+                this.soundGroup.getBreakSound(),
+                SoundCategory.BLOCKS,
+                1.0F,
+                world.getRandom().nextFloat() * 0.1F + 0.9F
+        );
+    }
+
+    /* ==================== 对外接口 ==================== */
+
+    public @Nullable OnUseHook getOnUseHook() {
+        return onUseHook;
+    }
+
+    /**
+     * 设置自定义交互钩子
+     * @param onUseHook 自定义钩子实例（可为null以移除钩子）
+     */
+    public void setOnUseHook(@Nullable OnUseHook onUseHook) {
+        this.onUseHook = onUseHook;
+    }
+
+    /**
+     * 获取所有注册的食物方块，需要方块在构造时指定isFood为true
+     * @return 不可变集合，包含所有注册的食物方块
+     */
+    public static Set<FoodBlock> getRegisteredFoodBlocks() {
+        return Collections.unmodifiableSet(REGISTERED_FOOD_BLOCKS);
+    }
+
+    /**
+     * 检查是否指定了强制对应物品
+     * @return 若指定则返回true，否则返回false
+     */
+    public boolean haveCItem() {
+        return this.cItem != null;
+    }
+
+    /**
+     * 获取强制指定的对应物品。
+     * @return 强制指定的对应物品，如果没有强制指定的物品则返回null
+     */
+    public @Nullable EnforceAsItem getCItem() {
+        return cItem;
+    }
+
+    /* ==================== Builder ==================== */
 
     /**
      * 完全使用默认的参数。
