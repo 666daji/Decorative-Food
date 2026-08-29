@@ -7,7 +7,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import org.dfood.item.HaveBlock;
-import org.dfood.util.FoodToBlocks;
+import org.dfood.replace.FoodToBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

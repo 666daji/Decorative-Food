@@ -10,7 +10,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import org.dfood.block.FoodBlock;
-import org.dfood.block.FoodBlocks;
+import org.dfood.replace.FoodBlocks;
 import org.dfood.block.entity.EnchantedGoldenAppleBlockEntity;
 import org.dfood.util.DFoodUtils;
 

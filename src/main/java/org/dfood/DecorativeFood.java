@@ -6,9 +6,9 @@ import org.dfood.block.entity.ModBlockEntityTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ThreedFood implements ModInitializer {
+public class DecorativeFood implements ModInitializer {
 	public static final String MOD_ID = "dfood";
-	public static final Logger LOGGER = LoggerFactory.getLogger("TW`s Decorative Food");
+	public static final Logger LOGGER = LoggerFactory.getLogger("TW's Decorative Food");
 
 	@Override
 	public void onInitialize() {

@@ -1,11 +1,10 @@
-package org.dfood.util;
+package org.dfood.replace;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.*;
 import net.minecraft.util.Rarity;
-import org.dfood.block.FoodBlocks;
 import org.dfood.item.*;
 import org.dfood.mixin.FoodToBlockMixin;
 

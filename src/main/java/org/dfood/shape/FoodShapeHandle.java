@@ -6,7 +6,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.shape.VoxelShape;
-import org.dfood.ThreedFood;
+import org.dfood.DecorativeFood;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 
@@ -28,7 +28,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @see ShapeConvertible
  */
 public class FoodShapeHandle {
-    private static final Logger LOGGER = ThreedFood.LOGGER;
+    private static final Logger LOGGER = DecorativeFood.LOGGER;
 
     /**
      * 食物方块体素形状的区间表（见{@linkplain Shapes#shapeMap}）。

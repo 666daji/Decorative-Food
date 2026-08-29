@@ -5,8 +5,8 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import org.dfood.ThreedFood;
-import org.dfood.block.FoodBlocks;
+import org.dfood.DecorativeFood;
+import org.dfood.replace.FoodBlocks;
 
 public class ModBlockEntityTypes {
     public static final BlockEntityType<ComplexFoodBlockEntity> COMPLEX_FOOD = create("complex_food",
@@ -21,7 +21,7 @@ public class ModBlockEntityTypes {
             BlockEntityType.Builder.create(EnchantedGoldenAppleBlockEntity::new, FoodBlocks.ENCHANTED_GOLDEN_APPLE));
 
     private static <T extends BlockEntity> BlockEntityType<T> create(String id, BlockEntityType.Builder<T> builder) {
-        return Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(ThreedFood.MOD_ID, id), builder.build(null));
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(DecorativeFood.MOD_ID, id), builder.build(null));
     }
 
     public static void register() {}

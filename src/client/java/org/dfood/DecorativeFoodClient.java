@@ -4,7 +4,7 @@ import net.fabricmc.api.ClientModInitializer;
 import org.dfood.render.ModBlockColors;
 import org.dfood.render.ModRenderLayers;
 
-public class ThreedfoodClient implements ClientModInitializer {
+public class DecorativeFoodClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
         ModBlockColors.registryColors();

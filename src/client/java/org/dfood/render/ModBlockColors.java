@@ -5,7 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockRenderView;
-import org.dfood.block.FoodBlocks;
+import org.dfood.replace.FoodBlocks;
 import org.dfood.block.entity.PotionBlockEntity;
 import org.jetbrains.annotations.Nullable;
 

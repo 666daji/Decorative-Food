@@ -2,7 +2,7 @@ package org.dfood.jade;
 
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import org.dfood.ThreedFood;
+import org.dfood.DecorativeFood;
 import org.dfood.block.SimpleFoodBlock;
 import org.dfood.util.DFoodUtils;
 import snownee.jade.api.BlockAccessor;
@@ -11,7 +11,7 @@ import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 
 public class FoodBlockComponentProvider implements IBlockComponentProvider {
-    public static final Identifier ID =new Identifier(ThreedFood.MOD_ID, "food_block");
+    public static final Identifier ID =new Identifier(DecorativeFood.MOD_ID, "food_block");
 
     @Override
     public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {

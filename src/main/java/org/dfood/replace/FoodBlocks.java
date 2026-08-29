@@ -1,7 +1,8 @@
-package org.dfood.block;
+package org.dfood.replace;
 
 import net.minecraft.block.*;
 import net.minecraft.sound.BlockSoundGroup;
+import org.dfood.block.*;
 import org.dfood.sound.ModSoundGroups;
 import org.dfood.util.DFoodUtils;
 import org.dfood.util.IntPropertyManager;

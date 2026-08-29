@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "decorative-food",
 	"version": "${version}",
-	"name": "TW`s Decorative Food",
+	"name": "TW's Decorative Food",
 	"description": "Make the food placeable.Decorate your world!",
     "authors": ["Tenacious Wonder"],
 	"contact": {
@@ -15,13 +15,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"org.dfood.ThreedFood"
+			"org.dfood.DecorativeFood"
 		],
 		"client": [
-			"org.dfood.ThreedfoodClient"
+			"org.dfood.DecorativeFoodClient"
 		],
 		"fabric-datagen": [
-			"org.dfood.ThreedfoodDataGenerator"
+			"org.dfood.DecorativeFoodDataGenerator"
 		],
         "jade": [
           "org.dfood.jade.FoodBlockPlugin"

@@ -4,7 +4,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec2f;
-import org.dfood.ThreedFood;
+import org.dfood.DecorativeFood;
 import org.dfood.block.entity.ComplexFoodBlockEntity;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
@@ -16,7 +16,7 @@ import snownee.jade.api.ui.IElementHelper;
 import java.util.List;
 
 public class ComplexFoodBlockComponentProvider implements IBlockComponentProvider {
-    public static final Identifier ID = new Identifier(ThreedFood.MOD_ID, "complex_food_block");
+    public static final Identifier ID = new Identifier(DecorativeFood.MOD_ID, "complex_food_block");
 
     @Override
     public void appendTooltip(ITooltip iTooltip, BlockAccessor blockAccessor, IPluginConfig iPluginConfig) {

@@ -2,7 +2,7 @@ package org.dfood.render;
 
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
-import org.dfood.block.FoodBlocks;
+import org.dfood.replace.FoodBlocks;
 
 public class ModRenderLayers {
     private static final BlockRenderLayerMap instance = BlockRenderLayerMap.INSTANCE;
